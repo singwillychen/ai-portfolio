@@ -1,0 +1,249 @@
+<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>陳威廷｜AI 應用作品集</title><meta name="description" content="陳威廷 Willy Chen 的 AI 應用作品集：每個作品的痛點、做法與使用工具。">
+<style>
+:root{--font-anthropic-sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;--font-anthropic-serif:"Noto Serif TC","Songti TC",Georgia,serif;
+--color-fg:#1f1e1c;--color-fg-muted:#6b6862;--color-bg:#f6f5f1;--color-panel:#ffffff;--color-border-line:#e3e0d8;--color-ok:#2f7d4f;--color-warn:#a8620b;--color-bad:#c0392b;
+--cds-font-size-caption:.8125rem;--cds-font-size-body:.9375rem;--cds-font-size-heading:1.0625rem;--cds-font-size-title:1.75rem;--cds-font-weight-medium:600;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:16px;--cds-gap-lg:24px;--cds-gap-xl:40px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:20px;--cds-radius:8px;
+--cds-chart-muted:#c9c5bb;--cds-chart-reference:#c96442;--cds-surface-popover:#fff;--cds-border:#e3e0d8;--cds-shadow-popover:0 4px 16px rgba(0,0,0,.12);--cds-dur-slow:.4s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);--c0:#c96442;--c1:#d4a017}
+@media (prefers-color-scheme:dark){:root{--color-fg:#ecebe6;--color-fg-muted:#a39f96;--color-bg:#1c1b19;--color-panel:#262522;--color-border-line:#3a3834;--color-ok:#5cb87f;--color-warn:#e0a64a;--cds-chart-muted:#55524c;--cds-surface-popover:#2e2d29;--cds-border:#3a3834}}
+html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
+#dash-root{padding:32px var(--dash-gutter)}
+.dash-skeleton:empty{min-height:1rem}
+
+#dash-root { --dash-gutter: clamp(16px, 4vw, 40px); }
+.pf { max-width: 72rem; margin-inline: auto; font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+.pf-head { margin-bottom: var(--cds-gap-lg); }
+.pf-kicker { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .04em; margin: 0 0 var(--cds-gap-xs); }
+.pf-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 var(--cds-gap-sm); }
+.pf-lede { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); max-width: 46rem; margin: 0; line-height: 1.6; }
+.pf-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-lg) 0; }
+.pf-tile, .pf-card, .pf-panel { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.pf-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-xs); }
+.pf-tile-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2.25rem; line-height: 1; font-variant-numeric: tabular-nums; min-height: 2.25rem; display: block; }
+.pf-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-xl); }
+.pf-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.pf-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-md); }
+.pf-bars { position: relative; min-height: 12rem; display: flex; flex-direction: column; gap: 6px; }
+.pf-bar-row { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr 2rem; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+.pf-bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pf-bar-track { height: 14px; }
+.pf-bar-fill { height: 100%; border-radius: var(--cds-radius); min-width: 4px; }
+.pf-bar-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
+.pf-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.pf-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-md); }
+.pf-filter { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
+.pf-filter button { font: inherit; font-size: var(--cds-font-size-caption); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+.pf-filter button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+.pf-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); min-height: 20rem; }
+.pf-card { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.pf-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--cds-gap-sm); }
+.pf-card-cat { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 2px; }
+.pf-card-name { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; line-height: 1.35; }
+.pf-pill { flex: none; font-size: var(--cds-font-size-caption); padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.pf-pill.ok { color: var(--color-ok); } .pf-pill.warn { color: var(--color-warn); } .pf-pill.muted { color: var(--color-fg-muted); }
+.pf-summary { margin: 0; line-height: 1.6; }
+.pf-highlight { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-left: 3px solid var(--cds-chart-reference); background: var(--color-bg); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+.pf-block h4 { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-xs) 0 2px; }
+.pf-block p { margin: 0; font-size: var(--cds-font-size-body); line-height: 1.6; }
+.pf-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.pf-chip { font-size: var(--cds-font-size-caption); padding: 2px 8px; border-radius: var(--cds-radius); background: var(--color-bg); border: 1px solid var(--color-border-line); }
+.pf-mine { margin-top: auto; border: 1px dashed var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); }
+.pf-mine h4 { margin-top: 0; }
+.pf-mine p.empty { color: var(--color-fg-muted); font-style: italic; }
+.pf-foot { margin-top: var(--cds-gap-xl); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+[data-dash-source-state=empty] { color: transparent; }
+.pf-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.pf-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+@media (prefers-reduced-motion: no-preference) {
+  .pf-card.in { animation: pf-in var(--cds-dur-slow) var(--cds-ease-out) both; }
+  @keyframes pf-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+</style></head><body><div id="dash-root">
+
+<div class="pf" lang="zh-Hant-TW">
+  <header class="pf-head" id="top">
+    <p class="pf-kicker">AI 應用作品集 · AI Application Portfolio</p>
+    <h1 class="pf-title">陳威廷 Willy Chen</h1>
+    <p class="pf-lede">從現場設備作業、政府開放資料到自營電商，我用 Claude Code 等 AI 工具，把真實工作裡的痛點做成可以實際使用的系統。每個作品都寫明它解決的問題、做法與使用的工具。</p>
+  </header>
+
+  <section class="pf-tiles" aria-label="作品總覽">
+    <div class="pf-tile">
+      <p class="pf-tile-label">作品數</p>
+      <b class="pf-tile-num dash-skeleton" data-draw="n-works" data-source="totals" data-field="works" data-row="0">—</b>
+    </div>
+    <div class="pf-tile">
+      <p class="pf-tile-label">已完成或使用中</p>
+      <b class="pf-tile-num dash-skeleton" data-draw="n-done" data-source="totals" data-field="done" data-row="0">—</b>
+    </div>
+    <div class="pf-tile">
+      <p class="pf-tile-label">整合過的工具與技術</p>
+      <b class="pf-tile-num dash-skeleton" data-draw="n-tools" data-source="totals" data-field="tools" data-row="0">—</b>
+    </div>
+  </section>
+
+  <section class="pf-panels" aria-label="技能分布">
+    <div class="pf-panel" id="tools-chart">
+      <h2 class="pf-h2">最常用的工具</h2>
+      <p class="pf-note">各工具出現在幾個作品中，取前 10 名</p>
+      <div class="pf-bars dash-skeleton" data-draw="tool-bars" data-source="tool_counts"></div>
+    </div>
+    <div class="pf-panel" id="status-chart">
+      <h2 class="pf-h2">作品進度</h2>
+      <p class="pf-note">依目前狀態分組的作品數</p>
+      <div class="pf-bars dash-skeleton" data-draw="status-bars" data-source="status_counts"></div>
+    </div>
+  </section>
+
+  <section id="works" aria-label="作品">
+    <div class="pf-section-head">
+      <h2 class="pf-h2">作品</h2>
+      <div class="pf-filter" role="group" aria-label="依類別篩選">
+        <button type="button" data-cat="" aria-pressed="true">全部</button>
+        <button type="button" data-cat="網頁工具" aria-pressed="false">網頁工具</button>
+        <button type="button" data-cat="AI 代理與自動化" aria-pressed="false">AI 代理與自動化</button>
+        <button type="button" data-cat="電商營運" aria-pressed="false">電商營運</button>
+      </div>
+    </div>
+    <div class="pf-cards dash-skeleton" data-draw="cards" data-source="works"></div>
+  </section>
+
+  <p class="pf-foot">作品說明由 Claude 依各專案的程式與文件整理；「我的說明」欄位由本人補充。</p>
+</div>
+
+</div>
+<script>
+window.__WORKS=[{"id": "voicesprite", "order": 1, "name": "VoiceSprite 聲線工坊", "category": "網頁工具", "status": "已完成", "summary": "朗讀 5 句台詞就能建立自己的聲線特徵檔，選一個動漫角色、輸入文字，角色就用你的聲線說話，還能直接帶進直播畫面（綠幕／透明背景）。", "pain_point": "直播主和創作者想要角色配音，但請配音員貴、AI 語音模型又要安裝環境和顯卡，一般人用不起來。", "solution": "整個流程放在瀏覽器裡：錄音、特徵擷取、文字轉語音都在本機完成，錄音不上傳；需要更像的音色時，可切換到瀏覽器內 AI 音色複製或本地開源引擎。", "tools": ["HTML／CSS／JS", "Web Speech API", "sherpa-onnx WASM", "ZipVoice", "GPT-SoVITS", "Python", "IndexedDB", "GitHub Pages", "Claude Code"], "ai_role": "三種語音引擎可切換（瀏覽器內建、WASM AI 音色複製、本地 GPT-SoVITS）；整個網站由 Claude Code 協作開發，含中英雙語。", "highlight": "4 個頁面、3 種語音引擎、中英雙語", "my_note": ""}, {"id": "foms", "order": 2, "name": "FOMS 現場作業管理系統 v2.1", "category": "網頁工具", "status": "已完成", "summary": "給現場作業人員用的系統，涵蓋設備部署、安置、維修保養與料件管理，依國防科技公司 Operations Specialist 的實際工作流程設計。", "pain_point": "現場設備部署、保養、領料靠紙本和 Excel，交班常漏資訊，設備履歷和庫存不同步，驗收單要另外手寫。", "solution": "8 步驟部署流程每打一個勾就自動更新設備狀態；保養工單自動帶入型號檢查表，未完成不能結案；領料扣庫存、缺料轉待料；交班摘要一鍵複製。", "tools": ["HTML／CSS／JS", "PWA 離線", "Service Worker", "GPS 定位", "Code 39 條碼", "Claude Code"], "ai_role": "用 Claude Code 把真實工作流程轉成系統規格與程式，不需後端，手機加入主畫面即可當 App。", "highlight": "8 步驟部署流程、P1–P3 工單、可離線使用", "my_note": ""}, {"id": "highway", "order": 3, "name": "高速公路塞不塞 HighwayChecker", "category": "網頁工具", "status": "已完成", "summary": "輸入起訖點（可細到交流道或地標），一次看兩地之間各條國道的壅塞程度。", "pain_point": "出門前想比較國 1、國 3 哪條比較不塞，得開好幾個 App 或網站逐段看。", "solution": "前端可純靜態展示；加上後端後接交通部 TDX 即時車速，API 金鑰只放在後端，用 Docker 部署到自家 NAS。", "tools": ["交通部 TDX API", "Node.js", "Docker Compose", "QNAP NAS", "GitHub Pages", "Claude Code"], "ai_role": "Claude Code 協作串接政府開放資料 API、設計後端代理與部署流程。", "highlight": "串接政府即時交通資料、自架於 NAS", "my_note": ""}, {"id": "diorama", "order": 4, "name": "Agent Diorama 代理人微縮劇場", "category": "AI 代理與自動化", "status": "MVP", "summary": "把多個 AI agent 依職位放進 3D 微縮場景，即時看到他們工作、溝通、請示，主題可切換（修仙山門、戰情中心、新創辦公室）。", "pain_point": "同時跑多個 AI agent 時，只能看一堆 log，很難知道誰在做什麼、卡在哪、花了多少 token。", "solution": "自訂事件協定，讓 Claude Code 透過 hooks 把動作送進事件中樞，前端用 3D 角色和對話泡泡呈現，並可在畫面上核准或駁回 agent 的請示。", "tools": ["Claude Code hooks", "React Three Fiber", "Node.js", "SSE", "JSON Schema", "Tauri"], "ai_role": "多代理（Multi-agent）可視化與人機協作：設計 agent 接入協定，人類在畫面上審批 AI 的決策。", "highlight": "7 位 Claude agent 協作示範、3 套主題", "my_note": ""}, {"id": "jobsearch", "order": 5, "name": "AI 求職工作台", "category": "AI 代理與自動化", "status": "使用中", "summary": "以 Claude Code 為核心的求職工作區：評估職缺適配度、客製履歷與求職信、研究公司、準備面試，並自動抓取新職缺。", "pain_point": "每投一份職缺都要重寫履歷、求職信、研究公司，重複又耗時，投遞進度也容易亂。", "solution": "把個人經歷寫成 Claude 可讀的檔案，依職缺語言自動切換中英文版本；自寫 JobFrog 爬蟲只抓新職缺，遵守 robots.txt；用 CSV 追蹤每筆投遞。", "tools": ["Claude Code", "Python", "LaTeX", "Word", "JSON-LD 爬蟲", "CSV"], "ai_role": "以開源 ai-job-search 框架改造成個人求職代理，AI 負責撰寫與研究，自己負責判斷與面試。", "highlight": "91 份履歷、68 封求職信、14 份公司研究", "my_note": ""}, {"id": "valuation", "order": 6, "name": "行將汽車估價系統", "category": "AI 代理與自動化", "status": "訓練中", "summary": "以行將拍賣的實際成交資料訓練汽車、機車兩套獨立估價模型，輸入車款、年式、里程即得 NT$ 價格區間。", "pain_point": "二手車估價依賴個人經驗，同一台車不同人估差很多，也不容易判斷得標價划不划算。", "solution": "把拍賣 Markdown 檔解析成乾淨資料，訓練雙模型；提供 CP 值評分、最多 3 台並排比較、折舊曲線，並單獨處理里程不可用的車輛。", "tools": ["Python", "機器學習", "資料清洗", "CSV", "Claude Code"], "ai_role": "從原始資料解析、特徵整理到模型訓練全流程由 AI 協作完成；目前 UI 以示範資料展示，預測 API 整合中。", "highlight": "汽車 3,328 筆、機車 250 筆成交資料", "my_note": ""}, {"id": "ww-platform", "order": 7, "name": "週末戰士營運管理平台", "category": "電商營運", "status": "開發中", "summary": "自營進口運動器材電商的後台：商品資訊庫、客戶往來、掃描槍匯入、定價計算、政府報價單、快速查價。", "pain_point": "進口商品定價要手動換匯、算關稅、貨物稅和毛利，報價單和價格散在多個 Excel，查一個價要翻好幾份檔。", "solution": "定價引擎自動換算 EUR/USD → TWD 並套用稅費與毛利；報價單輸出 Word／PDF；中英文與 SKU 模糊查價；機密經銷價加密，部署在自家 NAS。", "tools": ["FastAPI", "PostgreSQL", "Nginx", "Docker Compose", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "ai_role": "以 Claude Code 從需求拆解到可部署的容器架構，把自己經營 9 年電商的流程數位化。", "highlight": "7 個模組、NAS 自架、遠端安全存取", "my_note": ""}, {"id": "ecommerce-arch", "order": 8, "name": "自架電商架構分析", "category": "電商營運", "status": "文件", "summary": "拆解現有 EasyStore 前台與後台，提出脫離平台、自架多品牌電商的架構與路線。", "pain_point": "綁在 SaaS 電商平台上難客製，而且真正的銷售在蝦皮、露天，官網沒在賣，多通路商品資料各管各的。", "solution": "由 AI 實際測試前台、唯讀檢視後台，整理成可驗證的事實；建議以 Medusa v2 當核心、自做 Admin 與台灣在地模組，並先做商品主檔與多通路整合。", "tools": ["Claude", "瀏覽器實測", "Medusa v2", "架構文件"], "ai_role": "讓 AI 當系統分析師：實測、拆解、比較方案、寫成可交給 Claude Code 實作的規格。", "highlight": "結論先行、區分事實與推論", "my_note": ""}, {"id": "dealer-price", "order": 9, "name": "經銷商報價批次更新", "category": "電商營運", "status": "已完成", "summary": "把 8 家代理品牌（Helikon-Tex、Morakniv、Direct Action 等）的原廠價格表整理成統一格式，並產出電商平台可匯入的商品檔。", "pain_point": "每家原廠價格表格式不同，每次調價都要人工對 SKU、換算、再一筆筆更新上架，容易出錯。", "solution": "用 AI 讀取各家 Excel、統一欄位，算出售價，輸出 EasyStore 匯入 CSV，並另列缺價商品清單供人工確認。", "tools": ["Claude", "Excel", "Python", "EasyStore 匯入 CSV"], "ai_role": "AI 處理格式不一的表格資料，人只需確認例外清單。", "highlight": "8 家品牌一次更新", "my_note": ""}];
+(function(){const calcs={},draws={};const src={works:window.__WORKS};
+window.dash={colors:['var(--c0)','var(--c1)'],
+calc:(id,o)=>{calcs[id]=o},
+data:(id)=>{if(src[id])return{status:'ok',data:src[id]};const c=calcs[id];return{status:'ok',data:c.fn(...c.inputs.map(i=>window.dash.data(i).data))}},
+draw:(n,fn)=>{if(fn){draws[n]=fn;return}document.querySelectorAll('[data-draw="'+n+'"]').forEach(el=>draws[n](el))},
+_run:()=>Object.keys(draws).forEach(n=>window.dash.draw(n))};})();
+</script><script>
+window.pfTools = (w) => { const t = w.tools; if (Array.isArray(t)) return t; if (typeof t === 'string') { try { const a = JSON.parse(t); return Array.isArray(a) ? a : []; } catch (e) { return []; } } return []; };
+
+dash.calc('totals', {
+  title: '作品總覽數字',
+  description: '作品數、狀態為已完成或使用中的作品數，以及所有作品用到的不重複工具數。',
+  inputs: ['works'],
+  fn: (works) => [{
+    works: works.length,
+    done: works.filter((w) => w.status === '已完成' || w.status === '使用中').length,
+    tools: new Set(works.flatMap((w) => ((t) => Array.isArray(t) ? t : (typeof t === 'string' && t.trim().startsWith('[') ? JSON.parse(t) : []))(w.tools))).size
+  }]
+});
+
+dash.calc('tool_counts', {
+  title: '工具使用次數',
+  description: '每個工具出現在幾個作品中，依次數排序取前 10 名。',
+  inputs: ['works'],
+  fn: (works) => {
+    const m = new Map();
+    works.forEach((w) => ((t) => Array.isArray(t) ? t : (typeof t === 'string' && t.trim().startsWith('[') ? JSON.parse(t) : []))(w.tools).forEach((t) => m.set(t, (m.get(t) || 0) + 1)));
+    return [...m].map(([tool, n]) => ({tool, n})).sort((a, b) => b.n - a.n || a.tool.localeCompare(b.tool)).slice(0, 10);
+  }
+});
+
+dash.calc('status_counts', {
+  title: '作品狀態分布',
+  description: '依狀態（已完成、使用中、MVP、開發中、訓練中、文件）計算作品數。',
+  inputs: ['works'],
+  fn: (works) => {
+    const order = ['已完成', '使用中', 'MVP', '開發中', '訓練中', '文件'];
+    const m = new Map();
+    works.forEach((w) => m.set(w.status, (m.get(w.status) || 0) + 1));
+    return [...m].map(([status, n]) => ({status, n})).sort((a, b) => order.indexOf(a.status) - order.indexOf(b.status));
+  }
+});
+
+window.pfCat = '';
+window.pfTone = (s) => (s === '已完成' || s === '使用中') ? 'ok' : (s === '文件' ? 'muted' : 'warn');
+
+const pfFail = (el) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'pf-fail'; d.textContent = '載入失敗'; el.appendChild(d); };
+
+['works', 'done', 'tools'].forEach((f) => {
+  dash.draw('n-' + f, (el) => {
+    const r = dash.data('totals');
+    if (r.status === 'ok' && r.data.length) { el.classList.remove('dash-skeleton'); el.textContent = d3.format(',')(r.data[0][f]); }
+    else { if (r.status === 'error') el.classList.remove('dash-skeleton'); el.textContent = '—'; }
+  });
+});
+
+const pfBars = (id, key, colorFn) => (el) => {
+  const r = dash.data(id);
+  if (r.status !== 'ok') { if (r.status === 'error') { el.classList.remove('dash-skeleton'); pfFail(el); } else el.replaceChildren(); return; }
+  el.classList.remove('dash-skeleton');
+  el.replaceChildren();
+  const max = d3.max(r.data, (d) => d.n) || 1;
+  const tip = document.createElement('div'); tip.className = 'pf-tip'; tip.hidden = true;
+  r.data.forEach((d, i) => {
+    const row = document.createElement('div'); row.className = 'pf-bar-row';
+    const lab = document.createElement('span'); lab.className = 'pf-bar-label'; lab.textContent = d[key];
+    const track = document.createElement('div'); track.className = 'pf-bar-track';
+    const fill = document.createElement('div'); fill.className = 'pf-bar-fill';
+    fill.style.width = (d.n / max * 100) + '%';
+    fill.style.background = colorFn(d, i);
+    track.appendChild(fill);
+    const val = document.createElement('span'); val.className = 'pf-bar-val'; val.textContent = d3.format(',')(d.n);
+    row.append(lab, track, val);
+    row.addEventListener('mousemove', (e) => {
+      tip.textContent = d[key] + '：' + d.n + ' 個作品';
+      tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      const x = Math.min(e.clientX - box.left + 12, box.width - tip.offsetWidth);
+      tip.style.left = Math.max(0, x) + 'px';
+      tip.style.top = (e.clientY - box.top - 30) + 'px';
+    });
+    row.addEventListener('mouseleave', () => { tip.hidden = true; });
+    el.appendChild(row);
+  });
+  el.appendChild(tip);
+};
+
+dash.draw('tool-bars', pfBars('tool_counts', 'tool', (d, i) => i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)'));
+dash.draw('status-bars', pfBars('status_counts', 'status', (d) => window.pfTone(d.status) === 'ok' ? dash.colors[0] : (window.pfTone(d.status) === 'warn' ? dash.colors[1] : 'var(--cds-chart-muted)')));
+
+let pfAnimated = false;
+dash.draw('cards', (el) => {
+  const r = dash.data('works');
+  if (r.status !== 'ok') { if (r.status === 'error') { el.classList.remove('dash-skeleton'); pfFail(el); } else el.replaceChildren(); return; }
+  el.classList.remove('dash-skeleton');
+  el.replaceChildren();
+  const mk = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const rows = r.data.slice().sort((a, b) => Number(a.order) - Number(b.order)).filter((w) => !window.pfCat || w.category === window.pfCat);
+  rows.forEach((w, i) => {
+    const card = mk('article', 'pf-card'); card.id = 'work-' + w.id;
+    if (!pfAnimated) { card.classList.add('in'); card.style.animationDelay = (i * 40) + 'ms'; }
+    const top = mk('div', 'pf-card-top');
+    const t = mk('div');
+    t.append(mk('p', 'pf-card-cat', w.category), mk('h3', 'pf-card-name', w.name));
+    top.append(t, mk('span', 'pf-pill ' + window.pfTone(w.status), w.status));
+    card.append(top, mk('p', 'pf-summary', w.summary));
+    if (w.highlight) card.append(mk('div', 'pf-highlight', w.highlight));
+    [['解決的痛點', w.pain_point], ['怎麼做', w.solution], ['AI 在其中的角色', w.ai_role]].forEach(([h, txt]) => {
+      if (!txt) return;
+      const b = mk('div', 'pf-block'); b.append(mk('h4', null, h), mk('p', null, txt)); card.append(b);
+    });
+    const tb = mk('div', 'pf-block'); tb.append(mk('h4', null, '使用與串接的工具'));
+    const chips = mk('div', 'pf-chips'); window.pfTools(w).forEach((x) => chips.append(mk('span', 'pf-chip', x)));
+    tb.append(chips); card.append(tb);
+    const mine = mk('div', 'pf-mine'); mine.append(mk('h4', null, '我的說明'));
+    mine.append(w.my_note ? mk('p', null, w.my_note) : mk('p', 'empty', '尚未填寫：可補充動機、你負責的部分、實際成效或心得。'));
+    card.append(mine);
+    el.appendChild(card);
+  });
+  if (rows.length) pfAnimated = true;
+});
+
+document.querySelectorAll('.pf-filter button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    window.pfCat = btn.dataset.cat || '';
+    document.querySelectorAll('.pf-filter button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    dash.draw('cards');
+  });
+});
+
+window.dash._run();</script></body></html>
