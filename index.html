@@ -1,250 +1,365 @@
-<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>陳威廷｜AI 應用作品集</title><meta name="description" content="陳威廷 Willy Chen 的 AI 應用作品集：每個作品的痛點、做法與使用工具。">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Willy Chen · AI Application Portfolio</title>
+<meta name="description" content="Willy (Wei Ting) Chen — AI application portfolio: what each project solves, how it works and the tools behind it. 陳威廷 AI 應用作品集。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--font-anthropic-sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;--font-anthropic-serif:"Noto Serif TC","Songti TC",Georgia,serif;
---color-fg:#1f1e1c;--color-fg-muted:#6b6862;--color-bg:#f6f5f1;--color-panel:#ffffff;--color-border-line:#e3e0d8;--color-ok:#2f7d4f;--color-warn:#a8620b;--color-bad:#c0392b;
---cds-font-size-caption:.8125rem;--cds-font-size-body:.9375rem;--cds-font-size-heading:1.0625rem;--cds-font-size-title:1.75rem;--cds-font-weight-medium:600;
---cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:16px;--cds-gap-lg:24px;--cds-gap-xl:40px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:20px;--cds-radius:8px;
---cds-chart-muted:#c9c5bb;--cds-chart-reference:#c96442;--cds-surface-popover:#fff;--cds-border:#e3e0d8;--cds-shadow-popover:0 4px 16px rgba(0,0,0,.12);--cds-dur-slow:.4s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);--c0:#c96442;--c1:#d4a017}
-@media (prefers-color-scheme:dark){:root{--color-fg:#ecebe6;--color-fg-muted:#a39f96;--color-bg:#1c1b19;--color-panel:#262522;--color-border-line:#3a3834;--color-ok:#5cb87f;--color-warn:#e0a64a;--cds-chart-muted:#55524c;--cds-surface-popover:#2e2d29;--cds-border:#3a3834}}
-html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
-#dash-root{padding:32px var(--dash-gutter)}
-.dash-skeleton:empty{min-height:1rem}
-
-#dash-root { --dash-gutter: clamp(16px, 4vw, 40px); }
-.pf { max-width: 72rem; margin-inline: auto; font-family: var(--font-anthropic-sans); color: var(--color-fg); }
-.pf-head { margin-bottom: var(--cds-gap-lg); }
-.pf-kicker { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .04em; margin: 0 0 var(--cds-gap-xs); }
-.pf-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 var(--cds-gap-sm); }
-.pf-lede { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); max-width: 46rem; margin: 0; line-height: 1.6; }
-.pf-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-lg) 0; }
-.pf-tile, .pf-card, .pf-panel { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
-.pf-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-xs); }
-.pf-tile-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2.25rem; line-height: 1; font-variant-numeric: tabular-nums; min-height: 2.25rem; display: block; }
-.pf-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-xl); }
-.pf-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
-.pf-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-md); }
-.pf-bars { position: relative; min-height: 12rem; display: flex; flex-direction: column; gap: 6px; }
-.pf-bar-row { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr 2rem; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
-.pf-bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pf-bar-track { height: 14px; }
-.pf-bar-fill { height: 100%; border-radius: var(--cds-radius); min-width: 4px; }
-.pf-bar-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
-.pf-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
-.pf-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-md); }
-.pf-filter { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
-.pf-filter button { font: inherit; font-size: var(--cds-font-size-caption); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
-.pf-filter button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
-.pf-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); min-height: 20rem; }
-.pf-card { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
-.pf-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--cds-gap-sm); }
-.pf-card-cat { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 2px; }
-.pf-card-name { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; line-height: 1.35; }
-.pf-pill { flex: none; font-size: var(--cds-font-size-caption); padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
-.pf-pill.ok { color: var(--color-ok); } .pf-pill.warn { color: var(--color-warn); } .pf-pill.muted { color: var(--color-fg-muted); }
-.pf-summary { margin: 0; line-height: 1.6; }
-.pf-highlight { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-left: 3px solid var(--cds-chart-reference); background: var(--color-bg); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
-.pf-block h4 { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-xs) 0 2px; }
-.pf-block p { margin: 0; font-size: var(--cds-font-size-body); line-height: 1.6; }
-.pf-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.pf-chip { font-size: var(--cds-font-size-caption); padding: 2px 8px; border-radius: var(--cds-radius); background: var(--color-bg); border: 1px solid var(--color-border-line); }
-.pf-mine { margin-top: auto; border: 1px dashed var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); }
-.pf-mine h4 { margin-top: 0; }
-.pf-mine p.empty { color: var(--color-fg-muted); font-style: italic; }
-.pf-foot { margin-top: var(--cds-gap-xl); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
-[data-dash-source-state=empty] { color: transparent; }
-.pf-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
-.pf-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
-@media (prefers-reduced-motion: no-preference) {
-  .pf-card.in { animation: pf-in var(--cds-dur-slow) var(--cds-ease-out) both; }
-  @keyframes pf-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+:root{
+  --bg:#f7f5f0; --bg-2:#efece4; --panel:#ffffff; --ink:#1b1a17; --muted:#6a665d; --line:#e2ddd2;
+  --accent:#3b4cca; --accent-soft:#e7e9fb; --accent-ink:#ffffff;
+  --ok:#1f7a4d; --ok-soft:#e1f2e8; --warn:#9a5b06; --warn-soft:#fbefd9; --doc:#5b5b66; --doc-soft:#ececf0;
+  --bar-muted:#d5d0c4; --shadow:0 1px 2px rgba(20,18,12,.04),0 8px 24px rgba(20,18,12,.06);
+  --sans:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  --serif:"Noto Serif TC","Songti TC",Georgia,serif;
+  --r:14px;
 }
-</style></head><body><div id="dash-root">
+@media (prefers-color-scheme:dark){:root{
+  --bg:#121212; --bg-2:#1a1a1a; --panel:#1e1e1e; --ink:#eeebe4; --muted:#a29e94; --line:#303030;
+  --accent:#8e9bff; --accent-soft:#252a4d; --accent-ink:#0f1020;
+  --ok:#5fcf93; --ok-soft:#173226; --warn:#f0b45a; --warn-soft:#3a2b12; --doc:#b5b5c2; --doc-soft:#2a2a31;
+  --bar-muted:#3d3c38; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+@media (min-width:768px){.wrap{padding:0 32px}}
 
-<div class="pf" lang="zh-Hant-TW">
-  <header class="pf-head" id="top">
-    <p class="pf-kicker">AI 應用作品集 · AI Application Portfolio</p>
-    <h1 class="pf-title">陳威廷 Willy Chen</h1>
-    <p class="pf-lede">從現場設備作業、政府開放資料到自營電商，我用 Claude Code 等 AI 工具，把真實工作裡的痛點做成可以實際使用的系統。每個作品都寫明它解決的問題、做法與使用的工具。</p>
-  </header>
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.brand{font-family:var(--serif);font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
+.brand span{color:var(--accent)}
+.nav{display:flex;align-items:center;gap:18px;font-size:14px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+@media (max-width:640px){.nav a{display:none}}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--panel)}
+.lang button{font:inherit;font-size:13px;font-weight:500;border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer;min-width:52px}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 
-  <section class="pf-tiles" aria-label="作品總覽">
-    <div class="pf-tile">
-      <p class="pf-tile-label">作品數</p>
-      <b class="pf-tile-num dash-skeleton" data-draw="n-works" data-source="totals" data-field="works" data-row="0">—</b>
-    </div>
-    <div class="pf-tile">
-      <p class="pf-tile-label">已完成或使用中</p>
-      <b class="pf-tile-num dash-skeleton" data-draw="n-done" data-source="totals" data-field="done" data-row="0">—</b>
-    </div>
-    <div class="pf-tile">
-      <p class="pf-tile-label">整合過的工具與技術</p>
-      <b class="pf-tile-num dash-skeleton" data-draw="n-tools" data-source="totals" data-field="tools" data-row="0">—</b>
-    </div>
-  </section>
+/* hero */
+.hero{padding:64px 0 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;margin:0 0 20px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
+h1 small{display:block;font-size:.42em;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:10px}
+.lede{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--muted);max-width:44rem;margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--panel)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-1px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}
+@media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--serif);font-weight:700;font-size:2.4rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
 
-  <section class="pf-panels" aria-label="技能分布">
-    <div class="pf-panel" id="tools-chart">
-      <h2 class="pf-h2">最常用的工具</h2>
-      <p class="pf-note">各工具出現在幾個作品中，取前 10 名</p>
-      <div class="pf-bars dash-skeleton" data-draw="tool-bars" data-source="tool_counts"></div>
-    </div>
-    <div class="pf-panel" id="status-chart">
-      <h2 class="pf-h2">作品進度</h2>
-      <p class="pf-note">依目前狀態分組的作品數</p>
-      <div class="pf-bars dash-skeleton" data-draw="status-bars" data-source="status_counts"></div>
-    </div>
-  </section>
+/* sections */
+section{padding:40px 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,3.4vw,2rem);margin:0;line-height:1.2}
+.sec-sub{color:var(--muted);font-size:14px;margin:6px 0 0}
 
-  <section id="works" aria-label="作品">
-    <div class="pf-section-head">
-      <h2 class="pf-h2">作品</h2>
-      <div class="pf-filter" role="group" aria-label="依類別篩選">
-        <button type="button" data-cat="" aria-pressed="true">全部</button>
-        <button type="button" data-cat="網頁工具" aria-pressed="false">網頁工具</button>
-        <button type="button" data-cat="AI 代理與自動化" aria-pressed="false">AI 代理與自動化</button>
-        <button type="button" data-cat="電商營運" aria-pressed="false">電商營運</button>
+/* skills */
+.skills{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+@media (max-width:860px){.skills{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.card h3{font-size:15px;font-weight:700;margin:0 0 2px}
+.card .note{font-size:13px;color:var(--muted);margin:0 0 16px}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:grid;grid-template-columns:minmax(7rem,11rem) 1fr 2rem;align-items:center;gap:12px;font-size:13.5px}
+.bar-row .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .trk{height:12px;background:var(--bg-2);border-radius:6px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:6px;background:var(--bar-muted);transform-origin:left;animation:grow .8s cubic-bezier(.2,.8,.2,1) both}
+.bar-row:first-child .fill{background:var(--accent)}
+.bar-row .val{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.cats{display:flex;flex-direction:column;gap:14px}
+.cat-row{display:flex;align-items:center;gap:14px}
+.cat-ico{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--accent-soft)}
+.cat-row div{flex:1;min-width:0}
+.cat-row b{display:block;font-size:14.5px}
+.cat-row span{font-size:13px;color:var(--muted)}
+.cat-row em{font-style:normal;font-family:var(--serif);font-weight:700;font-size:1.5rem}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{font:inherit;font-size:13.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip-btn i{font-style:normal;color:var(--muted);font-size:12px}
+.chip-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip-btn[aria-pressed="true"] i{color:inherit;opacity:.7}
+
+/* works */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
+.work{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
+.work:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));transform:translateY(-2px)}
+.work-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.badge{font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.badge.ok{color:var(--ok);background:var(--ok-soft)} .badge.warn{color:var(--warn);background:var(--warn-soft)} .badge.doc{color:var(--doc);background:var(--doc-soft)}
+.work h3{font-size:1.15rem;line-height:1.4;margin:0}
+.work p{margin:0}
+.sum{color:var(--ink);font-size:15px}
+.hl{font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:7px 12px;border-radius:10px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;padding:3px 9px;border-radius:7px;background:var(--bg-2);color:var(--muted)}
+.quote{position:relative;font-size:14px;color:var(--ink);background:var(--bg);border-radius:10px;padding:12px 14px 12px 16px;border-left:3px solid var(--accent)}
+.quote small{display:block;font-size:12px;color:var(--muted);margin-bottom:3px;font-weight:500}
+details{border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--accent);list-style:none;display:flex;align-items:center;gap:6px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1px solid currentColor;font-size:13px;line-height:1}
+details[open] summary::before{content:"–"}
+.dl{display:grid;gap:12px;margin-top:12px}
+.dl h4{font-size:12.5px;color:var(--muted);font-weight:500;margin:0 0 2px;letter-spacing:.02em}
+.dl p{font-size:14px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:13px;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);display:inline-flex;gap:6px;align-items:center}
+.links a.demo{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.empty{color:var(--muted);font-size:14px}
+
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--ink)}
+
+@media (prefers-reduced-motion:no-preference){
+  .work{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){.bar-row .fill{animation:none}.btn:hover,.work:hover{transform:none}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">Willy Chen<span>.</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#skills" data-i18n="navSkills"></a>
+      <a href="#works" data-i18n="navWorks"></a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <p class="eyebrow" data-i18n="eyebrow"></p>
+      <h1><span data-i18n="name"></span><small data-i18n="role"></small></h1>
+      <p class="lede" data-i18n="lede"></p>
+      <div class="cta">
+        <a class="btn primary" href="#works" data-i18n="ctaWorks"></a>
+        <a class="btn" href="https://github.com/singwillychen" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="https://www.linkedin.com/in/piyoduck" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="s-works">–</b><span data-i18n="statWorks"></span></div>
+        <div class="stat"><b id="s-done">–</b><span data-i18n="statDone"></span></div>
+        <div class="stat"><b id="s-tools">–</b><span data-i18n="statTools"></span></div>
+        <div class="stat"><b id="s-live">–</b><span data-i18n="statLive"></span></div>
       </div>
     </div>
-    <div class="pf-cards dash-skeleton" data-draw="cards" data-source="works"></div>
+  </div>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head"><div><h2 data-i18n="skillsTitle"></h2><p class="sec-sub" data-i18n="skillsSub"></p></div></div>
+      <div class="skills">
+        <div class="card"><h3 data-i18n="toolsTitle"></h3><p class="note" data-i18n="toolsNote"></p><div class="bars" id="tool-bars"></div></div>
+        <div class="card"><h3 data-i18n="catsTitle"></h3><p class="note" data-i18n="catsNote"></p><div class="cats" id="cat-list"></div></div>
+      </div>
+    </div>
   </section>
 
-  <p class="pf-foot">作品說明由 Claude 依各專案的程式與文件整理；「我的說明」欄位由本人補充。</p>
-</div>
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><h2 data-i18n="worksTitle"></h2><p class="sec-sub" data-i18n="worksSub"></p></div>
+        <div class="filters" id="filters" role="group" aria-label="Filter"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
 
-</div>
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot"></span>
+    <span>© 2026 Willy (Wei Ting) Chen · <a href="https://github.com/singwillychen/ai-portfolio" target="_blank" rel="noopener">Source</a></span>
+  </div>
+</footer>
+
 <script>
-window.d3=window.d3||{format:()=>(n)=>Number(n).toLocaleString('en'),max:(a,f)=>Math.max(...a.map(f))};
-window.__WORKS=[{"id": "voicesprite", "order": 1, "name": "VoiceSprite 聲線工坊", "category": "網頁工具", "status": "已完成", "summary": "朗讀 5 句台詞就能建立自己的聲線特徵檔，選一個動漫角色、輸入文字，角色就用你的聲線說話，還能直接帶進直播畫面（綠幕／透明背景）。", "pain_point": "直播主和創作者想要角色配音，但請配音員貴、AI 語音模型又要安裝環境和顯卡，一般人用不起來。", "solution": "整個流程放在瀏覽器裡：錄音、特徵擷取、文字轉語音都在本機完成，錄音不上傳；需要更像的音色時，可切換到瀏覽器內 AI 音色複製或本地開源引擎。", "tools": ["HTML／CSS／JS", "Web Speech API", "sherpa-onnx WASM", "ZipVoice", "GPT-SoVITS", "Python", "IndexedDB", "GitHub Pages", "Claude Code"], "ai_role": "三種語音引擎可切換（瀏覽器內建、WASM AI 音色複製、本地 GPT-SoVITS）；整個網站由 Claude Code 協作開發，含中英雙語。", "highlight": "4 個頁面、3 種語音引擎、中英雙語", "my_note": "一個下午就完成的作品。做完才發現這個領域已經有 ElevenLabs 這樣的知名品牌，所以我把它定位在童趣：可以和小朋友一起玩變聲遊戲。實際使用建議從第二階段的本地小型模型開始，或安裝第三階段的大型模型，音色和音調才會有明顯變化。"}, {"id": "foms", "order": 2, "name": "FOMS 現場作業管理系統 v2.1", "category": "網頁工具", "status": "已完成", "summary": "給現場作業人員用的系統，涵蓋設備部署、安置、維修保養與料件管理，依國防科技公司 Operations Specialist 的實際工作流程設計。", "pain_point": "現場設備部署、保養、領料靠紙本和 Excel，交班常漏資訊，設備履歷和庫存不同步，驗收單要另外手寫。", "solution": "8 步驟部署流程每打一個勾就自動更新設備狀態；保養工單自動帶入型號檢查表，未完成不能結案；領料扣庫存、缺料轉待料；交班摘要一鍵複製。", "tools": ["HTML／CSS／JS", "PWA 離線", "Service Worker", "GPS 定位", "Code 39 條碼", "Claude Code"], "ai_role": "用 Claude Code 把真實工作流程轉成系統規格與程式，不需後端，手機加入主畫面即可當 App。", "highlight": "8 步驟部署流程、P1–P3 工單、可離線使用", "my_note": "源自我在鳴日科技跑外勤時遇到的實際需求：把現場作業（Field Operation）的設備部署、保養與料件管理，整理成一套現場人員拿手機就能用的系統。"}, {"id": "highway", "order": 3, "name": "高速公路塞不塞 HighwayChecker", "category": "網頁工具", "status": "已完成", "summary": "輸入起訖點（可細到交流道或地標），一次看兩地之間各條國道的壅塞程度。", "pain_point": "出門前想比較國 1、國 3 哪條比較不塞，得開好幾個 App 或網站逐段看。", "solution": "前端可純靜態展示；加上後端後接交通部 TDX 即時車速，API 金鑰只放在後端，用 Docker 部署到自家 NAS。", "tools": ["交通部 TDX API", "Node.js", "Docker Compose", "QNAP NAS", "GitHub Pages", "Claude Code"], "ai_role": "Claude Code 協作串接政府開放資料 API、設計後端代理與部署流程。", "highlight": "TDX 介接後端已寫好，規劃改用國道影像辨識", "my_note": "從朋友的產品「雪隧哨兵」觸類旁通而來。串接交通部 TDX 時發現可能需要付費，所以目前還沒接上即時資料；下一步考慮改用國道公開的即時影像，做簡單的影像辨識來達到同樣目的。"}, {"id": "diorama", "order": 4, "name": "Agent Diorama 代理人微縮劇場", "category": "AI 代理與自動化", "status": "MVP", "summary": "把多個 AI agent 依職位放進 3D 微縮場景，即時看到他們工作、溝通、請示，主題可切換（修仙山門、戰情中心、新創辦公室）。", "pain_point": "同時跑多個 AI agent 時，只能看一堆 log，很難知道誰在做什麼、卡在哪、花了多少 token。", "solution": "自訂事件協定，讓 Claude Code 透過 hooks 把動作送進事件中樞，前端用 3D 角色和對話泡泡呈現，並可在畫面上核准或駁回 agent 的請示。", "tools": ["Claude Code hooks", "React Three Fiber", "Node.js", "SSE", "JSON Schema", "Tauri"], "ai_role": "多代理（Multi-agent）可視化與人機協作：設計 agent 接入協定，人類在畫面上審批 AI 的決策。", "highlight": "7 位 Claude agent 協作示範、3 套主題", "my_note": "純粹想讓 agent 的工作介面升級，也讓自己一個人開發時不那麼孤單。"}, {"id": "jobsearch", "order": 5, "name": "AI 求職工作台", "category": "AI 代理與自動化", "status": "使用中", "summary": "以 Claude Code 為核心的求職工作區：評估職缺適配度、客製履歷與求職信、研究公司、準備面試，並自動抓取新職缺。", "pain_point": "每投一份職缺都要重寫履歷、求職信、研究公司，重複又耗時，投遞進度也容易亂。", "solution": "把個人經歷寫成 Claude 可讀的檔案，依職缺語言自動切換中英文版本；自寫 JobFrog 爬蟲只抓新職缺，遵守 robots.txt；用 CSV 追蹤每筆投遞。", "tools": ["Claude Code", "Python", "LaTeX", "Word", "JSON-LD 爬蟲", "CSV"], "ai_role": "以開源 ai-job-search 框架改造成個人求職代理，AI 負責撰寫與研究，自己負責判斷與面試。", "highlight": "91 份履歷、68 封求職信、14 份公司研究", "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。"}, {"id": "valuation", "order": 6, "name": "行將汽車估價系統", "category": "AI 代理與自動化", "status": "訓練中", "summary": "以行將拍賣的實際成交資料訓練汽車、機車兩套獨立估價模型，輸入車款、年式、里程即得 NT$ 價格區間。", "pain_point": "二手車估價依賴個人經驗，同一台車不同人估差很多，也不容易判斷得標價划不划算。", "solution": "把拍賣 Markdown 檔解析成乾淨資料，訓練雙模型；提供 CP 值評分、最多 3 台並排比較、折舊曲線，並單獨處理里程不可用的車輛。", "tools": ["Python", "機器學習", "資料清洗", "CSV", "Claude Code"], "ai_role": "從原始資料解析、特徵整理到模型訓練全流程由 AI 協作完成；目前 UI 以示範資料展示，預測 API 整合中。", "highlight": "汽車 3,328 筆、機車 250 筆成交資料", "my_note": "資料來自官方每週拍賣的實際成交紀錄，都是真實的拍場價格。"}, {"id": "ww-platform", "order": 7, "name": "週末戰士營運管理平台", "category": "電商營運", "status": "開發中", "summary": "自營進口運動器材電商的後台：商品資訊庫、客戶往來、掃描槍匯入、定價計算、政府報價單、快速查價。", "pain_point": "進口商品定價要手動換匯、算關稅、貨物稅和毛利，報價單和價格散在多個 Excel，查一個價要翻好幾份檔。", "solution": "定價引擎自動換算 EUR/USD → TWD 並套用稅費與毛利；報價單輸出 Word／PDF；中英文與 SKU 模糊查價；機密經銷價加密，部署在自家 NAS。", "tools": ["FastAPI", "PostgreSQL", "Nginx", "Docker Compose", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "ai_role": "以 Claude Code 從需求拆解到可部署的容器架構，把自己經營 9 年電商的流程數位化。", "highlight": "7 個模組、NAS 自架、遠端安全存取", "my_note": "經營電商以來最花時間的有兩件事：一是整理每次更新的報價單，二是整理每個月的新訂單與出貨。"}, {"id": "ecommerce-arch", "order": 8, "name": "自架電商架構分析", "category": "電商營運", "status": "文件", "summary": "拆解現有 EasyStore 前台與後台，提出脫離平台、自架多品牌電商的架構與路線。", "pain_point": "綁在 SaaS 電商平台上難客製，而且真正的銷售在蝦皮、露天，官網沒在賣，多通路商品資料各管各的。", "solution": "由 AI 實際測試前台、唯讀檢視後台，整理成可驗證的事實；建議以 Medusa v2 當核心、自做 Admin 與台灣在地模組，並先做商品主檔與多通路整合。", "tools": ["Claude", "瀏覽器實測", "Medusa v2", "架構文件"], "ai_role": "讓 AI 當系統分析師：實測、拆解、比較方案、寫成可交給 Claude Code 實作的規格。", "highlight": "結論先行、區分事實與推論", "my_note": "我希望參考目前成熟的產品來搭建，但最重要的是資訊安全：網站架構要不易被攻破，客戶資料不能被取得。比起這一點，其他銷售功能的問題都小得多。"}, {"id": "dealer-price", "order": 9, "name": "經銷商報價批次更新", "category": "電商營運", "status": "已完成", "summary": "把 8 家代理品牌（Helikon-Tex、Morakniv、Direct Action 等）的原廠價格表整理成統一格式，並產出電商平台可匯入的商品檔。", "pain_point": "每家原廠價格表格式不同，每次調價都要人工對 SKU、換算、再一筆筆更新上架，容易出錯。", "solution": "用 AI 讀取各家 Excel、統一欄位，算出售價，輸出 EasyStore 匯入 CSV，並另列缺價商品清單供人工確認。", "tools": ["Claude", "Excel", "Python", "EasyStore 匯入 CSV"], "ai_role": "AI 處理格式不一的表格資料，人只需確認例外清單。", "highlight": "8 家品牌一次更新", "my_note": "經銷商報價更新與資料清洗大約每季做一次，傳統用 Excel 手動剪貼的方式非常耗時。"}];
-(function(){const calcs={},draws={};const src={works:window.__WORKS};
-window.dash={colors:['var(--c0)','var(--c1)'],
-calc:(id,o)=>{calcs[id]=o},
-data:(id)=>{if(src[id])return{status:'ok',data:src[id]};const c=calcs[id];return{status:'ok',data:c.fn(...c.inputs.map(i=>window.dash.data(i).data))}},
-draw:(n,fn)=>{if(fn){draws[n]=fn;return}document.querySelectorAll('[data-draw="'+n+'"]').forEach(el=>draws[n](el))},
-_run:()=>Object.keys(draws).forEach(n=>window.dash.draw(n))};})();
-</script><script>
-window.pfTools = (w) => { const t = w.tools; if (Array.isArray(t)) return t; if (typeof t === 'string') { try { const a = JSON.parse(t); return Array.isArray(a) ? a : []; } catch (e) { return []; } } return []; };
+const WORKS = [{"id": "crew", "order": 1, "category": "ai", "status": "MVP", "name": "CREW 多業態 AI 員工平台", "name_en": "CREW — AI Employee Platform for Any Industry", "summary": "讓小團隊用「招募員工」的方式建立 AI 員工：說清楚工作內容、教它公司的規矩、考過試才上工，之後在 LINE、網站、電話等管道替你工作。", "summary_en": "Small teams create AI employees the way they hire people: define the job, teach the house rules, pass an exam before going live, then work across LINE, the website and phone calls.", "pain_point": "小店家想用 AI 客服，但現成方案多半只適合單一產業，設定複雜、價格偏高，也很難控管 AI 說錯話。", "pain_point_en": "Small businesses want AI customer service, but most tools fit one industry, are complex to set up, expensive, and hard to keep from saying the wrong thing.", "solution": "同一套核心搭配「行業模板包」（電商、餐飲、診所、補教、房仲等）；AI 員工要先通過考核才上線；接 OpenAI Realtime 做電話語音客服；多租戶資料以資料庫列級權限隔離。", "solution_en": "One core with swappable industry packs (retail, restaurants, clinics, tutoring, real estate…); AI employees must pass an exam before going live; phone voice agents via OpenAI Realtime; tenant data isolated with row-level security.", "ai_role": "設計 AI 員工的執行框架（角色規格、執行迴圈、護欄、考核），並用 Claude Code 從 PRD 一路做到可安裝的程式。", "ai_role_en": "Designed the agent harness (role specs, run loop, guardrails, evaluation) and used Claude Code to go from PRD to an installable product.", "tools": ["TypeScript", "Node.js", "PostgreSQL + pgvector", "Redis", "OpenAI Realtime", "LINE", "Docker", "Claude Code"], "highlight": "M0–M4 里程碑完成、10 分鐘本機安裝、多租戶 RLS", "highlight_en": "Milestones M0–M4 done · 10-minute local install · multi-tenant RLS", "links": [], "my_note": "", "my_note_en": ""}, {"id": "diorama", "order": 2, "category": "ai", "status": "MVP", "name": "Agent Diorama 代理人微縮劇場", "name_en": "Agent Diorama", "summary": "把多個 AI agent 依職位放進 3D 微縮場景，即時看到他們工作、溝通、請示，主題可切換（修仙山門、戰情中心、新創辦公室）。", "summary_en": "Puts multiple AI agents into a 3D miniature world by role, so you can watch them work, talk and ask for approval in real time. Themes: mountain sect, combat information center, startup office.", "pain_point": "同時跑多個 AI agent 時，只能看一堆 log，很難知道誰在做什麼、卡在哪、花了多少 token。", "pain_point_en": "When several AI agents run at once, all you get is logs: hard to tell who is doing what, who is stuck, and how many tokens are spent.", "solution": "自訂事件協定，讓 Claude Code 透過 hooks 把動作送進事件中樞，前端用 3D 角色和對話泡泡呈現，並可在畫面上核准或駁回 agent 的請示。", "solution_en": "A custom event protocol: Claude Code sends its actions through hooks to an event hub, the front end renders them as 3D characters and speech bubbles, and you approve or reject agent requests on screen.", "ai_role": "多代理（Multi-agent）可視化與人機協作：設計 agent 接入協定，人類在畫面上審批 AI 的決策。", "ai_role_en": "Multi-agent visualization and human-in-the-loop control: an agent integration protocol where a human approves AI decisions on screen.", "tools": ["Claude Code hooks", "React Three Fiber", "Node.js", "SSE", "JSON Schema", "Tauri"], "highlight": "7 位 Claude agent 協作示範、3 套主題", "highlight_en": "Demo of 7 Claude agents collaborating · 3 themes", "links": [{"type": "repo", "url": "https://github.com/singwillychen/agent-diorama"}], "my_note": "純粹想讓 agent 的工作介面升級，也讓自己一個人開發時不那麼孤單。", "my_note_en": "I simply wanted a better interface for watching agents work, and to feel less alone when developing solo."}, {"id": "ev2", "order": 3, "category": "ai", "status": "已完成", "name": "EV2 充電車位車牌監控", "name_en": "EV2 Charging Bay Plate Monitor", "summary": "每 10 分鐘到停車管理系統抓取 6 個充電車位的車牌與照片，發現新車時推播到 Telegram、LINE 請人員確認，確認後才寫入 Google 試算表。", "summary_en": "Every 10 minutes it reads plates and photos for 6 EV charging bays from the parking system, pushes new cars to Telegram and LINE for a human to confirm, then writes confirmed plates to Google Sheets.", "pain_point": "充電車位的使用紀錄要人工盯螢幕、手動登記到試算表，容易漏記，也難以追查誰停了多久。", "pain_point_en": "Charging bay usage had to be watched on screen and typed into a spreadsheet by hand, so entries were missed and dwell time was hard to trace.", "solution": "自動輪詢與判斷換車；人工確認後才寫入，不覆寫人工輸入，不一致時另欄標示；每晚自動補「無」，停機漏掉的日子自動補跑。部署在 NAS 的 Docker。", "solution_en": "Automatic polling and car-change detection; writes only after human confirmation, never overwrites manual entries and flags mismatches in a separate column; fills empty slots nightly and back-fills days missed during downtime. Runs in Docker on a NAS.", "ai_role": "用 Claude Code 把現場的登記規則寫成可測試的流程，自動化負責抓取與寫入，人只負責確認。", "ai_role_en": "Used Claude Code to turn on-site logging rules into a tested workflow: automation fetches and writes, people only confirm.", "tools": ["Node.js", "Express", "SQLite", "Google Sheets API", "Telegram Bot", "LINE", "Docker", "QNAP NAS", "Claude Code"], "highlight": "6 個車位、每 10 分鐘、人工確認後才寫入", "highlight_en": "6 bays · every 10 minutes · written only after human confirmation", "links": [], "my_note": "", "my_note_en": ""}, {"id": "jobsearch", "order": 4, "category": "ai", "status": "使用中", "name": "AI 求職工作台", "name_en": "AI Job Search Workspace", "summary": "以 Claude Code 為核心的求職工作區：評估職缺適配度、客製履歷與求職信、研究公司、準備面試，並自動抓取新職缺。", "summary_en": "A Claude Code–based job search workspace: scores job fit, tailors CVs and cover letters, researches companies, prepares interviews and pulls in new postings automatically.", "pain_point": "每投一份職缺都要重寫履歷、求職信、研究公司，重複又耗時，投遞進度也容易亂。", "pain_point_en": "Every application meant rewriting the CV and cover letter and researching the company: repetitive, slow, and hard to keep track of.", "solution": "把個人經歷寫成 Claude 可讀的檔案，依職缺語言自動切換中英文版本；自寫 JobFrog 爬蟲只抓新職缺，遵守 robots.txt；用 CSV 追蹤每筆投遞。", "solution_en": "My background is written as files Claude can read, with Chinese or English output chosen by the posting's language; a custom JobFrog scraper fetches only new postings and respects robots.txt; a CSV tracks every application.", "ai_role": "以開源 ai-job-search 框架改造成個人求職代理，AI 負責撰寫與研究，自己負責判斷與面試。", "ai_role_en": "Adapted the open-source ai-job-search framework into a personal job agent: AI writes and researches, I decide and interview.", "tools": ["Claude Code", "Python", "LaTeX", "Word", "JSON-LD scraping", "CSV"], "highlight": "91 份履歷、68 封求職信、14 份公司研究", "highlight_en": "91 CVs · 68 cover letters · 14 company research files", "links": [], "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。", "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience."}, {"id": "valuation", "order": 5, "category": "ai", "status": "訓練中", "name": "行將汽車估價系統", "name_en": "Used Car & Scooter Valuation Model", "summary": "以行將拍賣的實際成交資料訓練汽車、機車兩套獨立估價模型，輸入車款、年式、里程即得 NT$ 價格區間。", "summary_en": "Two separate pricing models (cars and scooters) trained on real auction sale prices: enter model, year and mileage to get an NT$ price range.", "pain_point": "二手車估價依賴個人經驗，同一台車不同人估差很多，也不容易判斷得標價划不划算。", "pain_point_en": "Used vehicle pricing depends on personal experience: estimates for the same car vary widely, and it is hard to judge whether a winning bid is a good deal.", "solution": "把拍賣 Markdown 檔解析成乾淨資料，訓練雙模型；提供 CP 值評分、最多 3 台並排比較、折舊曲線，並單獨處理里程不可用的車輛。", "solution_en": "Parses auction Markdown files into clean data and trains two models; adds a value-for-money score, side-by-side comparison of up to 3 vehicles, depreciation curves, and separate handling for vehicles with unusable mileage.", "ai_role": "從原始資料解析、特徵整理到模型訓練全流程由 AI 協作完成；目前 UI 以示範資料展示，預測 API 整合中。", "ai_role_en": "AI-assisted end to end, from parsing raw data and feature prep to model training; the UI currently shows sample data while the prediction API is being integrated.", "tools": ["Python", "Machine learning", "Data cleaning", "CSV", "Claude Code"], "highlight": "汽車 3,328 筆、機車 250 筆成交資料", "highlight_en": "3,328 car and 250 scooter auction records", "links": [{"type": "repo", "url": "https://github.com/singwillychen/hjchen-auction-valuation"}], "my_note": "資料來自官方每週拍賣的實際成交紀錄，都是真實的拍場價格。", "my_note_en": "The data comes from official weekly auction results, so every price is a real hammer price."}, {"id": "vlog", "order": 6, "category": "ai", "status": "已完成", "name": "家庭遊記影片 Claude Skill", "name_en": "Family Trip Vlog — a Claude Skill", "summary": "把一趟家庭旅行的照片和影片，自動剪成 YouTube 長版與 IG Reels 短版：配合節拍剪接、運鏡、字幕、動態路線圖、知識小卡與免費授權音樂。", "summary_en": "Turns a family trip's photos and videos into a YouTube long cut and an IG Reels short: beat-synced cuts, Ken Burns motion, captions, an animated route map, knowledge cards and free-licensed music.", "pain_point": "出遊拍了幾百張照片和影片，想剪成影片卻沒時間學剪輯軟體，素材最後就躺在相簿裡。", "pain_point_en": "Hundreds of trip photos and clips end up sitting in the album, because there's no time to learn editing software.", "solution": "整條流程在本機跑：分析素材、偵測音樂節拍、用 PIL 合成畫面、交給 ffmpeg 編碼，不需要任何剪輯軟體；並把素材分類整理成資料夾。", "solution_en": "The whole pipeline runs locally: analyze media, detect music beats, compose frames with PIL and encode with ffmpeg, no editing software needed; media is also sorted into folders.", "ai_role": "把一次成功的剪片流程寫成 Claude Skill，之後丟一個資料夾，Claude 就能照同樣的品質重做。", "ai_role_en": "Captured a successful editing workflow as a reusable Claude Skill: hand Claude a folder and it repeats the same quality.", "tools": ["Claude Code Skills", "Python", "PIL", "ffmpeg", "librosa", "faster-whisper"], "highlight": "一次產出 3 分 36 秒長版 + 45 秒 IG 短版", "highlight_en": "One run: a 3:36 long cut + a 45-second IG short", "links": [], "my_note": "", "my_note_en": ""}, {"id": "voicesprite", "order": 7, "category": "tools", "status": "已完成", "name": "VoiceSprite 聲線工坊", "name_en": "VoiceSprite Voice Studio", "summary": "朗讀 5 句台詞就能建立自己的聲線特徵檔，選一個動漫角色、輸入文字，角色就用你的聲線說話，還能直接帶進直播畫面（綠幕／透明背景）。", "summary_en": "Read 5 lines to create your voice profile, pick an anime character and type text: the character speaks in your voice, and can go straight into a livestream (green screen or transparent background).", "pain_point": "直播主和創作者想要角色配音，但請配音員貴、AI 語音模型又要安裝環境和顯卡，一般人用不起來。", "pain_point_en": "Streamers and creators want character voices, but voice actors are expensive and AI voice models need setup and a GPU most people don't have.", "solution": "整個流程放在瀏覽器裡：錄音、特徵擷取、文字轉語音都在本機完成，錄音不上傳；需要更像的音色時，可切換到瀏覽器內 AI 音色複製或本地開源引擎。", "solution_en": "Everything runs in the browser: recording, feature extraction and text-to-speech happen locally and recordings are never uploaded; for a closer match you can switch to in-browser AI voice cloning or a local open-source engine.", "ai_role": "三種語音引擎可切換（瀏覽器內建、WASM AI 音色複製、本地 GPT-SoVITS）；整個網站由 Claude Code 協作開發，含中英雙語。", "ai_role_en": "Three switchable voice engines (built-in browser voices, WASM AI voice cloning, local GPT-SoVITS); the whole bilingual site was built with Claude Code.", "tools": ["HTML / CSS / JS", "Web Speech API", "sherpa-onnx WASM", "ZipVoice", "GPT-SoVITS", "Python", "IndexedDB", "GitHub Pages", "Claude Code"], "highlight": "4 個頁面、3 種語音引擎、中英雙語", "highlight_en": "4 pages · 3 voice engines · bilingual", "links": [{"type": "demo", "url": "https://singwillychen.github.io/voicesprite/"}, {"type": "repo", "url": "https://github.com/singwillychen/voicesprite"}], "my_note": "一個下午就完成的作品。做完才發現這個領域已經有 ElevenLabs 這樣的知名品牌，所以我把它定位在童趣：可以和小朋友一起玩變聲遊戲。實際使用建議從第二階段的本地小型模型開始，或安裝第三階段的大型模型，音色和音調才會有明顯變化。", "my_note_en": "Built in a single afternoon. Afterwards I found that well-known brands like ElevenLabs already own this space, so I positioned it as something playful: a voice-changing game to enjoy with kids. For a noticeable change in timbre and pitch, start from the stage-2 local small model or install the stage-3 large model."}, {"id": "foms", "order": 8, "category": "tools", "status": "已完成", "name": "FOMS 現場作業管理系統 v2.1", "name_en": "FOMS — Field Operation Management System v2.1", "summary": "給現場作業人員用的系統，涵蓋設備部署、安置、維修保養與料件管理，依 Operations Specialist 的實際工作流程設計。", "summary_en": "A system for field operators covering equipment deployment, installation, maintenance and parts management, modeled on an Operations Specialist's real workflow.", "pain_point": "現場設備部署、保養、領料靠紙本和 Excel，交班常漏資訊，設備履歷和庫存不同步，驗收單要另外手寫。", "pain_point_en": "Deployment, maintenance and parts were tracked on paper and in Excel: handovers missed details, equipment history and stock drifted apart, and acceptance forms were handwritten.", "solution": "8 步驟部署流程每打一個勾就自動更新設備狀態；保養工單自動帶入型號檢查表，未完成不能結案；領料扣庫存、缺料轉待料；交班摘要一鍵複製。", "solution_en": "An 8-step deployment flow updates equipment status with each checkmark; maintenance orders load the model's checklist and can't close until done; parts issues deduct stock and shortages go on hold; shift summaries copy in one click.", "ai_role": "用 Claude Code 把真實工作流程轉成系統規格與程式，不需後端，手機加入主畫面即可當 App。", "ai_role_en": "Used Claude Code to turn a real workflow into specs and code; no back end needed, and it installs to a phone's home screen as an app.", "tools": ["HTML / CSS / JS", "PWA (offline)", "Service Worker", "GPS", "Code 39 barcodes", "Claude Code"], "highlight": "8 步驟部署流程、P1–P3 工單、可離線使用", "highlight_en": "8-step deployment flow · P1–P3 work orders · works offline", "links": [], "my_note": "源自我在鳴日科技跑外勤時遇到的實際需求：把現場作業（Field Operation）的設備部署、保養與料件管理，整理成一套現場人員拿手機就能用的系統。", "my_note_en": "It grew out of real needs I met doing field work at Tomorrowland Technology: bringing equipment deployment, maintenance and parts management into one system field staff can use from a phone."}, {"id": "highway", "order": 9, "category": "tools", "status": "已完成", "name": "高速公路塞不塞 HighwayChecker", "name_en": "HighwayChecker", "summary": "輸入起訖點（可細到交流道或地標），一次看兩地之間各條國道的壅塞程度。", "summary_en": "Enter a start and end point (down to an interchange or landmark) and see congestion on every freeway between them at once.", "pain_point": "出門前想比較國 1、國 3 哪條比較不塞，得開好幾個 App 或網站逐段看。", "pain_point_en": "Comparing Freeway 1 and Freeway 3 before a trip meant checking several apps or sites section by section.", "solution": "前端可純靜態展示；加上後端後接交通部 TDX 即時車速，API 金鑰只放在後端，用 Docker 部署到自家 NAS。", "solution_en": "The front end works as a static demo; with the back end it uses live speeds from Taiwan's TDX transport API, keeps the API key server-side, and deploys to a home NAS with Docker.", "ai_role": "Claude Code 協作串接政府開放資料 API、設計後端代理與部署流程。", "ai_role_en": "Built with Claude Code: government open-data API integration, a back-end proxy and the deployment flow.", "tools": ["TDX API", "Node.js", "Docker Compose", "QNAP NAS", "GitHub Pages", "Claude Code"], "highlight": "TDX 介接後端已寫好，規劃改用國道影像辨識", "highlight_en": "TDX back end written · freeway camera image recognition planned", "links": [{"type": "repo", "url": "https://github.com/singwillychen/HighwayChecker"}], "my_note": "從朋友的產品「雪隧哨兵」觸類旁通而來。串接交通部 TDX 時發現可能需要付費，所以目前還沒接上即時資料；下一步考慮改用國道公開的即時影像，做簡單的影像辨識來達到同樣目的。", "my_note_en": "Inspired by a friend's product, Snow Tunnel Sentinel. While integrating TDX I found it may require payment, so live data isn't connected yet; next I'm considering simple image recognition on public freeway camera feeds to reach the same goal."}, {"id": "lottery", "order": 10, "category": "tools", "status": "已完成", "name": "彩券期望值計算器 LotteryWin", "name_en": "LotteryWin — Lottery Expected Value Calculator", "summary": "計算台灣彩券大樂透、威力彩、今彩539、三星彩、四星彩目前的期望值，告訴你「現在買哪一種最划算」。", "summary_en": "Computes the current expected value of Taiwan's five main lottery games and tells you which one is the best buy right now.", "pain_point": "大家看頭獎金額決定要不要買，但頭獎多少才划算、扣稅後實拿多少，很少人算得清楚。", "pain_point_en": "People decide by the jackpot size, but few can work out when a jackpot is actually worth it, or what they'd take home after tax.", "solution": "依各獎級機率與稅後獎金算期望值並排行，算出頭獎要累積到多少才打平；用 Poisson 分布估計頭獎被平分的機率；可自動抓官方開獎資料。", "solution_en": "Ranks games by expected value from each prize tier's odds and after-tax payout, shows the break-even jackpot, estimates jackpot sharing with a Poisson model, and can fetch official draw results.", "ai_role": "用 Claude Code 把機率、稅制與分獎模型寫成可測試的計算核心。", "ai_role_en": "Used Claude Code to turn odds, tax rules and a prize-sharing model into a tested calculation core.", "tools": ["HTML / CSS / JS", "Python", "Probability & statistics", "Claude Code"], "highlight": "5 種彩券期望值排行、含稅與平分估算", "highlight_en": "Expected value ranking for 5 games, with tax and jackpot sharing", "links": [], "my_note": "", "my_note_en": ""}, {"id": "webdownloader", "order": 11, "category": "tools", "status": "已完成", "name": "WebDownloader 續傳下載管理器", "name_en": "WebDownloader — Resumable Download Manager", "summary": "跨平台的 HTTPS 下載管理器：斷點續傳、多工並行、暫停與繼續，有深色主題介面，也能用命令列批次下載。", "summary_en": "A cross-platform HTTPS download manager with resume, parallel downloads and pause/continue, a dark-theme GUI, and a command-line batch mode.", "pain_point": "大檔案下載到一半斷線就得重來，公司自簽憑證或 Proxy 環境下，一般瀏覽器下載也常失敗。", "pain_point_en": "Large downloads restart from zero when the connection drops, and browser downloads often fail behind corporate self-signed certificates or proxies.", "solution": "用 HTTP Range 請求續傳，暫存檔自動保留；可設定 1–10 個並行任務、每個任務指定 Proxy；Windows、macOS、Linux 字型自動適配。", "solution_en": "Resumes with HTTP Range requests and keeps partial files; runs 1–10 parallel tasks with per-task proxies; adapts fonts for Windows, macOS and Linux.", "ai_role": "以 AI 協作完成跨平台 GUI 與網路錯誤處理。", "ai_role_en": "Built with AI assistance, including the cross-platform GUI and network error handling.", "tools": ["Python", "Tkinter", "requests", "HTTP Range"], "highlight": "斷點續傳、1–10 並行、三平台", "highlight_en": "Resume · 1–10 parallel downloads · 3 platforms", "links": [], "my_note": "", "my_note_en": ""}, {"id": "ww-platform", "order": 12, "category": "ecommerce", "status": "開發中", "name": "週末戰士營運管理平台", "name_en": "Weekend Warrior Operations Platform", "summary": "自營進口運動器材電商的後台：商品資訊庫、客戶往來、掃描槍匯入、定價計算、政府報價單、快速查價。", "summary_en": "The back office for my imported outdoor gear store: product database, customer records, barcode-scanner import, pricing engine, government quotations and quick price lookup.", "pain_point": "進口商品定價要手動換匯、算關稅、貨物稅和毛利，報價單和價格散在多個 Excel，查一個價要翻好幾份檔。", "pain_point_en": "Import pricing meant converting currency and calculating duty, excise and margin by hand; quotations and prices were scattered across many Excel files.", "solution": "定價引擎自動換算 EUR/USD → TWD 並套用稅費與毛利；報價單輸出 Word／PDF；中英文與 SKU 模糊查價；機密經銷價加密，部署在自家 NAS。", "solution_en": "A pricing engine converts EUR/USD to TWD and applies duties and margin; quotations export to Word/PDF; fuzzy search by Chinese, English or SKU; confidential dealer prices are encrypted; hosted on my own NAS.", "ai_role": "以 Claude Code 從需求拆解到可部署的容器架構，把自己經營 9 年電商的流程數位化。", "ai_role_en": "Used Claude Code to go from requirements to a deployable container setup, digitizing workflows from 9 years of running the store.", "tools": ["FastAPI", "PostgreSQL", "Nginx", "Docker Compose", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "highlight": "7 個模組、NAS 自架、遠端安全存取", "highlight_en": "7 modules · self-hosted on a NAS · secure remote access", "links": [{"type": "repo", "url": "https://github.com/singwillychen/weekend-warrior"}], "my_note": "經營電商以來最花時間的有兩件事：一是整理每次更新的報價單，二是整理每個月的新訂單與出貨。", "my_note_en": "Two things have taken the most time since I started the store: updating quotations every time prices change, and handling each month's new orders and shipping."}, {"id": "ecommerce-arch", "order": 13, "category": "ecommerce", "status": "文件", "name": "自架電商架構分析", "name_en": "Self-Hosted E-commerce Architecture Study", "summary": "拆解現有 EasyStore 前台與後台，提出脫離平台、自架多品牌電商的架構與路線。", "summary_en": "A teardown of my current EasyStore storefront and admin, with an architecture and roadmap for moving to a self-hosted multi-brand store.", "pain_point": "綁在 SaaS 電商平台上難客製，而且真正的銷售在蝦皮、露天，官網沒在賣，多通路商品資料各管各的。", "pain_point_en": "A SaaS store is hard to customize, real sales happen on marketplaces like Shopee and Ruten rather than my own site, and product data is managed separately per channel.", "solution": "由 AI 實際測試前台、唯讀檢視後台，整理成可驗證的事實；建議以 Medusa v2 當核心、自做 Admin 與台灣在地模組，並先做商品主檔與多通路整合。", "solution_en": "AI tested the storefront and reviewed the admin read-only, recording verifiable facts; the recommendation is Medusa v2 as the core with a custom admin and Taiwan-specific modules, starting with a product master and multi-channel sync.", "ai_role": "讓 AI 當系統分析師：實測、拆解、比較方案、寫成可交給 Claude Code 實作的規格。", "ai_role_en": "AI as systems analyst: test, deconstruct, compare options and write a spec Claude Code can implement.", "tools": ["Claude", "Browser testing", "Medusa v2", "Architecture docs"], "highlight": "結論先行、區分事實與推論", "highlight_en": "Conclusions first · facts kept apart from inferences", "links": [], "my_note": "我希望參考目前成熟的產品來搭建，但最重要的是資訊安全：網站架構要不易被攻破，客戶資料不能被取得。比起這一點，其他銷售功能的問題都小得多。", "my_note_en": "I want to build on proven products, but security comes first: the architecture must be hard to breach and customer data must stay protected. Every other sales feature is a much smaller problem."}, {"id": "dealer-price", "order": 14, "category": "ecommerce", "status": "已完成", "name": "經銷商報價批次更新", "name_en": "Dealer Price List Batch Update", "summary": "把 8 家代理品牌（Helikon-Tex、Morakniv、Direct Action 等）的原廠價格表整理成統一格式，並產出電商平台可匯入的商品檔。", "summary_en": "Normalizes price lists from 8 brands I distribute (Helikon-Tex, Morakniv, Direct Action and more) into one format and produces an import file for the online store.", "pain_point": "每家原廠價格表格式不同，每次調價都要人工對 SKU、換算、再一筆筆更新上架，容易出錯。", "pain_point_en": "Each brand's price list has its own format, so every price change meant matching SKUs, converting and updating listings one by one, which invites mistakes.", "solution": "用 AI 讀取各家 Excel、統一欄位，算出售價，輸出 EasyStore 匯入 CSV，並另列缺價商品清單供人工確認；整理成每季可重複執行的 Claude Skill。", "solution_en": "AI reads each brand's Excel file, unifies the columns, calculates retail prices and outputs an EasyStore import CSV, plus a list of items missing prices for manual review; packaged as a Claude Skill to rerun each quarter.", "ai_role": "AI 處理格式不一的表格資料，人只需確認例外清單。", "ai_role_en": "AI handles inconsistent spreadsheets; I only review the exceptions.", "tools": ["Claude", "Claude Code Skills", "Excel", "Python", "Google Sheets"], "highlight": "8 家品牌一次更新", "highlight_en": "8 brands updated in one pass", "links": [], "my_note": "經銷商報價更新與資料清洗大約每季做一次，傳統用 Excel 手動剪貼的方式非常耗時。", "my_note_en": "Dealer price updates and data cleaning happen roughly every quarter, and the traditional copy-and-paste approach in Excel took a very long time."}, {"id": "ipas", "order": 15, "category": "learning", "status": "已完成", "name": "iPAS 書齋：AI 應用規劃師模擬考", "name_en": "iPAS Study Hall — AI Application Planner Exam Simulator", "summary": "iPAS「AI 應用規劃師」初級／中級模擬考系統：亂數或弱項加重出題、逐選項錯題解析、學習五力圖、出席日曆，還有一位會依你的數據說話的 8-bit 老學究。", "summary_en": "A practice exam system for Taiwan's iPAS AI Application Planner certificate (beginner and intermediate): random or weakness-weighted questions, per-option explanations, a five-skill radar, an attendance calendar and an 8-bit tutor who comments on your stats.", "pain_point": "準備 iPAS 考試只能翻講義、做紙本題，不知道自己哪一科弱，錯過的題也很難集中複習。", "pain_point_en": "Preparing for iPAS meant handouts and paper questions, with no way to see weak areas or revisit missed questions in one place.", "solution": "195 題題庫，每個選項都有解析；交卷後在伺服器端批改，答案不外露到前端；錯題本自動收錄、答對即畢業；Dashboard 顯示五力圖與連續出席天數。", "solution_en": "A 195-question bank with an explanation for every option; grading runs server-side so answers never reach the browser; a mistake log adds wrong answers and retires them once correct; the dashboard shows a five-skill radar and streaks.", "ai_role": "用 Claude Code 設計題庫結構、資料庫權限與端對端測試；老師角色依學習數據即時產生一句話，沒有 LLM 金鑰時改用內建語錄。", "ai_role_en": "Used Claude Code for the question bank schema, database permissions and end-to-end tests; the tutor generates a line from your learning data, falling back to built-in quotes without an LLM key.", "tools": ["HTML / CSS / JS", "Supabase Auth", "PostgreSQL + RLS", "Edge Functions", "LLM", "Playwright", "Claude Code"], "highlight": "195 題、5 個科目、伺服器端批改", "highlight_en": "195 questions · 5 subjects · server-side grading", "links": [{"type": "repo", "url": "https://github.com/singwillychen/ipas-exam-sim"}], "my_note": "", "my_note_en": ""}, {"id": "mathcastle", "order": 16, "category": "learning", "status": "已完成", "name": "Kid's Math Castle 數學城堡", "name_en": "Kid's Math Castle", "summary": "給 4–7 歲小朋友的互動式加減法與心算練習網站：數蘋果、十格框、數線跳跳、心算、算盤教室，還有語音唸題。", "summary_en": "An interactive addition, subtraction and mental math site for ages 4–7: counting apples, ten-frames, number-line jumps, mental math, an abacus class and read-aloud questions.", "pain_point": "小朋友練數學需要大人一直陪著出題、批改，也很難知道孩子到底哪種題型比較弱。", "pain_point_en": "Kids practicing math need an adult to set and check every question, and it's hard to see which kinds of problems they struggle with.", "solution": "每位小朋友有自己的帳號與星星；依年齡調整難度；家長專區用乘法題或密碼進入，可看答對率、弱點建議與答錯題目；紀錄可存在瀏覽器、NAS 或雲端硬碟資料夾。", "solution_en": "Each child has their own profile and stars; difficulty follows age; a parent area (unlocked by a multiplication question or password) shows accuracy, weak spots and missed questions; progress saves to the browser, a NAS or a cloud-synced folder.", "ai_role": "用 Claude Code 從親子需求出發設計題型與家長分析，並讓多台平板共用紀錄。", "ai_role_en": "Built with Claude Code from a parent's needs: exercise types, parent analytics, and shared progress across several tablets.", "tools": ["HTML / CSS / JS", "Web Speech API", "Python", "GitHub Pages", "Claude Code"], "highlight": "6 種練習模式、家長分析、線上可玩", "highlight_en": "6 practice modes · parent analytics · playable online", "links": [{"type": "demo", "url": "https://singwillychen.github.io/kids-math-castle/"}, {"type": "repo", "url": "https://github.com/singwillychen/kids-math-castle"}], "my_note": "", "my_note_en": ""}, {"id": "growup", "order": 17, "category": "learning", "status": "MVP", "name": "Grow Up 孩子成長時間軸", "name_en": "Grow Up — Child Growth Timeline", "summary": "從相簿自動找出每週或每月最清楚的一張照片，排成孩子的成長時間軸，家人可以一起寫註解，之後可輸出成小影片。", "summary_en": "Finds the clearest photo of each week or month in the photo library, lays them out as a child's growth timeline that family can annotate together, with video export planned.", "pain_point": "手機裡有上萬張孩子的照片，想回顧成長卻找不到重點，好照片也被大量連拍和截圖淹沒。", "pain_point_en": "Tens of thousands of photos on the phone, yet the milestones are hard to find, buried under burst shots and screenshots.", "solution": "iPhone App 在手機上用 Vision 評分、比對參考臉，只上傳候選照片；後端做完全與近似去重、推測拍攝時間；分享連結有隨機代碼加密碼與錯誤鎖定。個資只存在自家 NAS。", "solution_en": "An iPhone app scores photos and matches a reference face on-device with Vision, uploading only candidates; the back end removes exact and near duplicates and infers capture time; share links use random codes plus a PIN with lockout. Personal data stays on my own NAS.", "ai_role": "用 Claude Code 同時開發後端、網頁與 iOS App，並把隱私與安全設計放在第一位。", "ai_role_en": "Used Claude Code across the back end, web app and iOS app, with privacy and security designed in from the start.", "tools": ["FastAPI", "PostgreSQL", "React + Vite + TS", "SwiftUI", "Apple Vision", "Supabase Auth", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "highlight": "手機端 AI 挑圖、照片去重、私密分享連結", "highlight_en": "On-device photo picking · duplicate removal · private share links", "links": [], "my_note": "", "my_note_en": ""}, {"id": "cruise", "order": 18, "category": "learning", "status": "開發中", "name": "郵輪特價追蹤 Cruise Bargain Tracker", "name_en": "Cruise Bargain Tracker", "summary": "追蹤兩大郵輪訂位網站的亞洲航線價格，自動評分找出特價，每週用 Telegram 推送摘要。", "summary_en": "Tracks Asian cruise prices on two major booking sites, scores them to find real deals, and sends a weekly Telegram digest.", "pain_point": "郵輪價格天天變動，要比較不同網站、判斷是不是真的便宜，得自己反覆查價、記價格。", "pain_point_en": "Cruise prices change daily; telling whether a deal is real across different sites means checking and noting prices over and over.", "solution": "評分引擎比較同類航次、跌價、歷史新低、跨站價差與尾艙；網頁顯示今日推薦與價格走勢，美金價自動換算台幣；每日排程並做抓取健康檢查。", "solution_en": "A scoring engine compares similar sailings, price drops, record lows, cross-site gaps and last-minute cabins; the web app shows daily picks and price trends with USD converted to TWD; daily scheduling with scraper health checks.", "ai_role": "用 Claude Code 設計評分邏輯與排程架構，抓取模組以示範資料先跑通整個流程。", "ai_role_en": "Used Claude Code to design the scoring logic and scheduling; the whole pipeline runs end to end on sample data while the scrapers are finished.", "tools": ["Python", "FastAPI", "SQLAlchemy", "APScheduler", "Playwright", "Telegram Bot", "Docker"], "highlight": "5 種特價評分規則、每週自動推播", "highlight_en": "5 deal-scoring rules · automatic weekly digest", "links": [{"type": "repo", "url": "https://github.com/singwillychen/Finding-good-bargain-cruise"}], "my_note": "", "my_note_en": ""}];
 
-dash.calc('totals', {
-  title: '作品總覽數字',
-  description: '作品數、狀態為已完成或使用中的作品數，以及所有作品用到的不重複工具數。',
-  inputs: ['works'],
-  fn: (works) => [{
-    works: works.length,
-    done: works.filter((w) => w.status === '已完成' || w.status === '使用中').length,
-    tools: new Set(works.flatMap((w) => ((t) => Array.isArray(t) ? t : (typeof t === 'string' && t.trim().startsWith('[') ? JSON.parse(t) : []))(w.tools))).size
-  }]
-});
-
-dash.calc('tool_counts', {
-  title: '工具使用次數',
-  description: '每個工具出現在幾個作品中，依次數排序取前 10 名。',
-  inputs: ['works'],
-  fn: (works) => {
-    const m = new Map();
-    works.forEach((w) => ((t) => Array.isArray(t) ? t : (typeof t === 'string' && t.trim().startsWith('[') ? JSON.parse(t) : []))(w.tools).forEach((t) => m.set(t, (m.get(t) || 0) + 1)));
-    return [...m].map(([tool, n]) => ({tool, n})).sort((a, b) => b.n - a.n || a.tool.localeCompare(b.tool)).slice(0, 10);
+const T = {
+  zh: {
+    title: "陳威廷｜AI 應用作品集", navSkills: "技能", navWorks: "作品",
+    eyebrow: "AI 應用作品集", name: "陳威廷 Willy Chen", role: "專案經理 · 用 AI 把工作流程做成產品",
+    lede: "從現場設備作業、政府開放資料、自營電商到家庭生活，我用 Claude Code 等 AI 工具，把真實遇到的痛點做成可以實際使用的系統。每個作品都寫明它解決的問題、做法與使用的工具。",
+    ctaWorks: "看作品 ↓", statWorks: "件作品", statDone: "已完成或使用中", statTools: "種工具與技術", statLive: "個可公開瀏覽",
+    skillsTitle: "技能分布", skillsSub: "依作品內容統計，不是自評",
+    toolsTitle: "最常用的工具", toolsNote: "各工具出現在幾件作品中（前 12 名）",
+    catsTitle: "作品領域", catsNote: "依解決的問題分類",
+    worksTitle: "作品", worksSub: "點「完整說明」看痛點、做法與 AI 的角色",
+    all: "全部", more: "完整說明", pain: "解決的痛點", how: "怎麼做", ai: "AI 在其中的角色", tools: "使用與串接的工具",
+    mine: "我的說明", demo: "線上試用", repo: "原始碼",
+    foot: "作品說明由 Claude 依各專案的程式與文件整理；「我的說明」由本人撰寫。",
+    cat: { ai: "AI 代理與自動化", tools: "實用工具", ecommerce: "電商營運", learning: "學習與生活" },
+    catDesc: { ai: "讓 AI 代替人執行工作，人負責判斷", tools: "解決單一問題的小工具", ecommerce: "自營進口電商的營運數位化", learning: "給家人、學習與生活的應用" },
+    status: { "已完成": "已完成", "使用中": "使用中", "MVP": "MVP", "開發中": "開發中", "訓練中": "訓練中", "文件": "文件" }
+  },
+  en: {
+    title: "Willy Chen · AI Application Portfolio", navSkills: "Skills", navWorks: "Projects",
+    eyebrow: "AI Application Portfolio", name: "Willy (Wei Ting) Chen", role: "Project Manager · turning workflows into AI-powered products",
+    lede: "From field equipment operations and government open data to my own e-commerce business and family life, I use AI tools like Claude Code to turn real pain points into systems people actually use. Each project shows the problem it solves, how it works and the tools behind it.",
+    ctaWorks: "See projects ↓", statWorks: "projects", statDone: "completed or in use", statTools: "tools & technologies", statLive: "public on GitHub",
+    skillsTitle: "Skills at a glance", skillsSub: "Counted from the projects, not self-rated",
+    toolsTitle: "Most used tools", toolsNote: "Number of projects each tool appears in (top 12)",
+    catsTitle: "Project areas", catsNote: "Grouped by the problem solved",
+    worksTitle: "Projects", worksSub: "Open “Full details” for the problem, the approach and AI's role",
+    all: "All", more: "Full details", pain: "Problem", how: "Approach", ai: "AI's role", tools: "Tools & integrations",
+    mine: "In my words", demo: "Live demo", repo: "Source",
+    foot: "Project write-ups were drafted by Claude from each project's code and docs; “In my words” is written by me.",
+    cat: { ai: "AI agents & automation", tools: "Tools", ecommerce: "E-commerce operations", learning: "Learning & life" },
+    catDesc: { ai: "AI does the work, people make the calls", tools: "Small tools that solve one problem well", ecommerce: "Digitizing my import e-commerce business", learning: "Apps for family, learning and everyday life" },
+    status: { "已完成": "Completed", "使用中": "In use", "MVP": "MVP", "開發中": "In development", "訓練中": "Training", "文件": "Document" }
   }
-});
-
-dash.calc('status_counts', {
-  title: '作品狀態分布',
-  description: '依狀態（已完成、使用中、MVP、開發中、訓練中、文件）計算作品數。',
-  inputs: ['works'],
-  fn: (works) => {
-    const order = ['已完成', '使用中', 'MVP', '開發中', '訓練中', '文件'];
-    const m = new Map();
-    works.forEach((w) => m.set(w.status, (m.get(w.status) || 0) + 1));
-    return [...m].map(([status, n]) => ({status, n})).sort((a, b) => order.indexOf(a.status) - order.indexOf(b.status));
-  }
-});
-
-window.pfCat = '';
-window.pfTone = (s) => (s === '已完成' || s === '使用中') ? 'ok' : (s === '文件' ? 'muted' : 'warn');
-
-const pfFail = (el) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'pf-fail'; d.textContent = '載入失敗'; el.appendChild(d); };
-
-['works', 'done', 'tools'].forEach((f) => {
-  dash.draw('n-' + f, (el) => {
-    const r = dash.data('totals');
-    if (r.status === 'ok' && r.data.length) { el.classList.remove('dash-skeleton'); el.textContent = d3.format(',')(r.data[0][f]); }
-    else { if (r.status === 'error') el.classList.remove('dash-skeleton'); el.textContent = '—'; }
-  });
-});
-
-const pfBars = (id, key, colorFn) => (el) => {
-  const r = dash.data(id);
-  if (r.status !== 'ok') { if (r.status === 'error') { el.classList.remove('dash-skeleton'); pfFail(el); } else el.replaceChildren(); return; }
-  el.classList.remove('dash-skeleton');
-  el.replaceChildren();
-  const max = d3.max(r.data, (d) => d.n) || 1;
-  const tip = document.createElement('div'); tip.className = 'pf-tip'; tip.hidden = true;
-  r.data.forEach((d, i) => {
-    const row = document.createElement('div'); row.className = 'pf-bar-row';
-    const lab = document.createElement('span'); lab.className = 'pf-bar-label'; lab.textContent = d[key];
-    const track = document.createElement('div'); track.className = 'pf-bar-track';
-    const fill = document.createElement('div'); fill.className = 'pf-bar-fill';
-    fill.style.width = (d.n / max * 100) + '%';
-    fill.style.background = colorFn(d, i);
-    track.appendChild(fill);
-    const val = document.createElement('span'); val.className = 'pf-bar-val'; val.textContent = d3.format(',')(d.n);
-    row.append(lab, track, val);
-    row.addEventListener('mousemove', (e) => {
-      tip.textContent = d[key] + '：' + d.n + ' 個作品';
-      tip.hidden = false;
-      const box = el.getBoundingClientRect();
-      const x = Math.min(e.clientX - box.left + 12, box.width - tip.offsetWidth);
-      tip.style.left = Math.max(0, x) + 'px';
-      tip.style.top = (e.clientY - box.top - 30) + 'px';
-    });
-    row.addEventListener('mouseleave', () => { tip.hidden = true; });
-    el.appendChild(row);
-  });
-  el.appendChild(tip);
 };
+const CAT_ORDER = ["ai", "tools", "ecommerce", "learning"];
+const CAT_ICON = { ai: "🤖", tools: "🛠️", ecommerce: "🛒", learning: "🌱" };
+const tone = (s) => (s === "已完成" || s === "使用中") ? "ok" : (s === "文件" ? "doc" : "warn");
 
-dash.draw('tool-bars', pfBars('tool_counts', 'tool', (d, i) => i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)'));
-dash.draw('status-bars', pfBars('status_counts', 'status', (d) => window.pfTone(d.status) === 'ok' ? dash.colors[0] : (window.pfTone(d.status) === 'warn' ? dash.colors[1] : 'var(--cds-chart-muted)')));
+const store = {
+  get() { try { return localStorage.getItem("pf-lang"); } catch (e) { return null; } },
+  set(v) { try { localStorage.setItem("pf-lang", v); } catch (e) {} }
+};
+function detectLang() {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q === "zh" || q === "en") return q;
+  const saved = store.get();
+  if (saved === "zh" || saved === "en") return saved;
+  const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
+  for (const l of list) {
+    const x = String(l).toLowerCase();
+    if (x.startsWith("zh")) return "zh";
+    if (x.startsWith("en")) return "en";
+  }
+  return "en";
+}
 
-let pfAnimated = false;
-dash.draw('cards', (el) => {
-  const r = dash.data('works');
-  if (r.status !== 'ok') { if (r.status === 'error') { el.classList.remove('dash-skeleton'); pfFail(el); } else el.replaceChildren(); return; }
-  el.classList.remove('dash-skeleton');
-  el.replaceChildren();
-  const mk = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-  const rows = r.data.slice().sort((a, b) => Number(a.order) - Number(b.order)).filter((w) => !window.pfCat || w.category === window.pfCat);
-  rows.forEach((w, i) => {
-    const card = mk('article', 'pf-card'); card.id = 'work-' + w.id;
-    if (!pfAnimated) { card.classList.add('in'); card.style.animationDelay = (i * 40) + 'ms'; }
-    const top = mk('div', 'pf-card-top');
-    const t = mk('div');
-    t.append(mk('p', 'pf-card-cat', w.category), mk('h3', 'pf-card-name', w.name));
-    top.append(t, mk('span', 'pf-pill ' + window.pfTone(w.status), w.status));
-    card.append(top, mk('p', 'pf-summary', w.summary));
-    if (w.highlight) card.append(mk('div', 'pf-highlight', w.highlight));
-    [['解決的痛點', w.pain_point], ['怎麼做', w.solution], ['AI 在其中的角色', w.ai_role]].forEach(([h, txt]) => {
-      if (!txt) return;
-      const b = mk('div', 'pf-block'); b.append(mk('h4', null, h), mk('p', null, txt)); card.append(b);
+let lang = detectLang();
+let cat = "";
+const pick = (w, k) => (lang === "en" && w[k + "_en"]) ? w[k + "_en"] : w[k];
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+function renderStatic() {
+  const t = T[lang];
+  document.documentElement.lang = lang === "zh" ? "zh-Hant-TW" : "en";
+  document.title = t.title;
+  document.querySelectorAll("[data-i18n]").forEach((n) => { n.textContent = t[n.dataset.i18n] ?? ""; });
+  document.querySelectorAll(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+}
+
+function renderStats() {
+  const tools = new Set(WORKS.flatMap((w) => w.tools));
+  document.getElementById("s-works").textContent = WORKS.length;
+  document.getElementById("s-done").textContent = WORKS.filter((w) => tone(w.status) === "ok").length;
+  document.getElementById("s-tools").textContent = tools.size;
+  document.getElementById("s-live").textContent = WORKS.filter((w) => (w.links || []).length).length;
+}
+
+function renderSkills() {
+  const t = T[lang];
+  const m = new Map();
+  WORKS.forEach((w) => w.tools.forEach((x) => m.set(x, (m.get(x) || 0) + 1)));
+  const top = [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12);
+  const max = top.length ? top[0][1] : 1;
+  const bars = document.getElementById("tool-bars");
+  bars.replaceChildren(...top.map(([name, n], i) => {
+    const r = el("div", "bar-row");
+    const trk = el("div", "trk"); const f = el("div", "fill");
+    f.style.width = (n / max * 100) + "%"; f.style.animationDelay = (i * 40) + "ms"; trk.append(f);
+    r.append(el("span", "lbl", name), trk, el("span", "val", n));
+    r.title = "";
+    return r;
+  }));
+  const list = document.getElementById("cat-list");
+  list.replaceChildren(...CAT_ORDER.map((c) => {
+    const r = el("div", "cat-row");
+    const d = el("div"); d.append(el("b", null, t.cat[c]), el("span", null, t.catDesc[c]));
+    r.append(el("span", "cat-ico", CAT_ICON[c]), d, el("em", null, WORKS.filter((w) => w.category === c).length));
+    return r;
+  }));
+}
+
+function renderFilters() {
+  const t = T[lang];
+  const box = document.getElementById("filters");
+  const opts = [["", t.all, WORKS.length], ...CAT_ORDER.map((c) => [c, t.cat[c], WORKS.filter((w) => w.category === c).length])];
+  box.replaceChildren(...opts.map(([v, label, n]) => {
+    const b = el("button", "chip-btn"); b.type = "button";
+    b.setAttribute("aria-pressed", String(v === cat));
+    b.append(document.createTextNode(label + " "), el("i", null, n));
+    b.addEventListener("click", () => { cat = v; renderFilters(); renderWorks(); });
+    return b;
+  }));
+}
+
+function renderWorks() {
+  const t = T[lang];
+  const grid = document.getElementById("grid");
+  const rows = WORKS.slice().sort((a, b) => a.order - b.order).filter((w) => !cat || w.category === cat);
+  grid.replaceChildren(...rows.map((w, i) => {
+    const a = el("article", "work"); a.id = "work-" + w.id; a.style.animationDelay = Math.min(i, 8) * 35 + "ms";
+    const top = el("div", "work-top");
+    top.append(el("span", null, CAT_ICON[w.category] + "  " + t.cat[w.category]), el("span", "badge " + tone(w.status), t.status[w.status] || w.status));
+    a.append(top, el("h3", null, pick(w, "name")), el("p", "sum", pick(w, "summary")));
+    if (w.highlight) a.append(el("p", "hl", pick(w, "highlight")));
+    const tags = el("div", "tags"); w.tools.slice(0, 5).forEach((x) => tags.append(el("span", "tag", x)));
+    if (w.tools.length > 5) tags.append(el("span", "tag", "+" + (w.tools.length - 5)));
+    a.append(tags);
+    const note = pick(w, "my_note");
+    if (note) { const q = el("div", "quote"); q.append(el("small", null, t.mine), document.createTextNode(note)); a.append(q); }
+    if ((w.links || []).length) {
+      const l = el("div", "links");
+      w.links.forEach((k) => { const x = el("a", k.type === "demo" ? "demo" : "", (k.type === "demo" ? t.demo : t.repo) + " ↗"); x.href = k.url; x.target = "_blank"; x.rel = "noopener"; l.append(x); });
+      a.append(l);
+    }
+    const d = el("details"); d.append(el("summary", null, t.more));
+    const dl = el("div", "dl");
+    [["pain", "pain_point"], ["how", "solution"], ["ai", "ai_role"]].forEach(([h, k]) => {
+      const v = pick(w, k); if (!v) return;
+      const b = el("div"); b.append(el("h4", null, t[h]), el("p", null, v)); dl.append(b);
     });
-    const tb = mk('div', 'pf-block'); tb.append(mk('h4', null, '使用與串接的工具'));
-    const chips = mk('div', 'pf-chips'); window.pfTools(w).forEach((x) => chips.append(mk('span', 'pf-chip', x)));
-    tb.append(chips); card.append(tb);
-    const mine = mk('div', 'pf-mine'); mine.append(mk('h4', null, '我的說明'));
-    mine.append(w.my_note ? mk('p', null, w.my_note) : mk('p', 'empty', '尚未填寫：可補充動機、你負責的部分、實際成效或心得。'));
-    card.append(mine);
-    el.appendChild(card);
-  });
-  if (rows.length) pfAnimated = true;
-});
+    const tb = el("div"); tb.append(el("h4", null, t.tools));
+    const all = el("div", "tags"); w.tools.forEach((x) => all.append(el("span", "tag", x))); tb.append(all); dl.append(tb);
+    d.append(dl); a.append(d);
+    return a;
+  }));
+}
 
-document.querySelectorAll('.pf-filter button').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    window.pfCat = btn.dataset.cat || '';
-    document.querySelectorAll('.pf-filter button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-    dash.draw('cards');
-  });
-});
+function renderAll() { renderStatic(); renderSkills(); renderFilters(); renderWorks(); }
 
-window.dash._run();</script></body></html>
+document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => {
+  if (b.dataset.lang === lang) return;
+  lang = b.dataset.lang; store.set(lang);
+  const open = [...document.querySelectorAll("details[open]")].map((d) => d.parentElement.id);
+  renderAll();
+  open.forEach((id) => { const d = document.querySelector("#" + id + " details"); if (d) d.open = true; });
+}));
+
+renderStats();
+renderAll();
+</script>
+</body>
+</html>
