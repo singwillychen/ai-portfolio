@@ -129,11 +129,11 @@ window.WORKS = [
    "JSON-LD scraping",
    "CSV"
   ],
-  "highlight": "91 份履歷、68 封求職信、14 份公司研究",
-  "highlight_en": "91 CVs · 68 cover letters · 14 company research files",
+  "highlight": "職缺評估、客製文件、投遞追蹤一條龍；個人資料只存在本機、不公開",
+  "highlight_en": "Fit scoring, tailored documents and tracking in one place; personal data stays local and private",
   "links": [],
-  "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。",
-  "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience.",
+  "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。履歷、求職信與投遞紀錄都只留在自己的電腦，不放上網路。",
+  "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience. CVs, cover letters and application records stay on my own computer and are never published.",
   "shot": "assets/shots/jobsearch.jpg",
   "shot_kind": "illustration"
  },
