@@ -1,5 +1,6 @@
 // 作品資料。新增或修改作品只要改這個檔案，卡片、分類、統計會自動更新。
 // links 的 type：demo（線上試用）、repo（原始碼）、video（影片）。只放公開的網址。
+// shot：卡片與放大檢視用的首頁截圖；shot_kind：real（實際畫面）或 illustration（示意畫面）。
 window.WORKS = [
  {
   "id": "crew",
@@ -30,7 +31,9 @@ window.WORKS = [
   "highlight_en": "Milestones M0–M4 done · 10-minute local install · multi-tenant RLS",
   "links": [],
   "my_note": "目標是串接 OpenAI Realtime 語音引擎，做到和 AI 雙向即時語音對談的語音客服。第一個想服務的對象，是在客服業工作的家人。",
-  "my_note_en": "The goal is a voice support agent that holds real-time, two-way spoken conversations through the OpenAI Realtime voice engine. The first people I want it to serve are family members who work in customer service."
+  "my_note_en": "The goal is a voice support agent that holds real-time, two-way spoken conversations through the OpenAI Realtime voice engine. The first people I want it to serve are family members who work in customer service.",
+  "shot": "assets/shots/crew.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "diorama",
@@ -64,7 +67,9 @@ window.WORKS = [
    }
   ],
   "my_note": "純粹想讓 agent 的工作介面升級，也讓自己一個人開發時不那麼孤單。",
-  "my_note_en": "I simply wanted a better interface for watching agents work, and to feel less alone when developing solo."
+  "my_note_en": "I simply wanted a better interface for watching agents work, and to feel less alone when developing solo.",
+  "shot": "assets/shots/diorama.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "ev2",
@@ -97,7 +102,9 @@ window.WORKS = [
   "highlight_en": "6 bays · 438 cells filled daily · 51 automated tests",
   "links": [],
   "my_note": "這是為台南區某個案場做的。過去每天 8 小時、每 10 分鐘就要盯一次網頁；上線後系統會自動收下所有資訊，推播時快速確認即可，也可以等接近下班時一次全部看完。",
-  "my_note_en": "Built for a site in the Tainan area. Someone used to check a web page every 10 minutes for 8 hours a day; now the system collects everything, and staff confirm quickly when notified or review it all at once near the end of the day."
+  "my_note_en": "Built for a site in the Tainan area. Someone used to check a web page every 10 minutes for 8 hours a day; now the system collects everything, and staff confirm quickly when notified or review it all at once near the end of the day.",
+  "shot": "assets/shots/ev2.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "jobsearch",
@@ -126,7 +133,9 @@ window.WORKS = [
   "highlight_en": "91 CVs · 68 cover letters · 14 company research files",
   "links": [],
   "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。",
-  "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience."
+  "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience.",
+  "shot": "assets/shots/jobsearch.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "valuation",
@@ -159,7 +168,9 @@ window.WORKS = [
    }
   ],
   "my_note": "資料來自官方每週拍賣的實際成交紀錄，都是真實的拍場價格。",
-  "my_note_en": "The data comes from official weekly auction results, so every price is a real hammer price."
+  "my_note_en": "The data comes from official weekly auction results, so every price is a real hammer price.",
+  "shot": "assets/shots/valuation.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "vlog",
@@ -234,7 +245,9 @@ window.WORKS = [
    }
   ],
   "my_note": "一個下午就完成的作品。做完才發現這個領域已經有 ElevenLabs 這樣的知名品牌，所以我把它定位在童趣：可以和小朋友一起玩變聲遊戲。實際使用建議從第二階段的本地小型模型開始，或安裝第三階段的大型模型，音色和音調才會有明顯變化。",
-  "my_note_en": "Built in a single afternoon. Afterwards I found that well-known brands like ElevenLabs already own this space, so I positioned it as something playful: a voice-changing game to enjoy with kids. For a noticeable change in timbre and pitch, start from the stage-2 local small model or install the stage-3 large model."
+  "my_note_en": "Built in a single afternoon. Afterwards I found that well-known brands like ElevenLabs already own this space, so I positioned it as something playful: a voice-changing game to enjoy with kids. For a noticeable change in timbre and pitch, start from the stage-2 local small model or install the stage-3 large model.",
+  "shot": "assets/shots/voicesprite.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "foms",
@@ -263,7 +276,9 @@ window.WORKS = [
   "highlight_en": "8-step deployment flow · P1–P3 work orders · works offline",
   "links": [],
   "my_note": "源自我在鳴日科技跑外勤時遇到的實際需求：把現場作業（Field Operation）的設備部署、保養與料件管理，整理成一套現場人員拿手機就能用的系統。",
-  "my_note_en": "It grew out of real needs I met doing field work at Tomorrowland Technology: bringing equipment deployment, maintenance and parts management into one system field staff can use from a phone."
+  "my_note_en": "It grew out of real needs I met doing field work at Tomorrowland Technology: bringing equipment deployment, maintenance and parts management into one system field staff can use from a phone.",
+  "shot": "assets/shots/foms.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "highway",
@@ -301,7 +316,9 @@ window.WORKS = [
    }
   ],
   "my_note": "從朋友的產品「雪隧哨兵」觸類旁通而來。串接交通部 TDX 時發現可能需要付費，所以目前還沒接上即時資料；下一步考慮改用國道公開的即時影像，做簡單的影像辨識來達到同樣目的。",
-  "my_note_en": "Inspired by a friend's product, Snow Tunnel Sentinel. While integrating TDX I found it may require payment, so live data isn't connected yet; next I'm considering simple image recognition on public freeway camera feeds to reach the same goal."
+  "my_note_en": "Inspired by a friend's product, Snow Tunnel Sentinel. While integrating TDX I found it may require payment, so live data isn't connected yet; next I'm considering simple image recognition on public freeway camera feeds to reach the same goal.",
+  "shot": "assets/shots/highway.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "lottery",
@@ -328,7 +345,9 @@ window.WORKS = [
   "highlight_en": "Expected value ranking for 5 games, with tax and jackpot sharing",
   "links": [],
   "my_note": "主要是幫我找出獲勝期望值最好的選擇。威力彩頭獎累積到一定金額時，它會告訴我是否值得從大樂透改買威力彩，以取得更好的期望值。",
-  "my_note_en": "It points me to the choice with the best expected value. When the Super Lotto jackpot builds past a certain amount, it tells me whether switching from Lotto 6/49 to Super Lotto is worth it."
+  "my_note_en": "It points me to the choice with the best expected value. When the Super Lotto jackpot builds past a certain amount, it tells me whether switching from Lotto 6/49 to Super Lotto is worth it.",
+  "shot": "assets/shots/lottery.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "webdownloader",
@@ -355,7 +374,9 @@ window.WORKS = [
   "highlight_en": "Resume · 1–10 parallel downloads · 3 platforms",
   "links": [],
   "my_note": "主要用來下載 Helikon-Tex 的所有產品內容。之後會把它封裝成可安裝的程式，並加強下載介面的顯示，讓它不必只在終端機操作。",
-  "my_note_en": "I mainly use it to download all of Helikon-Tex's product content. Next I'll package it as an installable app and improve the download interface, so it no longer needs the terminal."
+  "my_note_en": "I mainly use it to download all of Helikon-Tex's product content. Next I'll package it as an installable app and improve the download interface, so it no longer needs the terminal.",
+  "shot": "assets/shots/webdownloader.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "ww-platform",
@@ -390,7 +411,9 @@ window.WORKS = [
    }
   ],
   "my_note": "經營電商以來最花時間的有兩件事：一是整理每次更新的報價單，二是整理每個月的新訂單與出貨。",
-  "my_note_en": "Two things have taken the most time since I started the store: updating quotations every time prices change, and handling each month's new orders and shipping."
+  "my_note_en": "Two things have taken the most time since I started the store: updating quotations every time prices change, and handling each month's new orders and shipping.",
+  "shot": "assets/shots/ww-platform.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "ecommerce-arch",
@@ -417,7 +440,9 @@ window.WORKS = [
   "highlight_en": "Conclusions first · facts kept apart from inferences",
   "links": [],
   "my_note": "我希望參考目前成熟的產品來搭建，但最重要的是資訊安全：網站架構要不易被攻破，客戶資料不能被取得。比起這一點，其他銷售功能的問題都小得多。",
-  "my_note_en": "I want to build on proven products, but security comes first: the architecture must be hard to breach and customer data must stay protected. Every other sales feature is a much smaller problem."
+  "my_note_en": "I want to build on proven products, but security comes first: the architecture must be hard to breach and customer data must stay protected. Every other sales feature is a much smaller problem.",
+  "shot": "assets/shots/ecommerce-arch.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "dealer-price",
@@ -445,7 +470,9 @@ window.WORKS = [
   "highlight_en": "8 brands updated in one pass",
   "links": [],
   "my_note": "經銷商報價更新與資料清洗大約每季做一次，傳統用 Excel 手動剪貼的方式非常耗時。",
-  "my_note_en": "Dealer price updates and data cleaning happen roughly every quarter, and the traditional copy-and-paste approach in Excel took a very long time."
+  "my_note_en": "Dealer price updates and data cleaning happen roughly every quarter, and the traditional copy-and-paste approach in Excel took a very long time.",
+  "shot": "assets/shots/dealer-price.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "ipas",
@@ -475,12 +502,18 @@ window.WORKS = [
   "highlight_en": "195 questions · 5 subjects · server-side grading",
   "links": [
    {
+    "type": "demo",
+    "url": "https://singwillychen.github.io/ipas-exam-sim/"
+   },
+   {
     "type": "repo",
     "url": "https://github.com/singwillychen/ipas-exam-sim"
    }
   ],
   "my_note": "我自己正在準備這個考試，還沒正式開始讀；試用後覺得題目內容不錯，之後會依自己的需求繼續加強。",
-  "my_note_en": "I'm preparing for this exam myself and haven't started studying in earnest; after trying it, I think the questions are solid, and I'll keep improving it as my needs grow."
+  "my_note_en": "I'm preparing for this exam myself and haven't started studying in earnest; after trying it, I think the questions are solid, and I'll keep improving it as my needs grow.",
+  "shot": "assets/shots/ipas.png",
+  "shot_kind": "real"
  },
  {
   "id": "mathcastle",
@@ -517,7 +550,9 @@ window.WORKS = [
    }
   ],
   "my_note": "小朋友已經試玩過一次，最近比較忙還沒持續使用，之後會再多陪他們一起玩。",
-  "my_note_en": "My kids have tried it once; things have been busy so we haven't kept it up yet, and I plan to play it with them more."
+  "my_note_en": "My kids have tried it once; things have been busy so we haven't kept it up yet, and I plan to play it with them more.",
+  "shot": "assets/shots/mathcastle.jpg",
+  "shot_kind": "real"
  },
  {
   "id": "growup",
@@ -549,7 +584,9 @@ window.WORKS = [
   "highlight_en": "On-device photo picking · duplicate removal · private share links",
   "links": [],
   "my_note": "想記錄孩子們成長的小瞬間：有時會發現他們的用詞或動作，在一瞬間變得更成熟。我希望把這份感動留下來，不定期串成影片，和家人一起分享。",
-  "my_note_en": "A way to capture my children's small moments of growth: sometimes their words or gestures suddenly seem more grown-up. I want to keep those moments and, from time to time, turn them into a video to share with family."
+  "my_note_en": "A way to capture my children's small moments of growth: sometimes their words or gestures suddenly seem more grown-up. I want to keep those moments and, from time to time, turn them into a video to share with family.",
+  "shot": "assets/shots/growup.jpg",
+  "shot_kind": "illustration"
  },
  {
   "id": "cruise",
@@ -584,6 +621,8 @@ window.WORKS = [
    }
   ],
   "my_note": "目前還在累積價格資料，還沒實際用它訂到行程；等時間和預算允許，再靠它找划算的郵輪行程。",
-  "my_note_en": "It's still building up price history, and I haven't booked a trip with it yet; when time and budget allow, I'll use it to find a good-value cruise."
+  "my_note_en": "It's still building up price history, and I haven't booked a trip with it yet; when time and budget allow, I'll use it to find a good-value cruise.",
+  "shot": "assets/shots/cruise.jpg",
+  "shot_kind": "real"
  }
 ];
