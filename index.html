@@ -1,365 +1,677 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant-TW" data-lang="zh">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Willy Chen · AI Application Portfolio</title>
-<meta name="description" content="Willy (Wei Ting) Chen — AI application portfolio: what each project solves, how it works and the tools behind it. 陳威廷 AI 應用作品集。">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>陳威廷｜AI 應用作品集</title>
+<meta name="description" content="Willy (Chen Wei-Ting) · AI Application Portfolio — 18 projects built with Claude Code and other AI tools. 陳威廷 AI 應用作品集。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7f5f0; --bg-2:#efece4; --panel:#ffffff; --ink:#1b1a17; --muted:#6a665d; --line:#e2ddd2;
-  --accent:#3b4cca; --accent-soft:#e7e9fb; --accent-ink:#ffffff;
-  --ok:#1f7a4d; --ok-soft:#e1f2e8; --warn:#9a5b06; --warn-soft:#fbefd9; --doc:#5b5b66; --doc-soft:#ececf0;
-  --bar-muted:#d5d0c4; --shadow:0 1px 2px rgba(20,18,12,.04),0 8px 24px rgba(20,18,12,.06);
-  --sans:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
-  --serif:"Noto Serif TC","Songti TC",Georgia,serif;
-  --r:14px;
+  --bg:#0E1116; --surface:#161B22; --surface-2:#1E2530; --line:#232933; --line-2:#3A4250;
+  --text:#E8EAED; --text-2:#C9CED6; --muted:#9AA3AF; --faint:#8A93A0; --ghost:#2C3442;
+  --accent:#F2B33D; --accent-hi:#FFD27A; --accent-bg:#2A2414; --on-accent:#0E1116;
+  --ok:#7FD99A; --ok-line:#2F5A3D; --warn-line:#5A4718;
 }
-@media (prefers-color-scheme:dark){:root{
-  --bg:#121212; --bg-2:#1a1a1a; --panel:#1e1e1e; --ink:#eeebe4; --muted:#a29e94; --line:#303030;
-  --accent:#8e9bff; --accent-soft:#252a4d; --accent-ink:#0f1020;
-  --ok:#5fcf93; --ok-soft:#173226; --warn:#f0b45a; --warn-soft:#3a2b12; --doc:#b5b5c2; --doc-soft:#2a2a31;
-  --bar-muted:#3d3c38; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
-}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-@media (min-width:768px){.wrap{padding:0 32px}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:var(--accent-hi)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.mono{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:.12em}
 
-/* top bar */
-.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
-.brand{font-family:var(--serif);font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
-.brand span{color:var(--accent)}
-.nav{display:flex;align-items:center;gap:18px;font-size:14px}
-.nav a{text-decoration:none;color:var(--muted)}
-.nav a:hover{color:var(--ink)}
-@media (max-width:640px){.nav a{display:none}}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--panel)}
-.lang button{font:inherit;font-size:13px;font-weight:500;border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer;min-width:52px}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+/* header */
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;letter-spacing:.02em;color:var(--text);text-decoration:none}
+.brand:hover{color:var(--text)}
+.logo{width:36px;height:36px;border-radius:8px;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+nav a{color:var(--text-2);text-decoration:none;padding:12px 14px;font-size:15px}
+nav a:hover{color:var(--text)}
+nav a.pill{color:var(--bg);background:var(--text);padding:12px 18px;border-radius:999px;font-weight:500}
+
+/* language toggle */
+.lang-toggle{margin-left:4px;min-height:44px;display:inline-flex;align-items:center;gap:10px;padding:0 6px 0 12px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:border-color .2s}
+.lang-toggle:hover{border-color:#6B7585}
+.lang-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.globe{display:inline-flex;transition:transform .3s}
+.lang-toggle:hover .globe{transform:rotate(-14deg)}
+.track{position:relative;display:grid;grid-template-columns:1fr 1fr;width:84px;height:32px;border-radius:999px;background:var(--bg);font-size:13px;font-weight:700}
+.track .knob{position:absolute;top:3px;left:3px;width:39px;height:26px;border-radius:999px;background:var(--accent);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+html[data-lang="en"] .track .knob{transform:translateX(39px)}
+.track .lbl{position:relative;display:flex;align-items:center;justify-content:center;color:var(--faint);transition:color .3s}
+html[data-lang="zh"] .track .lbl-zh,html[data-lang="en"] .track .lbl-en{color:var(--on-accent)}
+.spin svg{animation:spin .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes spin{50%{transform:rotate(200deg) scale(1.25)}to{transform:rotate(360deg)}}
+.pop{animation:pop .45s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* hero */
-.hero{padding:64px 0 40px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;margin:0 0 20px}
-.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
-h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
-h1 small{display:block;font-size:.42em;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:10px}
-.lede{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--muted);max-width:44rem;margin:0}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--panel)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn:hover{transform:translateY(-1px)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}
-@media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
-.stat b{display:block;font-family:var(--serif);font-weight:700;font-size:2.4rem;line-height:1.1;font-variant-numeric:tabular-nums}
-.stat span{font-size:13px;color:var(--muted)}
+.hero{padding:88px 0 64px;display:flex;flex-direction:column;gap:24px}
+h1{margin:0;font-size:clamp(40px,6vw,72px);line-height:1.1;font-weight:900;letter-spacing:-.01em}
+.role{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:500;color:var(--text-2)}
+.role b{color:var(--accent);font-weight:700}
+.lead{margin:0;max-width:720px;font-size:18px;line-height:1.75;color:var(--muted)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;border:0}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-accent:hover{color:var(--on-accent);background:var(--accent-hi)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:transparent;font-weight:500}
+.btn-ghost:hover{color:var(--text);border-color:#6B7585}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:40px;line-height:1;color:var(--text)}
+.stat span{display:block;margin-top:8px;font-size:14px;color:var(--muted)}
 
 /* sections */
-section{padding:40px 0}
-.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
-h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,3.4vw,2rem);margin:0;line-height:1.2}
-.sec-sub{color:var(--muted);font-size:14px;margin:6px 0 0}
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:32px}
+h2{margin:0;font-size:34px;font-weight:700}
+.sec-sub{margin:8px 0 0;color:var(--muted);font-size:15px}
 
 /* skills */
-.skills{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
-@media (max-width:860px){.skills{grid-template-columns:1fr}}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-.card h3{font-size:15px;font-weight:700;margin:0 0 2px}
-.card .note{font-size:13px;color:var(--muted);margin:0 0 16px}
-.bars{display:flex;flex-direction:column;gap:8px}
-.bar-row{display:grid;grid-template-columns:minmax(7rem,11rem) 1fr 2rem;align-items:center;gap:12px;font-size:13.5px}
-.bar-row .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar-row .trk{height:12px;background:var(--bg-2);border-radius:6px;overflow:hidden}
-.bar-row .fill{height:100%;border-radius:6px;background:var(--bar-muted);transform-origin:left;animation:grow .8s cubic-bezier(.2,.8,.2,1) both}
-.bar-row:first-child .fill{background:var(--accent)}
-.bar-row .val{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.panel h3{margin:0;font-size:18px}
+.panel .note{margin:6px 0 20px;font-size:13px;color:var(--muted)}
+.bar-row{display:grid;grid-template-columns:minmax(110px,170px) 1fr 28px;align-items:center;gap:12px;padding:5px 0;font-size:14px}
+.bar-row .lbl{color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .trk{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.bar-row .fill{height:100%;border-radius:4px;background:var(--accent);transform-origin:left;animation:grow .8s cubic-bezier(.2,.8,.2,1) both}
+.bar-row .val{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--muted)}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.cats{display:flex;flex-direction:column;gap:14px}
-.cat-row{display:flex;align-items:center;gap:14px}
-.cat-ico{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--accent-soft)}
-.cat-row div{flex:1;min-width:0}
-.cat-row b{display:block;font-size:14.5px}
+.cat-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.cat-row:last-child{border-bottom:0}
+.cat-row .ico{width:44px;height:44px;border-radius:12px;background:var(--accent-bg);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.cat-row b{display:block;font-size:15px}
 .cat-row span{font-size:13px;color:var(--muted)}
-.cat-row em{font-style:normal;font-family:var(--serif);font-weight:700;font-size:1.5rem}
+.cat-row em{font-style:normal;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700}
 
-/* filters */
+/* work grid */
 .filters{display:flex;flex-wrap:wrap;gap:8px}
-.chip-btn{font:inherit;font-size:13.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
-.chip-btn i{font-style:normal;color:var(--muted);font-size:12px}
-.chip-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.chip-btn[aria-pressed="true"] i{color:inherit;opacity:.7}
+.filters button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--text-2);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700}
+.filters button span{opacity:.7;margin-left:6px;font-size:13px}
+.count{color:var(--muted);font-size:15px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,box-shadow .25s,transform .25s}
+.card:hover{border-color:var(--accent);box-shadow:0 18px 40px -20px rgba(0,0,0,.8);transform:translateY(-4px)}
+.thumb{aspect-ratio:16/9;background:var(--surface-2);position:relative;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.thumb .num{position:absolute;left:20px;bottom:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:72px;line-height:1;color:var(--ghost)}
+.thumb .cat-ico{position:absolute;right:20px;top:20px;color:var(--accent);opacity:.85}
+.thumb .mini{position:absolute;inset:0;transform:scale(.62);transform-origin:top left;width:161%;height:161%;pointer-events:none}
+.thumb .playbadge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.thumb .playbadge span{width:56px;height:56px;border-radius:50%;background:rgba(14,17,22,.8);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.status{position:absolute;right:12px;bottom:12px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(14,17,22,.88);color:var(--text);border:1px solid var(--line-2)}
+.status.ok{color:var(--ok);border-color:var(--ok-line)}
+.status.warn{color:var(--accent);border-color:var(--warn-line)}
+.body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex-grow:1}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:#AEB5BF}
+.tag.cat{background:var(--accent-bg);color:var(--accent);font-weight:500}
+h3{margin:0;font-size:21px;line-height:1.35;font-weight:700}
+.desc{margin:0;font-size:15px;line-height:1.7;color:var(--muted);flex-grow:1}
+.hl{margin:0;font-size:13px;color:var(--text-2);font-family:'JetBrains Mono',monospace;letter-spacing:.02em}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.open{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;background:var(--text);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px}
+.open:hover{color:var(--bg);background:#fff}
+.open.repo{background:transparent;color:var(--text-2);border:1px solid var(--line-2);font-weight:500}
+.open.repo:hover{color:var(--text);border-color:#6B7585;background:transparent}
+.peek{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line-2);background:transparent;color:var(--text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:border-color .2s,color .2s}
+.peek:hover,.peek:focus-visible,.peek[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.peek svg{transition:transform .25s}
+.peek:hover svg{transform:scale(1.15)}
 
-/* works */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
-.work{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
-.work:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));transform:translateY(-2px)}
-.work-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
-.badge{font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
-.badge.ok{color:var(--ok);background:var(--ok-soft)} .badge.warn{color:var(--warn);background:var(--warn-soft)} .badge.doc{color:var(--doc);background:var(--doc-soft)}
-.work h3{font-size:1.15rem;line-height:1.4;margin:0}
-.work p{margin:0}
-.sum{color:var(--ink);font-size:15px}
-.hl{font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:7px 12px;border-radius:10px}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:12px;padding:3px 9px;border-radius:7px;background:var(--bg-2);color:var(--muted)}
-.quote{position:relative;font-size:14px;color:var(--ink);background:var(--bg);border-radius:10px;padding:12px 14px 12px 16px;border-left:3px solid var(--accent)}
-.quote small{display:block;font-size:12px;color:var(--muted);margin-bottom:3px;font-weight:500}
-details{border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
-summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--accent);list-style:none;display:flex;align-items:center;gap:6px}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1px solid currentColor;font-size:13px;line-height:1}
-details[open] summary::before{content:"–"}
-.dl{display:grid;gap:12px;margin-top:12px}
-.dl h4{font-size:12.5px;color:var(--muted);font-weight:500;margin:0 0 2px;letter-spacing:.02em}
-.dl p{font-size:14px}
-.links{display:flex;flex-wrap:wrap;gap:8px}
-.links a{font-size:13px;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);display:inline-flex;gap:6px;align-items:center}
-.links a.demo{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.empty{color:var(--muted);font-size:14px}
+/* quick view */
+.qv{position:fixed;z-index:50;width:min(560px,calc(100vw - 32px));max-height:min(640px,calc(100vh - 32px));display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--accent);border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.85);overflow:hidden;opacity:0;transform:translateY(8px) scale(.97);transform-origin:top left;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.9,.3,1.2)}
+.qv.show{opacity:1;transform:none;pointer-events:auto}
+.qv.expanded{left:50%!important;top:50%!important;width:min(960px,calc(100vw - 32px));max-height:calc(100vh - 32px);transform:translate(-50%,-50%)}
+.qv.expanded:not(.show){transform:translate(-50%,-48%) scale(.97)}
+.qv-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);flex:none}
+.qv-title{font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;min-width:0}
+.qv-title #qvTitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qv-badge{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-weight:500;flex:none}
+.qv-tools{display:flex;gap:6px;flex:none}
+.qv-tools button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.qv-tools button:hover{border-color:var(--accent);color:var(--accent)}
+.qv-scroll{overflow:auto;flex:1;min-height:0}
+.qv-stage{background:var(--bg);aspect-ratio:16/10;overflow:hidden;position:relative;border-bottom:1px solid var(--line)}
+.qv-stage[hidden]{display:none}
+.qv-stage.video{aspect-ratio:16/9}
+.qv.expanded .qv-stage:not(.video){aspect-ratio:auto}
+.qv-stage img{width:100%;display:block}
+.qv:not(.expanded) .qv-stage img{height:100%;object-fit:cover;object-position:top}
+.qv-stage.video img{height:100%;object-fit:cover}
+.qv-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.qv-stage .playbadge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text);text-decoration:none}
+.qv-stage .playbadge span{width:64px;height:64px;border-radius:50%;background:rgba(14,17,22,.8);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.qv-detail{padding:18px 20px;display:grid;gap:14px}
+.qv.expanded .qv-detail{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 28px;padding:24px}
+.qv-detail h4{margin:0 0 4px;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--accent);font-weight:500}
+.qv-detail p{margin:0;font-size:14px;line-height:1.7;color:var(--text-2)}
+.qv-detail .note{grid-column:1/-1;background:var(--accent-bg);border-radius:12px;padding:14px 16px}
+.qv-detail .note p{color:var(--text)}
+.toolchips{display:flex;flex-wrap:wrap;gap:6px}
+.toolchips span{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--text-2)}
+.qv-foot{padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);flex:none}
+.qv-links{display:flex;flex-wrap:wrap;gap:8px}
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(5,7,10,.7);opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.show{opacity:1;pointer-events:auto}
 
-footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:13.5px}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
-footer a{color:var(--ink)}
+/* illustrative mock UIs */
+.mock{padding:22px;display:flex;flex-direction:column;gap:14px;height:100%;font-size:14px;color:var(--text)}
+.mock-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mock-h b{font-size:16px}
+.mock-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;line-height:1.7;color:var(--text-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--text-2);font-size:13px}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.wave{display:flex;align-items:center;gap:3px;height:56px;padding:0 4px}
+.wave i{flex:1;background:var(--accent);border-radius:2px;opacity:.85;animation:wv 1.1s ease-in-out infinite}
+@keyframes wv{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.player{display:flex;align-items:center;gap:12px}
+.play{width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex:none}
+.bar{flex:1;height:4px;border-radius:2px;background:var(--line-2);position:relative;overflow:hidden}
+.bar::after{content:"";position:absolute;inset:0;width:38%;background:var(--accent)}
+.crew{display:grid;grid-template-columns:150px 1fr;gap:12px;flex:1}
+.inbox{display:flex;flex-direction:column;gap:8px}
+.ticket{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;color:var(--muted)}
+.ticket b{display:block;color:var(--text);font-size:13px}
+.ticket.on{border-color:var(--accent)}
+.chat{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.msg{max-width:85%;padding:10px 12px;border-radius:12px;line-height:1.6;font-size:13px}
+.msg.in{background:var(--surface-2);color:var(--text-2);border-top-left-radius:4px}
+.msg.out{align-self:flex-end;background:var(--accent-bg);color:var(--text);border:1px solid #4A3A16;border-top-right-radius:4px}
+.ai{font-size:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:.08em;margin-bottom:4px}
+.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:tp 1.2s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{opacity:.3}30%{opacity:1}}
 
-@media (prefers-reduced-motion:no-preference){
-  .work{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
-  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-}
-@media (prefers-reduced-motion:reduce){.bar-row .fill{animation:none}.btn:hover,.work:hover{transform:none}}
+/* about + footer */
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px}
+.about p{margin:0 0 16px;font-size:16px;line-height:1.8;color:var(--text-2)}
+.about p.muted{color:var(--muted)}
+footer{padding:56px 0 64px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px}
+.foot-title{font-size:28px;font-weight:700}
+.foot-note{color:var(--muted);font-size:14px;margin-top:8px;line-height:1.6}
+.foot-note a{color:var(--text-2)}
+
+@media (max-width:640px){.crew{grid-template-columns:1fr}.inbox{display:none}.hero{padding:56px 0 40px}.bar-row{grid-template-columns:minmax(90px,120px) 1fr 24px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="wrap">
-    <a class="brand" href="#top">Willy Chen<span>.</span></a>
-    <nav class="nav" aria-label="Sections">
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top"><span class="logo" aria-hidden="true">W</span><span data-i18n="brand"></span></a>
+    <nav>
       <a href="#skills" data-i18n="navSkills"></a>
       <a href="#works" data-i18n="navWorks"></a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
+      <a href="#about" data-i18n="navAbout"></a>
+      <a href="#contact" class="pill" data-i18n="navContact"></a>
+      <button type="button" class="lang-toggle" id="langBtn">
+        <span class="globe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2B33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <span class="track" aria-hidden="true"><span class="knob"></span><span class="lbl lbl-zh">中</span><span class="lbl lbl-en">EN</span></span>
+      </button>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main id="top">
-  <div class="wrap">
-    <div class="hero">
-      <p class="eyebrow" data-i18n="eyebrow"></p>
-      <h1><span data-i18n="name"></span><small data-i18n="role"></small></h1>
-      <p class="lede" data-i18n="lede"></p>
-      <div class="cta">
-        <a class="btn primary" href="#works" data-i18n="ctaWorks"></a>
-        <a class="btn" href="https://github.com/singwillychen" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="https://www.linkedin.com/in/piyoduck" target="_blank" rel="noopener">LinkedIn ↗</a>
+  <main id="main">
+    <div class="hero" id="top">
+      <div class="mono" data-i18n="eyebrow"></div>
+      <h1 data-i18n="name"></h1>
+      <p class="role"><b data-i18n="roleTitle"></b> <span data-i18n="roleRest"></span></p>
+      <p class="lead" data-i18n="lede"></p>
+      <div class="ctas">
+        <a href="#works" class="btn btn-accent" data-i18n="ctaWorks"></a>
+        <a href="mailto:singwillychen@gmail.com" class="btn btn-ghost">Email</a>
+        <a href="https://www.linkedin.com/in/piyoduck/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+        <a href="https://github.com/singwillychen" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
       </div>
-      <div class="stats">
-        <div class="stat"><b id="s-works">–</b><span data-i18n="statWorks"></span></div>
-        <div class="stat"><b id="s-done">–</b><span data-i18n="statDone"></span></div>
-        <div class="stat"><b id="s-tools">–</b><span data-i18n="statTools"></span></div>
-        <div class="stat"><b id="s-live">–</b><span data-i18n="statLive"></span></div>
-      </div>
+      <div class="stats" id="stats"></div>
     </div>
-  </div>
 
-  <section id="skills">
-    <div class="wrap">
+    <section id="skills">
       <div class="sec-head"><div><h2 data-i18n="skillsTitle"></h2><p class="sec-sub" data-i18n="skillsSub"></p></div></div>
       <div class="skills">
-        <div class="card"><h3 data-i18n="toolsTitle"></h3><p class="note" data-i18n="toolsNote"></p><div class="bars" id="tool-bars"></div></div>
-        <div class="card"><h3 data-i18n="catsTitle"></h3><p class="note" data-i18n="catsNote"></p><div class="cats" id="cat-list"></div></div>
+        <div class="panel"><h3 data-i18n="toolsTitle"></h3><p class="note" data-i18n="toolsNote"></p><div id="toolBars"></div></div>
+        <div class="panel"><h3 data-i18n="catsTitle"></h3><p class="note" data-i18n="catsNote"></p><div id="catList"></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="works">
-    <div class="wrap">
+    <section id="works">
       <div class="sec-head">
-        <div><h2 data-i18n="worksTitle"></h2><p class="sec-sub" data-i18n="worksSub"></p></div>
-        <div class="filters" id="filters" role="group" aria-label="Filter"></div>
+        <div><h2 data-i18n="worksTitle"></h2><div class="count" id="count"></div></div>
+        <div class="filters" role="group" id="filters"></div>
       </div>
       <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <div><div class="mono">ABOUT</div><h2 style="margin-top:12px" data-i18n="aboutTitle"></h2></div>
+        <div><p data-i18n="about1"></p><p class="muted" data-i18n="about2"></p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div>
+      <div class="foot-title" data-i18n="footTitle"></div>
+      <div class="foot-note"><span data-i18n="footCredit"></span><br>© 2026 <span data-i18n="brand"></span> · <a href="https://github.com/singwillychen/ai-portfolio" target="_blank" rel="noopener">Source</a></div>
     </div>
-  </section>
-</main>
+    <div class="ctas">
+      <a href="mailto:singwillychen@gmail.com" class="btn btn-accent" data-i18n="email"></a>
+      <a href="https://www.linkedin.com/in/piyoduck/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/singwillychen" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+  </footer>
+</div>
 
-<footer>
-  <div class="wrap">
-    <span data-i18n="foot"></span>
-    <span>© 2026 Willy (Wei Ting) Chen · <a href="https://github.com/singwillychen/ai-portfolio" target="_blank" rel="noopener">Source</a></span>
+<div class="scrim" id="scrim"></div>
+<div class="qv" id="qv" role="dialog" aria-modal="false" aria-labelledby="qvTitle">
+  <div class="qv-bar">
+    <div class="qv-title"><span id="qvTitle"></span><span class="qv-badge" id="qvBadge"></span></div>
+    <div class="qv-tools">
+      <button type="button" id="qvExpand"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+      <button type="button" id="qvClose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg></button>
+    </div>
   </div>
-</footer>
+  <div class="qv-scroll">
+    <div class="qv-stage" id="qvStage" hidden></div>
+    <div class="qv-detail" id="qvDetail"></div>
+  </div>
+  <div class="qv-foot"><span id="qvNote"></span><div class="qv-links" id="qvLinks"></div></div>
+</div>
 
+<template id="mock-voicesprite">
+  <div class="mock">
+    <div class="mock-h"><b>VoiceSprite</b><span class="chip on" data-i18n="mvReady"></span></div>
+    <div class="chips"><span class="chip on" data-i18n="mvChar1"></span><span class="chip" data-i18n="mvChar2"></span><span class="chip" data-i18n="mvChar3"></span><span class="chip" data-i18n="mvBg"></span></div>
+    <div class="mock-box" data-i18n="mvText"></div>
+    <div class="wave" aria-hidden="true"></div>
+    <div class="player"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="#0E1116"><path d="M7 5v14l12-7z"/></svg></span><span class="bar"></span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)">00:04 / 00:11</span></div>
+  </div>
+</template>
+<template id="mock-crew">
+  <div class="mock">
+    <div class="mock-h"><b data-i18n="mcRole"></b><span class="chip on" data-i18n="mcPassed"></span></div>
+    <div class="crew">
+      <div class="inbox">
+        <div class="ticket on"><b>LINE</b><span data-i18n="mcT1s"></span></div>
+        <div class="ticket"><b data-i18n="mcT2"></b><span data-i18n="mcT2s"></span></div>
+        <div class="ticket"><b data-i18n="mcT3"></b><span data-i18n="mcT3s"></span></div>
+      </div>
+      <div class="chat">
+        <div class="msg in" data-i18n="mcQ"></div>
+        <div class="msg out"><div class="ai">AI · CREW</div><span data-i18n="mcA"></span></div>
+        <div class="msg in" data-i18n="mcQ2"></div>
+        <div class="msg out"><div class="ai">AI · CREW</div><span class="typing"><i></i><i></i><i></i></span></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script src="works.js"></script>
 <script>
-const WORKS = [{"id": "crew", "order": 1, "category": "ai", "status": "MVP", "name": "CREW 多業態 AI 員工平台", "name_en": "CREW — AI Employee Platform for Any Industry", "summary": "讓小團隊用「招募員工」的方式建立 AI 員工：說清楚工作內容、教它公司的規矩、考過試才上工，之後在 LINE、網站、電話等管道替你工作。", "summary_en": "Small teams create AI employees the way they hire people: define the job, teach the house rules, pass an exam before going live, then work across LINE, the website and phone calls.", "pain_point": "小店家想用 AI 客服，但現成方案多半只適合單一產業，設定複雜、價格偏高，也很難控管 AI 說錯話。", "pain_point_en": "Small businesses want AI customer service, but most tools fit one industry, are complex to set up, expensive, and hard to keep from saying the wrong thing.", "solution": "同一套核心搭配「行業模板包」（電商、餐飲、診所、補教、房仲等）；AI 員工要先通過考核才上線；接 OpenAI Realtime 做電話語音客服；多租戶資料以資料庫列級權限隔離。", "solution_en": "One core with swappable industry packs (retail, restaurants, clinics, tutoring, real estate…); AI employees must pass an exam before going live; phone voice agents via OpenAI Realtime; tenant data isolated with row-level security.", "ai_role": "設計 AI 員工的執行框架（角色規格、執行迴圈、護欄、考核），並用 Claude Code 從 PRD 一路做到可安裝的程式。", "ai_role_en": "Designed the agent harness (role specs, run loop, guardrails, evaluation) and used Claude Code to go from PRD to an installable product.", "tools": ["TypeScript", "Node.js", "PostgreSQL + pgvector", "Redis", "OpenAI Realtime", "LINE", "Docker", "Claude Code"], "highlight": "M0–M4 里程碑完成、10 分鐘本機安裝、多租戶 RLS", "highlight_en": "Milestones M0–M4 done · 10-minute local install · multi-tenant RLS", "links": [], "my_note": "目標是串接 OpenAI Realtime 語音引擎，做到和 AI 雙向即時語音對談的語音客服。第一個想服務的對象，是在客服業工作的家人。", "my_note_en": "The goal is a voice support agent that holds real-time, two-way spoken conversations through the OpenAI Realtime voice engine. The first people I want it to serve are family members who work in customer service."}, {"id": "diorama", "order": 2, "category": "ai", "status": "MVP", "name": "Agent Diorama 代理人微縮劇場", "name_en": "Agent Diorama", "summary": "把多個 AI agent 依職位放進 3D 微縮場景，即時看到他們工作、溝通、請示，主題可切換（修仙山門、戰情中心、新創辦公室）。", "summary_en": "Puts multiple AI agents into a 3D miniature world by role, so you can watch them work, talk and ask for approval in real time. Themes: mountain sect, combat information center, startup office.", "pain_point": "同時跑多個 AI agent 時，只能看一堆 log，很難知道誰在做什麼、卡在哪、花了多少 token。", "pain_point_en": "When several AI agents run at once, all you get is logs: hard to tell who is doing what, who is stuck, and how many tokens are spent.", "solution": "自訂事件協定，讓 Claude Code 透過 hooks 把動作送進事件中樞，前端用 3D 角色和對話泡泡呈現，並可在畫面上核准或駁回 agent 的請示。", "solution_en": "A custom event protocol: Claude Code sends its actions through hooks to an event hub, the front end renders them as 3D characters and speech bubbles, and you approve or reject agent requests on screen.", "ai_role": "多代理（Multi-agent）可視化與人機協作：設計 agent 接入協定，人類在畫面上審批 AI 的決策。", "ai_role_en": "Multi-agent visualization and human-in-the-loop control: an agent integration protocol where a human approves AI decisions on screen.", "tools": ["Claude Code hooks", "React Three Fiber", "Node.js", "SSE", "JSON Schema", "Tauri"], "highlight": "7 位 Claude agent 協作示範、3 套主題", "highlight_en": "Demo of 7 Claude agents collaborating · 3 themes", "links": [{"type": "repo", "url": "https://github.com/singwillychen/agent-diorama"}], "my_note": "純粹想讓 agent 的工作介面升級，也讓自己一個人開發時不那麼孤單。", "my_note_en": "I simply wanted a better interface for watching agents work, and to feel less alone when developing solo."}, {"id": "ev2", "order": 3, "category": "ai", "status": "使用中", "name": "EV2 充電車位車牌監控", "name_en": "EV2 Charging Bay Plate Monitor", "summary": "每 10 分鐘自動讀取 6 個充電車位的車牌與現場照片，新車進場時把原圖和車牌推播到 Telegram，一鍵 ✅ 確認或直接打字更正，確認後自動填進 Google 表單對應的 10 分鐘時段。", "summary_en": "Every 10 minutes it reads the plates and live photos of 6 EV charging bays. When a new car arrives, the photo and plate are pushed to Telegram for a one-tap ✅ or a typed correction, then written into the matching 10-minute slot in Google Sheets.", "pain_point": "人工開單紀錄表每天 08:00–20:00、每 10 分鐘 6 格，整個月上萬格要靠人盯著後台抄車牌，容易漏抄、抄錯，也很耗時間。", "pain_point_en": "The manual log covers 6 bays every 10 minutes from 08:00 to 20:00, tens of thousands of cells a month copied by someone watching the admin screen: slow, and easy to miss or mistype.", "solution": "排程登入車位系統抓取車牌與照片，同一台車持續停放不重複詢問；多台車同時進場會排隊分批送出，沒確認前不寫入、也不會遺失。車牌自動轉大寫、去掉「-」，每晚 20:10 把空格補「無」。照片 48 小時後自動清除，部署在自家 QNAP NAS 的 Docker。", "solution_en": "A scheduler logs into the parking system for plates and photos and never asks twice about a car that stays parked; simultaneous arrivals queue up, and nothing is written or lost before confirmation. Plates are normalized, empty slots are filled nightly at 20:10, photos are purged after 48 hours, and it runs in Docker on a QNAP NAS.", "ai_role": "需求釐清、網頁結構分析與部署由 Claude Code 主導，程式本體由 Claude 子代理撰寫並附 51 項自動化測試；車牌辨識沿用車位系統既有的攝影機讀值，執行時不呼叫 AI、不耗 token。", "ai_role_en": "Claude Code led requirements, page-structure analysis and deployment, while a Claude sub-agent wrote the code with 51 automated tests; plate reading reuses the parking system's own camera values, so it runs with no AI calls and no token cost.", "tools": ["Node.js", "Express", "SQLite", "Cheerio", "Telegram Bot API", "LINE Messaging API", "Google Sheets API", "Docker", "QNAP NAS", "Claude Code"], "highlight": "6 個車位、每天 438 格自動填寫、51 項測試", "highlight_en": "6 bays · 438 cells filled daily · 51 automated tests", "links": [], "my_note": "這是為台南區某個案場做的。過去每天 8 小時、每 10 分鐘就要盯一次網頁；上線後系統會自動收下所有資訊，推播時快速確認即可，也可以等接近下班時一次全部看完。", "my_note_en": "Built for a site in the Tainan area. Someone used to check a web page every 10 minutes for 8 hours a day; now the system collects everything, and staff confirm quickly when notified or review it all at once near the end of the day."}, {"id": "jobsearch", "order": 4, "category": "ai", "status": "使用中", "name": "AI 求職工作台", "name_en": "AI Job Search Workspace", "summary": "以 Claude Code 為核心的求職工作區：評估職缺適配度、客製履歷與求職信、研究公司、準備面試，並自動抓取新職缺。", "summary_en": "A Claude Code–based job search workspace: scores job fit, tailors CVs and cover letters, researches companies, prepares interviews and pulls in new postings automatically.", "pain_point": "每投一份職缺都要重寫履歷、求職信、研究公司，重複又耗時，投遞進度也容易亂。", "pain_point_en": "Every application meant rewriting the CV and cover letter and researching the company: repetitive, slow, and hard to keep track of.", "solution": "把個人經歷寫成 Claude 可讀的檔案，依職缺語言自動切換中英文版本；自寫 JobFrog 爬蟲只抓新職缺，遵守 robots.txt；用 CSV 追蹤每筆投遞。", "solution_en": "My background is written as files Claude can read, with Chinese or English output chosen by the posting's language; a custom JobFrog scraper fetches only new postings and respects robots.txt; a CSV tracks every application.", "ai_role": "以開源 ai-job-search 框架改造成個人求職代理，AI 負責撰寫與研究，自己負責判斷與面試。", "ai_role_en": "Adapted the open-source ai-job-search framework into a personal job agent: AI writes and researches, I decide and interview.", "tools": ["Claude Code", "Python", "LaTeX", "Word", "JSON-LD scraping", "CSV"], "highlight": "91 份履歷、68 封求職信、14 份公司研究", "highlight_en": "91 CVs · 68 cover letters · 14 company research files", "links": [], "my_note": "用了之後，確實能很有效率地收集各地的職缺資料，並和自己的履歷經驗逐一比對。", "my_note_en": "It genuinely made collecting job postings from many places efficient, and matching each one against my own experience."}, {"id": "valuation", "order": 5, "category": "ai", "status": "訓練中", "name": "行將汽車估價系統", "name_en": "Used Car & Scooter Valuation Model", "summary": "以行將拍賣的實際成交資料訓練汽車、機車兩套獨立估價模型，輸入車款、年式、里程即得 NT$ 價格區間。", "summary_en": "Two separate pricing models (cars and scooters) trained on real auction sale prices: enter model, year and mileage to get an NT$ price range.", "pain_point": "二手車估價依賴個人經驗，同一台車不同人估差很多，也不容易判斷得標價划不划算。", "pain_point_en": "Used vehicle pricing depends on personal experience: estimates for the same car vary widely, and it is hard to judge whether a winning bid is a good deal.", "solution": "把拍賣 Markdown 檔解析成乾淨資料，訓練雙模型；提供 CP 值評分、最多 3 台並排比較、折舊曲線，並單獨處理里程不可用的車輛。", "solution_en": "Parses auction Markdown files into clean data and trains two models; adds a value-for-money score, side-by-side comparison of up to 3 vehicles, depreciation curves, and separate handling for vehicles with unusable mileage.", "ai_role": "從原始資料解析、特徵整理到模型訓練全流程由 AI 協作完成；目前 UI 以示範資料展示，預測 API 整合中。", "ai_role_en": "AI-assisted end to end, from parsing raw data and feature prep to model training; the UI currently shows sample data while the prediction API is being integrated.", "tools": ["Python", "Machine learning", "Data cleaning", "CSV", "Claude Code"], "highlight": "汽車 3,328 筆、機車 250 筆成交資料", "highlight_en": "3,328 car and 250 scooter auction records", "links": [{"type": "repo", "url": "https://github.com/singwillychen/hjchen-auction-valuation"}], "my_note": "資料來自官方每週拍賣的實際成交紀錄，都是真實的拍場價格。", "my_note_en": "The data comes from official weekly auction results, so every price is a real hammer price."}, {"id": "vlog", "order": 6, "category": "ai", "status": "已完成", "name": "家庭遊記影片 Claude Skill", "name_en": "Family Trip Vlog — a Claude Skill", "summary": "把一趟家庭旅行的照片和影片，自動剪成 YouTube 長版與 IG Reels 短版：配合節拍剪接、運鏡、字幕、動態路線圖、知識小卡與免費授權音樂。", "summary_en": "Turns a family trip's photos and videos into a YouTube long cut and an IG Reels short: beat-synced cuts, Ken Burns motion, captions, an animated route map, knowledge cards and free-licensed music.", "pain_point": "出遊拍了幾百張照片和影片，想剪成影片卻沒時間學剪輯軟體，素材最後就躺在相簿裡。", "pain_point_en": "Hundreds of trip photos and clips end up sitting in the album, because there's no time to learn editing software.", "solution": "整條流程在本機跑：分析素材、偵測音樂節拍、用 PIL 合成畫面、交給 ffmpeg 編碼，不需要任何剪輯軟體；並把素材分類整理成資料夾。", "solution_en": "The whole pipeline runs locally: analyze media, detect music beats, compose frames with PIL and encode with ffmpeg, no editing software needed; media is also sorted into folders.", "ai_role": "把一次成功的剪片流程寫成 Claude Skill，之後丟一個資料夾，Claude 就能照同樣的品質重做。", "ai_role_en": "Captured a successful editing workflow as a reusable Claude Skill: hand Claude a folder and it repeats the same quality.", "tools": ["Claude Code Skills", "Python", "PIL", "ffmpeg", "librosa", "faster-whisper"], "highlight": "一次產出 3 分 36 秒長版 + 45 秒 IG 短版", "highlight_en": "One run: a 3:36 long cut + a 45-second IG short", "links": [], "my_note": "以前剪一支遊記要花一週，利用下班時間熬夜慢慢剪。現在只要花二十分鐘寫 prompt：初剪把所有問題交代清楚，二剪處理音樂、標籤、轉場和不順的地方，通常三剪或四剪就是定稿。", "my_note_en": "A trip video used to take me a week of late nights after work. Now I spend about twenty minutes on prompts: the first cut surfaces every issue, the second fixes music, tags, transitions and rough spots, and the third or fourth cut is usually final."}, {"id": "voicesprite", "order": 7, "category": "tools", "status": "已完成", "name": "VoiceSprite 聲線工坊", "name_en": "VoiceSprite Voice Studio", "summary": "朗讀 5 句台詞就能建立自己的聲線特徵檔，選一個動漫角色、輸入文字，角色就用你的聲線說話，還能直接帶進直播畫面（綠幕／透明背景）。", "summary_en": "Read 5 lines to create your voice profile, pick an anime character and type text: the character speaks in your voice, and can go straight into a livestream (green screen or transparent background).", "pain_point": "直播主和創作者想要角色配音，但請配音員貴、AI 語音模型又要安裝環境和顯卡，一般人用不起來。", "pain_point_en": "Streamers and creators want character voices, but voice actors are expensive and AI voice models need setup and a GPU most people don't have.", "solution": "整個流程放在瀏覽器裡：錄音、特徵擷取、文字轉語音都在本機完成，錄音不上傳；需要更像的音色時，可切換到瀏覽器內 AI 音色複製或本地開源引擎。", "solution_en": "Everything runs in the browser: recording, feature extraction and text-to-speech happen locally and recordings are never uploaded; for a closer match you can switch to in-browser AI voice cloning or a local open-source engine.", "ai_role": "三種語音引擎可切換（瀏覽器內建、WASM AI 音色複製、本地 GPT-SoVITS）；整個網站由 Claude Code 協作開發，含中英雙語。", "ai_role_en": "Three switchable voice engines (built-in browser voices, WASM AI voice cloning, local GPT-SoVITS); the whole bilingual site was built with Claude Code.", "tools": ["HTML / CSS / JS", "Web Speech API", "sherpa-onnx WASM", "ZipVoice", "GPT-SoVITS", "Python", "IndexedDB", "GitHub Pages", "Claude Code"], "highlight": "4 個頁面、3 種語音引擎、中英雙語", "highlight_en": "4 pages · 3 voice engines · bilingual", "links": [{"type": "demo", "url": "https://singwillychen.github.io/voicesprite/"}, {"type": "repo", "url": "https://github.com/singwillychen/voicesprite"}], "my_note": "一個下午就完成的作品。做完才發現這個領域已經有 ElevenLabs 這樣的知名品牌，所以我把它定位在童趣：可以和小朋友一起玩變聲遊戲。實際使用建議從第二階段的本地小型模型開始，或安裝第三階段的大型模型，音色和音調才會有明顯變化。", "my_note_en": "Built in a single afternoon. Afterwards I found that well-known brands like ElevenLabs already own this space, so I positioned it as something playful: a voice-changing game to enjoy with kids. For a noticeable change in timbre and pitch, start from the stage-2 local small model or install the stage-3 large model."}, {"id": "foms", "order": 8, "category": "tools", "status": "已完成", "name": "FOMS 現場作業管理系統 v2.1", "name_en": "FOMS — Field Operation Management System v2.1", "summary": "給現場作業人員用的系統，涵蓋設備部署、安置、維修保養與料件管理，依 Operations Specialist 的實際工作流程設計。", "summary_en": "A system for field operators covering equipment deployment, installation, maintenance and parts management, modeled on an Operations Specialist's real workflow.", "pain_point": "現場設備部署、保養、領料靠紙本和 Excel，交班常漏資訊，設備履歷和庫存不同步，驗收單要另外手寫。", "pain_point_en": "Deployment, maintenance and parts were tracked on paper and in Excel: handovers missed details, equipment history and stock drifted apart, and acceptance forms were handwritten.", "solution": "8 步驟部署流程每打一個勾就自動更新設備狀態；保養工單自動帶入型號檢查表，未完成不能結案；領料扣庫存、缺料轉待料；交班摘要一鍵複製。", "solution_en": "An 8-step deployment flow updates equipment status with each checkmark; maintenance orders load the model's checklist and can't close until done; parts issues deduct stock and shortages go on hold; shift summaries copy in one click.", "ai_role": "用 Claude Code 把真實工作流程轉成系統規格與程式，不需後端，手機加入主畫面即可當 App。", "ai_role_en": "Used Claude Code to turn a real workflow into specs and code; no back end needed, and it installs to a phone's home screen as an app.", "tools": ["HTML / CSS / JS", "PWA (offline)", "Service Worker", "GPS", "Code 39 barcodes", "Claude Code"], "highlight": "8 步驟部署流程、P1–P3 工單、可離線使用", "highlight_en": "8-step deployment flow · P1–P3 work orders · works offline", "links": [], "my_note": "源自我在鳴日科技跑外勤時遇到的實際需求：把現場作業（Field Operation）的設備部署、保養與料件管理，整理成一套現場人員拿手機就能用的系統。", "my_note_en": "It grew out of real needs I met doing field work at Tomorrowland Technology: bringing equipment deployment, maintenance and parts management into one system field staff can use from a phone."}, {"id": "highway", "order": 9, "category": "tools", "status": "已完成", "name": "高速公路塞不塞 HighwayChecker", "name_en": "HighwayChecker", "summary": "輸入起訖點（可細到交流道或地標），一次看兩地之間各條國道的壅塞程度。", "summary_en": "Enter a start and end point (down to an interchange or landmark) and see congestion on every freeway between them at once.", "pain_point": "出門前想比較國 1、國 3 哪條比較不塞，得開好幾個 App 或網站逐段看。", "pain_point_en": "Comparing Freeway 1 and Freeway 3 before a trip meant checking several apps or sites section by section.", "solution": "前端可純靜態展示；加上後端後接交通部 TDX 即時車速，API 金鑰只放在後端，用 Docker 部署到自家 NAS。", "solution_en": "The front end works as a static demo; with the back end it uses live speeds from Taiwan's TDX transport API, keeps the API key server-side, and deploys to a home NAS with Docker.", "ai_role": "Claude Code 協作串接政府開放資料 API、設計後端代理與部署流程。", "ai_role_en": "Built with Claude Code: government open-data API integration, a back-end proxy and the deployment flow.", "tools": ["TDX API", "Node.js", "Docker Compose", "QNAP NAS", "GitHub Pages", "Claude Code"], "highlight": "TDX 介接後端已寫好，規劃改用國道影像辨識", "highlight_en": "TDX back end written · freeway camera image recognition planned", "links": [{"type": "repo", "url": "https://github.com/singwillychen/HighwayChecker"}], "my_note": "從朋友的產品「雪隧哨兵」觸類旁通而來。串接交通部 TDX 時發現可能需要付費，所以目前還沒接上即時資料；下一步考慮改用國道公開的即時影像，做簡單的影像辨識來達到同樣目的。", "my_note_en": "Inspired by a friend's product, Snow Tunnel Sentinel. While integrating TDX I found it may require payment, so live data isn't connected yet; next I'm considering simple image recognition on public freeway camera feeds to reach the same goal."}, {"id": "lottery", "order": 10, "category": "tools", "status": "已完成", "name": "彩券期望值計算器 LotteryWin", "name_en": "LotteryWin — Lottery Expected Value Calculator", "summary": "計算台灣彩券大樂透、威力彩、今彩539、三星彩、四星彩目前的期望值，告訴你「現在買哪一種最划算」。", "summary_en": "Computes the current expected value of Taiwan's five main lottery games and tells you which one is the best buy right now.", "pain_point": "大家看頭獎金額決定要不要買，但頭獎多少才划算、扣稅後實拿多少，很少人算得清楚。", "pain_point_en": "People decide by the jackpot size, but few can work out when a jackpot is actually worth it, or what they'd take home after tax.", "solution": "依各獎級機率與稅後獎金算期望值並排行，算出頭獎要累積到多少才打平；用 Poisson 分布估計頭獎被平分的機率；可自動抓官方開獎資料。", "solution_en": "Ranks games by expected value from each prize tier's odds and after-tax payout, shows the break-even jackpot, estimates jackpot sharing with a Poisson model, and can fetch official draw results.", "ai_role": "用 Claude Code 把機率、稅制與分獎模型寫成可測試的計算核心。", "ai_role_en": "Used Claude Code to turn odds, tax rules and a prize-sharing model into a tested calculation core.", "tools": ["HTML / CSS / JS", "Python", "Probability & statistics", "Claude Code"], "highlight": "5 種彩券期望值排行、含稅與平分估算", "highlight_en": "Expected value ranking for 5 games, with tax and jackpot sharing", "links": [], "my_note": "主要是幫我找出獲勝期望值最好的選擇。威力彩頭獎累積到一定金額時，它會告訴我是否值得從大樂透改買威力彩，以取得更好的期望值。", "my_note_en": "It points me to the choice with the best expected value. When the Super Lotto jackpot builds past a certain amount, it tells me whether switching from Lotto 6/49 to Super Lotto is worth it."}, {"id": "webdownloader", "order": 11, "category": "tools", "status": "已完成", "name": "WebDownloader 續傳下載管理器", "name_en": "WebDownloader — Resumable Download Manager", "summary": "跨平台的 HTTPS 下載管理器：斷點續傳、多工並行、暫停與繼續，有深色主題介面，也能用命令列批次下載。", "summary_en": "A cross-platform HTTPS download manager with resume, parallel downloads and pause/continue, a dark-theme GUI, and a command-line batch mode.", "pain_point": "大檔案下載到一半斷線就得重來，公司自簽憑證或 Proxy 環境下，一般瀏覽器下載也常失敗。", "pain_point_en": "Large downloads restart from zero when the connection drops, and browser downloads often fail behind corporate self-signed certificates or proxies.", "solution": "用 HTTP Range 請求續傳，暫存檔自動保留；可設定 1–10 個並行任務、每個任務指定 Proxy；Windows、macOS、Linux 字型自動適配。", "solution_en": "Resumes with HTTP Range requests and keeps partial files; runs 1–10 parallel tasks with per-task proxies; adapts fonts for Windows, macOS and Linux.", "ai_role": "以 AI 協作完成跨平台 GUI 與網路錯誤處理。", "ai_role_en": "Built with AI assistance, including the cross-platform GUI and network error handling.", "tools": ["Python", "Tkinter", "requests", "HTTP Range"], "highlight": "斷點續傳、1–10 並行、三平台", "highlight_en": "Resume · 1–10 parallel downloads · 3 platforms", "links": [], "my_note": "主要用來下載 Helikon-Tex 的所有產品內容。之後會把它封裝成可安裝的程式，並加強下載介面的顯示，讓它不必只在終端機操作。", "my_note_en": "I mainly use it to download all of Helikon-Tex's product content. Next I'll package it as an installable app and improve the download interface, so it no longer needs the terminal."}, {"id": "ww-platform", "order": 12, "category": "ecommerce", "status": "開發中", "name": "週末戰士營運管理平台", "name_en": "Weekend Warrior Operations Platform", "summary": "自營進口運動器材電商的後台：商品資訊庫、客戶往來、掃描槍匯入、定價計算、政府報價單、快速查價。", "summary_en": "The back office for my imported outdoor gear store: product database, customer records, barcode-scanner import, pricing engine, government quotations and quick price lookup.", "pain_point": "進口商品定價要手動換匯、算關稅、貨物稅和毛利，報價單和價格散在多個 Excel，查一個價要翻好幾份檔。", "pain_point_en": "Import pricing meant converting currency and calculating duty, excise and margin by hand; quotations and prices were scattered across many Excel files.", "solution": "定價引擎自動換算 EUR/USD → TWD 並套用稅費與毛利；報價單輸出 Word／PDF；中英文與 SKU 模糊查價；機密經銷價加密，部署在自家 NAS。", "solution_en": "A pricing engine converts EUR/USD to TWD and applies duties and margin; quotations export to Word/PDF; fuzzy search by Chinese, English or SKU; confidential dealer prices are encrypted; hosted on my own NAS.", "ai_role": "以 Claude Code 從需求拆解到可部署的容器架構，把自己經營 9 年電商的流程數位化。", "ai_role_en": "Used Claude Code to go from requirements to a deployable container setup, digitizing workflows from 9 years of running the store.", "tools": ["FastAPI", "PostgreSQL", "Nginx", "Docker Compose", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "highlight": "7 個模組、NAS 自架、遠端安全存取", "highlight_en": "7 modules · self-hosted on a NAS · secure remote access", "links": [{"type": "repo", "url": "https://github.com/singwillychen/weekend-warrior"}], "my_note": "經營電商以來最花時間的有兩件事：一是整理每次更新的報價單，二是整理每個月的新訂單與出貨。", "my_note_en": "Two things have taken the most time since I started the store: updating quotations every time prices change, and handling each month's new orders and shipping."}, {"id": "ecommerce-arch", "order": 13, "category": "ecommerce", "status": "文件", "name": "自架電商架構分析", "name_en": "Self-Hosted E-commerce Architecture Study", "summary": "拆解現有 EasyStore 前台與後台，提出脫離平台、自架多品牌電商的架構與路線。", "summary_en": "A teardown of my current EasyStore storefront and admin, with an architecture and roadmap for moving to a self-hosted multi-brand store.", "pain_point": "綁在 SaaS 電商平台上難客製，而且真正的銷售在蝦皮、露天，官網沒在賣，多通路商品資料各管各的。", "pain_point_en": "A SaaS store is hard to customize, real sales happen on marketplaces like Shopee and Ruten rather than my own site, and product data is managed separately per channel.", "solution": "由 AI 實際測試前台、唯讀檢視後台，整理成可驗證的事實；建議以 Medusa v2 當核心、自做 Admin 與台灣在地模組，並先做商品主檔與多通路整合。", "solution_en": "AI tested the storefront and reviewed the admin read-only, recording verifiable facts; the recommendation is Medusa v2 as the core with a custom admin and Taiwan-specific modules, starting with a product master and multi-channel sync.", "ai_role": "讓 AI 當系統分析師：實測、拆解、比較方案、寫成可交給 Claude Code 實作的規格。", "ai_role_en": "AI as systems analyst: test, deconstruct, compare options and write a spec Claude Code can implement.", "tools": ["Claude", "Browser testing", "Medusa v2", "Architecture docs"], "highlight": "結論先行、區分事實與推論", "highlight_en": "Conclusions first · facts kept apart from inferences", "links": [], "my_note": "我希望參考目前成熟的產品來搭建，但最重要的是資訊安全：網站架構要不易被攻破，客戶資料不能被取得。比起這一點，其他銷售功能的問題都小得多。", "my_note_en": "I want to build on proven products, but security comes first: the architecture must be hard to breach and customer data must stay protected. Every other sales feature is a much smaller problem."}, {"id": "dealer-price", "order": 14, "category": "ecommerce", "status": "已完成", "name": "經銷商報價批次更新", "name_en": "Dealer Price List Batch Update", "summary": "把 8 家代理品牌（Helikon-Tex、Morakniv、Direct Action 等）的原廠價格表整理成統一格式，並產出電商平台可匯入的商品檔。", "summary_en": "Normalizes price lists from 8 brands I distribute (Helikon-Tex, Morakniv, Direct Action and more) into one format and produces an import file for the online store.", "pain_point": "每家原廠價格表格式不同，每次調價都要人工對 SKU、換算、再一筆筆更新上架，容易出錯。", "pain_point_en": "Each brand's price list has its own format, so every price change meant matching SKUs, converting and updating listings one by one, which invites mistakes.", "solution": "用 AI 讀取各家 Excel、統一欄位，算出售價，輸出 EasyStore 匯入 CSV，並另列缺價商品清單供人工確認；整理成每季可重複執行的 Claude Skill。", "solution_en": "AI reads each brand's Excel file, unifies the columns, calculates retail prices and outputs an EasyStore import CSV, plus a list of items missing prices for manual review; packaged as a Claude Skill to rerun each quarter.", "ai_role": "AI 處理格式不一的表格資料，人只需確認例外清單。", "ai_role_en": "AI handles inconsistent spreadsheets; I only review the exceptions.", "tools": ["Claude", "Claude Code Skills", "Excel", "Python", "Google Sheets"], "highlight": "8 家品牌一次更新", "highlight_en": "8 brands updated in one pass", "links": [], "my_note": "經銷商報價更新與資料清洗大約每季做一次，傳統用 Excel 手動剪貼的方式非常耗時。", "my_note_en": "Dealer price updates and data cleaning happen roughly every quarter, and the traditional copy-and-paste approach in Excel took a very long time."}, {"id": "ipas", "order": 15, "category": "learning", "status": "已完成", "name": "iPAS 書齋：AI 應用規劃師模擬考", "name_en": "iPAS Study Hall — AI Application Planner Exam Simulator", "summary": "iPAS「AI 應用規劃師」初級／中級模擬考系統：亂數或弱項加重出題、逐選項錯題解析、學習五力圖、出席日曆，還有一位會依你的數據說話的 8-bit 老學究。", "summary_en": "A practice exam system for Taiwan's iPAS AI Application Planner certificate (beginner and intermediate): random or weakness-weighted questions, per-option explanations, a five-skill radar, an attendance calendar and an 8-bit tutor who comments on your stats.", "pain_point": "準備 iPAS 考試只能翻講義、做紙本題，不知道自己哪一科弱，錯過的題也很難集中複習。", "pain_point_en": "Preparing for iPAS meant handouts and paper questions, with no way to see weak areas or revisit missed questions in one place.", "solution": "195 題題庫，每個選項都有解析；交卷後在伺服器端批改，答案不外露到前端；錯題本自動收錄、答對即畢業；Dashboard 顯示五力圖與連續出席天數。", "solution_en": "A 195-question bank with an explanation for every option; grading runs server-side so answers never reach the browser; a mistake log adds wrong answers and retires them once correct; the dashboard shows a five-skill radar and streaks.", "ai_role": "用 Claude Code 設計題庫結構、資料庫權限與端對端測試；老師角色依學習數據即時產生一句話，沒有 LLM 金鑰時改用內建語錄。", "ai_role_en": "Used Claude Code for the question bank schema, database permissions and end-to-end tests; the tutor generates a line from your learning data, falling back to built-in quotes without an LLM key.", "tools": ["HTML / CSS / JS", "Supabase Auth", "PostgreSQL + RLS", "Edge Functions", "LLM", "Playwright", "Claude Code"], "highlight": "195 題、5 個科目、伺服器端批改", "highlight_en": "195 questions · 5 subjects · server-side grading", "links": [{"type": "repo", "url": "https://github.com/singwillychen/ipas-exam-sim"}], "my_note": "我自己正在準備這個考試，還沒正式開始讀；試用後覺得題目內容不錯，之後會依自己的需求繼續加強。", "my_note_en": "I'm preparing for this exam myself and haven't started studying in earnest; after trying it, I think the questions are solid, and I'll keep improving it as my needs grow."}, {"id": "mathcastle", "order": 16, "category": "learning", "status": "已完成", "name": "Kid's Math Castle 數學城堡", "name_en": "Kid's Math Castle", "summary": "給 4–7 歲小朋友的互動式加減法與心算練習網站：數蘋果、十格框、數線跳跳、心算、算盤教室，還有語音唸題。", "summary_en": "An interactive addition, subtraction and mental math site for ages 4–7: counting apples, ten-frames, number-line jumps, mental math, an abacus class and read-aloud questions.", "pain_point": "小朋友練數學需要大人一直陪著出題、批改，也很難知道孩子到底哪種題型比較弱。", "pain_point_en": "Kids practicing math need an adult to set and check every question, and it's hard to see which kinds of problems they struggle with.", "solution": "每位小朋友有自己的帳號與星星；依年齡調整難度；家長專區用乘法題或密碼進入，可看答對率、弱點建議與答錯題目；紀錄可存在瀏覽器、NAS 或雲端硬碟資料夾。", "solution_en": "Each child has their own profile and stars; difficulty follows age; a parent area (unlocked by a multiplication question or password) shows accuracy, weak spots and missed questions; progress saves to the browser, a NAS or a cloud-synced folder.", "ai_role": "用 Claude Code 從親子需求出發設計題型與家長分析，並讓多台平板共用紀錄。", "ai_role_en": "Built with Claude Code from a parent's needs: exercise types, parent analytics, and shared progress across several tablets.", "tools": ["HTML / CSS / JS", "Web Speech API", "Python", "GitHub Pages", "Claude Code"], "highlight": "6 種練習模式、家長分析、線上可玩", "highlight_en": "6 practice modes · parent analytics · playable online", "links": [{"type": "demo", "url": "https://singwillychen.github.io/kids-math-castle/"}, {"type": "repo", "url": "https://github.com/singwillychen/kids-math-castle"}], "my_note": "小朋友已經試玩過一次，最近比較忙還沒持續使用，之後會再多陪他們一起玩。", "my_note_en": "My kids have tried it once; things have been busy so we haven't kept it up yet, and I plan to play it with them more."}, {"id": "growup", "order": 17, "category": "learning", "status": "MVP", "name": "Grow Up 孩子成長時間軸", "name_en": "Grow Up — Child Growth Timeline", "summary": "從相簿自動找出每週或每月最清楚的一張照片，排成孩子的成長時間軸，家人可以一起寫註解，之後可輸出成小影片。", "summary_en": "Finds the clearest photo of each week or month in the photo library, lays them out as a child's growth timeline that family can annotate together, with video export planned.", "pain_point": "手機裡有上萬張孩子的照片，想回顧成長卻找不到重點，好照片也被大量連拍和截圖淹沒。", "pain_point_en": "Tens of thousands of photos on the phone, yet the milestones are hard to find, buried under burst shots and screenshots.", "solution": "iPhone App 在手機上用 Vision 評分、比對參考臉，只上傳候選照片；後端做完全與近似去重、推測拍攝時間；分享連結有隨機代碼加密碼與錯誤鎖定。個資只存在自家 NAS。", "solution_en": "An iPhone app scores photos and matches a reference face on-device with Vision, uploading only candidates; the back end removes exact and near duplicates and infers capture time; share links use random codes plus a PIN with lockout. Personal data stays on my own NAS.", "ai_role": "用 Claude Code 同時開發後端、網頁與 iOS App，並把隱私與安全設計放在第一位。", "ai_role_en": "Used Claude Code across the back end, web app and iOS app, with privacy and security designed in from the start.", "tools": ["FastAPI", "PostgreSQL", "React + Vite + TS", "SwiftUI", "Apple Vision", "Supabase Auth", "Cloudflare Tunnel", "QNAP NAS", "Claude Code"], "highlight": "手機端 AI 挑圖、照片去重、私密分享連結", "highlight_en": "On-device photo picking · duplicate removal · private share links", "links": [], "my_note": "想記錄孩子們成長的小瞬間：有時會發現他們的用詞或動作，在一瞬間變得更成熟。我希望把這份感動留下來，不定期串成影片，和家人一起分享。", "my_note_en": "A way to capture my children's small moments of growth: sometimes their words or gestures suddenly seem more grown-up. I want to keep those moments and, from time to time, turn them into a video to share with family."}, {"id": "cruise", "order": 18, "category": "learning", "status": "開發中", "name": "郵輪特價追蹤 Cruise Bargain Tracker", "name_en": "Cruise Bargain Tracker", "summary": "追蹤兩大郵輪訂位網站的亞洲航線價格，自動評分找出特價，每週用 Telegram 推送摘要。", "summary_en": "Tracks Asian cruise prices on two major booking sites, scores them to find real deals, and sends a weekly Telegram digest.", "pain_point": "郵輪價格天天變動，要比較不同網站、判斷是不是真的便宜，得自己反覆查價、記價格。", "pain_point_en": "Cruise prices change daily; telling whether a deal is real across different sites means checking and noting prices over and over.", "solution": "評分引擎比較同類航次、跌價、歷史新低、跨站價差與尾艙；網頁顯示今日推薦與價格走勢，美金價自動換算台幣；每日排程並做抓取健康檢查。", "solution_en": "A scoring engine compares similar sailings, price drops, record lows, cross-site gaps and last-minute cabins; the web app shows daily picks and price trends with USD converted to TWD; daily scheduling with scraper health checks.", "ai_role": "用 Claude Code 設計評分邏輯與排程架構，抓取模組以示範資料先跑通整個流程。", "ai_role_en": "Used Claude Code to design the scoring logic and scheduling; the whole pipeline runs end to end on sample data while the scrapers are finished.", "tools": ["Python", "FastAPI", "SQLAlchemy", "APScheduler", "Playwright", "Telegram Bot", "Docker"], "highlight": "5 種特價評分規則、每週自動推播", "highlight_en": "5 deal-scoring rules · automatic weekly digest", "links": [{"type": "repo", "url": "https://github.com/singwillychen/Finding-good-bargain-cruise"}], "my_note": "目前還在累積價格資料，還沒實際用它訂到行程；等時間和預算允許，再靠它找划算的郵輪行程。", "my_note_en": "It's still building up price history, and I haven't booked a trip with it yet; when time and budget allow, I'll use it to find a good-value cruise."}];
-
-const T = {
-  zh: {
-    title: "陳威廷｜AI 應用作品集", navSkills: "技能", navWorks: "作品",
-    eyebrow: "AI 應用作品集", name: "陳威廷 Willy Chen", role: "專案經理 · 用 AI 把工作流程做成產品",
-    lede: "從現場設備作業、政府開放資料、自營電商到家庭生活，我用 Claude Code 等 AI 工具，把真實遇到的痛點做成可以實際使用的系統。每個作品都寫明它解決的問題、做法與使用的工具。",
-    ctaWorks: "看作品 ↓", statWorks: "件作品", statDone: "已完成或使用中", statTools: "種工具與技術", statLive: "個可公開瀏覽",
-    skillsTitle: "技能分布", skillsSub: "依作品內容統計，不是自評",
-    toolsTitle: "最常用的工具", toolsNote: "各工具出現在幾件作品中（前 12 名）",
-    catsTitle: "作品領域", catsNote: "依解決的問題分類",
-    worksTitle: "作品", worksSub: "點「完整說明」看痛點、做法與 AI 的角色",
-    all: "全部", more: "完整說明", pain: "解決的痛點", how: "怎麼做", ai: "AI 在其中的角色", tools: "使用與串接的工具",
-    mine: "我的說明", demo: "線上試用", repo: "原始碼",
-    foot: "作品說明由 Claude 依各專案的程式與文件整理；「我的說明」由本人撰寫。",
-    cat: { ai: "AI 代理與自動化", tools: "實用工具", ecommerce: "電商營運", learning: "學習與生活" },
-    catDesc: { ai: "讓 AI 代替人執行工作，人負責判斷", tools: "解決單一問題的小工具", ecommerce: "自營進口電商的營運數位化", learning: "給家人、學習與生活的應用" },
-    status: { "已完成": "已完成", "使用中": "使用中", "MVP": "MVP", "開發中": "開發中", "訓練中": "訓練中", "文件": "文件" }
-  },
-  en: {
-    title: "Willy Chen · AI Application Portfolio", navSkills: "Skills", navWorks: "Projects",
-    eyebrow: "AI Application Portfolio", name: "Willy (Wei Ting) Chen", role: "Project Manager · turning workflows into AI-powered products",
-    lede: "From field equipment operations and government open data to my own e-commerce business and family life, I use AI tools like Claude Code to turn real pain points into systems people actually use. Each project shows the problem it solves, how it works and the tools behind it.",
-    ctaWorks: "See projects ↓", statWorks: "projects", statDone: "completed or in use", statTools: "tools & technologies", statLive: "public on GitHub",
-    skillsTitle: "Skills at a glance", skillsSub: "Counted from the projects, not self-rated",
-    toolsTitle: "Most used tools", toolsNote: "Number of projects each tool appears in (top 12)",
-    catsTitle: "Project areas", catsNote: "Grouped by the problem solved",
-    worksTitle: "Projects", worksSub: "Open “Full details” for the problem, the approach and AI's role",
-    all: "All", more: "Full details", pain: "Problem", how: "Approach", ai: "AI's role", tools: "Tools & integrations",
-    mine: "In my words", demo: "Live demo", repo: "Source",
-    foot: "Project write-ups were drafted by Claude from each project's code and docs; “In my words” is written by me.",
-    cat: { ai: "AI agents & automation", tools: "Tools", ecommerce: "E-commerce operations", learning: "Learning & life" },
-    catDesc: { ai: "AI does the work, people make the calls", tools: "Small tools that solve one problem well", ecommerce: "Digitizing my import e-commerce business", learning: "Apps for family, learning and everyday life" },
-    status: { "已完成": "Completed", "使用中": "In use", "MVP": "MVP", "開發中": "In development", "訓練中": "Training", "文件": "Document" }
-  }
-};
-const CAT_ORDER = ["ai", "tools", "ecommerce", "learning"];
-const CAT_ICON = { ai: "🤖", tools: "🛠️", ecommerce: "🛒", learning: "🌱" };
-const tone = (s) => (s === "已完成" || s === "使用中") ? "ok" : (s === "文件" ? "doc" : "warn");
-
-const store = {
-  get() { try { return localStorage.getItem("pf-lang"); } catch (e) { return null; } },
-  set(v) { try { localStorage.setItem("pf-lang", v); } catch (e) {} }
-};
-function detectLang() {
-  const q = new URLSearchParams(location.search).get("lang");
-  if (q === "zh" || q === "en") return q;
-  const saved = store.get();
-  if (saved === "zh" || saved === "en") return saved;
-  const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
-  for (const l of list) {
-    const x = String(l).toLowerCase();
-    if (x.startsWith("zh")) return "zh";
-    if (x.startsWith("en")) return "en";
-  }
-  return "en";
-}
-
-let lang = detectLang();
-let cat = "";
-const pick = (w, k) => (lang === "en" && w[k + "_en"]) ? w[k + "_en"] : w[k];
-const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-
-function renderStatic() {
-  const t = T[lang];
-  document.documentElement.lang = lang === "zh" ? "zh-Hant-TW" : "en";
-  document.title = t.title;
-  document.querySelectorAll("[data-i18n]").forEach((n) => { n.textContent = t[n.dataset.i18n] ?? ""; });
-  document.querySelectorAll(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-}
-
-function renderStats() {
-  const tools = new Set(WORKS.flatMap((w) => w.tools));
-  document.getElementById("s-works").textContent = WORKS.length;
-  document.getElementById("s-done").textContent = WORKS.filter((w) => tone(w.status) === "ok").length;
-  document.getElementById("s-tools").textContent = tools.size;
-  document.getElementById("s-live").textContent = WORKS.filter((w) => (w.links || []).length).length;
-}
-
-function renderSkills() {
-  const t = T[lang];
-  const m = new Map();
-  WORKS.forEach((w) => w.tools.forEach((x) => m.set(x, (m.get(x) || 0) + 1)));
-  const top = [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12);
-  const max = top.length ? top[0][1] : 1;
-  const bars = document.getElementById("tool-bars");
-  bars.replaceChildren(...top.map(([name, n], i) => {
-    const r = el("div", "bar-row");
-    const trk = el("div", "trk"); const f = el("div", "fill");
-    f.style.width = (n / max * 100) + "%"; f.style.animationDelay = (i * 40) + "ms"; trk.append(f);
-    r.append(el("span", "lbl", name), trk, el("span", "val", n));
-    r.title = "";
-    return r;
-  }));
-  const list = document.getElementById("cat-list");
-  list.replaceChildren(...CAT_ORDER.map((c) => {
-    const r = el("div", "cat-row");
-    const d = el("div"); d.append(el("b", null, t.cat[c]), el("span", null, t.catDesc[c]));
-    r.append(el("span", "cat-ico", CAT_ICON[c]), d, el("em", null, WORKS.filter((w) => w.category === c).length));
-    return r;
-  }));
-}
-
-function renderFilters() {
-  const t = T[lang];
-  const box = document.getElementById("filters");
-  const opts = [["", t.all, WORKS.length], ...CAT_ORDER.map((c) => [c, t.cat[c], WORKS.filter((w) => w.category === c).length])];
-  box.replaceChildren(...opts.map(([v, label, n]) => {
-    const b = el("button", "chip-btn"); b.type = "button";
-    b.setAttribute("aria-pressed", String(v === cat));
-    b.append(document.createTextNode(label + " "), el("i", null, n));
-    b.addEventListener("click", () => { cat = v; renderFilters(); renderWorks(); });
-    return b;
-  }));
-}
-
-function renderWorks() {
-  const t = T[lang];
-  const grid = document.getElementById("grid");
-  const rows = WORKS.slice().sort((a, b) => a.order - b.order).filter((w) => !cat || w.category === cat);
-  grid.replaceChildren(...rows.map((w, i) => {
-    const a = el("article", "work"); a.id = "work-" + w.id; a.style.animationDelay = Math.min(i, 8) * 35 + "ms";
-    const top = el("div", "work-top");
-    top.append(el("span", null, CAT_ICON[w.category] + "  " + t.cat[w.category]), el("span", "badge " + tone(w.status), t.status[w.status] || w.status));
-    a.append(top, el("h3", null, pick(w, "name")), el("p", "sum", pick(w, "summary")));
-    if (w.highlight) a.append(el("p", "hl", pick(w, "highlight")));
-    const tags = el("div", "tags"); w.tools.slice(0, 5).forEach((x) => tags.append(el("span", "tag", x)));
-    if (w.tools.length > 5) tags.append(el("span", "tag", "+" + (w.tools.length - 5)));
-    a.append(tags);
-    const note = pick(w, "my_note");
-    if (note) { const q = el("div", "quote"); q.append(el("small", null, t.mine), document.createTextNode(note)); a.append(q); }
-    if ((w.links || []).length) {
-      const l = el("div", "links");
-      w.links.forEach((k) => { const x = el("a", k.type === "demo" ? "demo" : "", (k.type === "demo" ? t.demo : t.repo) + " ↗"); x.href = k.url; x.target = "_blank"; x.rel = "noopener"; l.append(x); });
-      a.append(l);
+(function () {
+  var T = {
+    zh: {
+      title: '陳威廷｜AI 應用作品集', brand: '陳威廷 Willy',
+      navSkills: '技能', navWorks: '作品', navAbout: '關於我', navContact: '聯絡',
+      toggleLabel: '切換為英文', eyebrow: 'AI APPLICATION PORTFOLIO · AI 應用作品集',
+      name: '陳威廷 Willy', roleTitle: 'Aster Technology 海外業務經理', roleRest: '· 用 AI 把工作流程做成產品',
+      lede: '從現場設備作業、政府開放資料、自營電商到家庭生活，我用 Claude Code 等 AI 工具，把真實遇到的痛點做成可以實際使用的系統。滑到「快速檢視」就能看到每件作品的問題、做法與畫面。',
+      ctaWorks: '看作品', statWorks: '件作品', statDone: '已完成或使用中', statTools: '種工具與技術', statLive: '個可公開瀏覽',
+      skillsTitle: '技能分布', skillsSub: '依作品內容統計，不是自評',
+      toolsTitle: '最常用的工具', toolsNote: '各工具出現在幾件作品中（前 12 名）',
+      catsTitle: '作品領域', catsNote: '依解決的問題分類',
+      worksTitle: '作品', filterLabel: '依分類篩選',
+      count: function (n, s) { return '共 ' + n + ' 件作品 · 目前顯示 ' + s + ' 件'; },
+      all: '全部', demo: '線上試用', repo: '原始碼', video: '觀看影片',
+      peek: '快速檢視', expand: '展開', shrink: '縮小', close: '關閉',
+      shot: '實際畫面', mock: '示意畫面', vid: '範例影片', info: '作品重點',
+      noteShot: '實際網站截圖', noteMock: '介面示意，非實際截圖', noteVid: '展開即可播放',
+      hPain: '解決的痛點', hSol: '怎麼做', hAI: 'AI 在其中的角色', hHi: '成果', hTools: '使用與串接的工具', hNote: '我的說明',
+      cat: { ai: 'AI 代理與自動化', tools: '實用工具', ecommerce: '電商營運', learning: '學習與生活' },
+      catDesc: { ai: '讓 AI 代替人執行工作，人負責判斷', tools: '解決單一問題的小工具', ecommerce: '自營進口電商的營運數位化', learning: '給家人、學習與生活的應用' },
+      status: { '已完成': '已完成', '使用中': '使用中', 'MVP': 'MVP', '開發中': '開發中', '訓練中': '訓練中', '文件': '文件' },
+      aboutTitle: '關於我',
+      about1: '我是陳威廷 Willy，目前在 Twoway Group 旗下的 Aster Technology 擔任海外業務經理（Overseas Sales Manager），負責 IoT 產品的海外銷售，主要市場是美國、越南與印尼。在這之前，我在 AI 停車設備公司工作，同時經營自己的進口運動用品電商「週末戰士」。',
+      about2: '在工作、電商和家庭生活中遇到重複出現的問題，我習慣用 AI 動手做成工具。這裡的 18 件作品，從充電車位車牌監控、經銷商報價批次更新，到給孩子練數學的網站，都是這樣來的。',
+      footTitle: '有想法？一起做點什麼。', email: '寄 Email',
+      footCredit: '作品說明由 Claude 依各專案的程式與文件整理；「我的說明」由本人撰寫。',
+      mvReady: '聲線已建立', mvChar1: '狐狸巫女', mvChar2: '機器人', mvChar3: '貓咪店長', mvBg: '綠幕輸出',
+      mvText: '「歡迎來到直播間！今天要跟大家介紹新到的露營裝備。」',
+      mcRole: 'AI 員工 · 客服專員', mcPassed: '考核通過 · 上工中', mcT1s: '訂單何時出貨？', mcT2: '網站', mcT2s: '可以換尺寸嗎？', mcT3: '電話', mcT3s: '營業時間？',
+      mcQ: '請問我昨天下的訂單什麼時候會出貨？', mcA: '您好！訂單 #A1024 已完成揀貨，預計今天下午出貨，出貨後會再傳物流單號給您。', mcQ2: '好的，那可以改寄到公司嗎？'
+    },
+    en: {
+      title: 'Willy Chen · AI Application Portfolio', brand: 'Chen Wei-Ting, Willy',
+      navSkills: 'Skills', navWorks: 'Projects', navAbout: 'About', navContact: 'Contact',
+      toggleLabel: 'Switch to Chinese', eyebrow: 'AI APPLICATION PORTFOLIO',
+      name: 'Chen Wei-Ting, Willy', roleTitle: 'Overseas Sales Manager, Aster Technology', roleRest: '· turning workflows into AI-powered products',
+      lede: 'From field equipment operations and government open data to my own e-commerce business and family life, I use AI tools like Claude Code to turn real pain points into systems people actually use. Hover “Quick view” on any project to see the problem, the approach and what it looks like.',
+      ctaWorks: 'See projects', statWorks: 'projects', statDone: 'completed or in use', statTools: 'tools & technologies', statLive: 'public links',
+      skillsTitle: 'Skills at a glance', skillsSub: 'Counted from the projects, not self-rated',
+      toolsTitle: 'Most used tools', toolsNote: 'Number of projects each tool appears in (top 12)',
+      catsTitle: 'Project areas', catsNote: 'Grouped by the problem solved',
+      worksTitle: 'Projects', filterLabel: 'Filter by category',
+      count: function (n, s) { return n + ' projects · showing ' + s; },
+      all: 'All', demo: 'Live demo', repo: 'Source', video: 'Watch video',
+      peek: 'Quick view', expand: 'Expand', shrink: 'Shrink', close: 'Close',
+      shot: 'Live screenshot', mock: 'Illustration', vid: 'Sample video', info: 'Highlights',
+      noteShot: 'Screenshot of the live site', noteMock: 'Interface illustration, not a real screenshot', noteVid: 'Expand to play',
+      hPain: 'PROBLEM', hSol: 'APPROACH', hAI: 'ROLE OF AI', hHi: 'RESULT', hTools: 'TOOLS & INTEGRATIONS', hNote: 'IN MY WORDS',
+      cat: { ai: 'AI agents & automation', tools: 'Tools', ecommerce: 'E-commerce operations', learning: 'Learning & life' },
+      catDesc: { ai: 'AI does the work, people make the calls', tools: 'Small tools that solve one problem well', ecommerce: 'Digitizing my import e-commerce business', learning: 'Apps for family, learning and everyday life' },
+      status: { '已完成': 'Completed', '使用中': 'In use', 'MVP': 'MVP', '開發中': 'In development', '訓練中': 'Training', '文件': 'Document' },
+      aboutTitle: 'About me',
+      about1: 'I’m Chen Wei-Ting (Willy), Overseas Sales Manager at Aster Technology, part of Twoway Group, where I sell IoT products internationally with a focus on the US, Vietnam and Indonesia. Before that I worked at an AI parking-device company, while running Weekend Warrior, my own sporting-goods import store.',
+      about2: 'Whenever a problem keeps coming back at work, in the store or at home, I build an AI tool for it. The 18 projects here, from license-plate monitoring at EV charging bays and dealer price-list updates to a math practice site for my kids, all started that way.',
+      footTitle: 'Got an idea? Let’s build something.', email: 'Send email',
+      footCredit: 'Project write-ups were drafted by Claude from each project’s code and docs; “In my words” is written by me.',
+      mvReady: 'Voice profile ready', mvChar1: 'Fox shrine maiden', mvChar2: 'Robot', mvChar3: 'Cat manager', mvBg: 'Green screen',
+      mvText: '"Welcome to the stream! Today I’m showing you our new camping gear."',
+      mcRole: 'AI employee · Support agent', mcPassed: 'Passed review · on shift', mcT1s: 'When will it ship?', mcT2: 'Website', mcT2s: 'Can I change size?', mcT3: 'Phone', mcT3s: 'Opening hours?',
+      mcQ: 'When will the order I placed yesterday ship?', mcA: 'Hi! Order #A1024 has been picked and will ship this afternoon. We will send you the tracking number once it leaves.', mcQ2: 'Great, can I have it sent to my office instead?'
     }
-    const d = el("details"); d.append(el("summary", null, t.more));
-    const dl = el("div", "dl");
-    [["pain", "pain_point"], ["how", "solution"], ["ai", "ai_role"]].forEach(([h, k]) => {
-      const v = pick(w, k); if (!v) return;
-      const b = el("div"); b.append(el("h4", null, t[h]), el("p", null, v)); dl.append(b);
+  };
+  var CAT_ORDER = ['ai', 'tools', 'ecommerce', 'learning'];
+  var CAT_ICON = {
+    ai: '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>',
+    tools: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.8-2.8z"/>',
+    ecommerce: '<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+    learning: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'
+  };
+  function catSvg(c, size) {
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + CAT_ICON[c] + '</svg>';
+  }
+  var tone = function (s) { return (s === '已完成' || s === '使用中') ? 'ok' : (s === '文件' ? 'doc' : 'warn'); };
+
+  // Snapshot per project: a real screenshot, an illustrative mock, a video, or (default) the highlights only.
+  var SNAPS = {
+    highway: { type: 'img', src: 'assets/highway.jpg' },
+    voicesprite: { type: 'mock', tpl: 'mock-voicesprite' },
+    crew: { type: 'mock', tpl: 'mock-crew' }
+  };
+  function youTubeId(url) {
+    var m = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/.exec(url || '');
+    return m ? m[1] : null;
+  }
+
+  var works = (window.WORKS || []).slice().sort(function (a, b) { return a.order - b.order; }).map(function (w) {
+    var links = (w.links || []).filter(function (l) { return /^https:\/\//.test(l.url); });
+    var snap = SNAPS[w.id] || null;
+    if (!snap) links.forEach(function (l) { var id = l.type === 'video' && youTubeId(l.url); if (id && !snap) snap = { type: 'video', id: id }; });
+    return Object.assign({}, w, { links: links, snap: snap });
+  });
+
+  function detectLang() {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'zh' || q === 'en') return q;
+    try { var s = localStorage.getItem('pf-lang'); if (s === 'zh' || s === 'en') return s; } catch (e) {}
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    for (var i = 0; i < list.length; i++) {
+      var x = String(list[i]).toLowerCase();
+      if (x.indexOf('zh') === 0) return 'zh';
+      if (x.indexOf('en') === 0) return 'en';
+    }
+    return 'en';
+  }
+
+  var state = { lang: detectLang(), cat: 'all' };
+  var $ = function (id) { return document.getElementById(id); };
+  var icon = {
+    arrow: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>',
+    code: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>',
+    play: '<svg width="22" height="22" viewBox="0 0 24 24" fill="#F2B33D" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+    playSm: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+    eye: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
+  };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function t() { return T[state.lang]; }
+  function f(w, key) { var v = state.lang === 'en' ? w[key + '_en'] : w[key]; return v || w[key] || ''; }
+  function statusText(w) { return t().status[w.status] || w.status; }
+  function linkHtml(l) {
+    var label = l.type === 'repo' ? icon.code + esc(t().repo) : l.type === 'video' ? icon.playSm + esc(t().video) : esc(t().demo) + icon.arrow;
+    return '<a class="open' + (l.type === 'repo' ? ' repo' : '') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + label + '</a>';
+  }
+  function fillI18n(root) {
+    root.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t()[el.getAttribute('data-i18n')]; });
+  }
+  function buildMock(tplId) {
+    var node = document.importNode($(tplId).content, true);
+    var wave = node.querySelector('.wave');
+    if (wave) for (var i = 0; i < 48; i++) {
+      var b = document.createElement('i');
+      b.style.height = (20 + Math.round(Math.abs(Math.sin(i * 0.7)) * 80)) + '%';
+      b.style.animationDelay = (i * 0.04).toFixed(2) + 's';
+      wave.appendChild(b);
+    }
+    fillI18n(node);
+    return node;
+  }
+
+  function renderStats() {
+    var tools = {}; works.forEach(function (w) { (w.tools || []).forEach(function (x) { tools[x] = 1; }); });
+    var items = [
+      [works.length, t().statWorks],
+      [works.filter(function (w) { return tone(w.status) === 'ok'; }).length, t().statDone],
+      [Object.keys(tools).length, t().statTools],
+      [works.filter(function (w) { return w.links.length; }).length, t().statLive]
+    ];
+    $('stats').innerHTML = items.map(function (x) { return '<div class="stat"><b>' + x[0] + '</b><span>' + esc(x[1]) + '</span></div>'; }).join('');
+  }
+
+  function renderSkills() {
+    var m = {};
+    works.forEach(function (w) { (w.tools || []).forEach(function (x) { m[x] = (m[x] || 0) + 1; }); });
+    var top = Object.keys(m).map(function (k) { return [k, m[k]]; })
+      .sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); }).slice(0, 12);
+    var max = top.length ? top[0][1] : 1;
+    $('toolBars').innerHTML = top.map(function (x, i) {
+      return '<div class="bar-row"><span class="lbl" title="' + esc(x[0]) + '">' + esc(x[0]) + '</span><div class="trk"><div class="fill" style="width:' + (x[1] / max * 100) + '%;animation-delay:' + (i * 40) + 'ms"></div></div><span class="val">' + x[1] + '</span></div>';
+    }).join('');
+    $('catList').innerHTML = CAT_ORDER.map(function (c) {
+      var n = works.filter(function (w) { return w.category === c; }).length;
+      return '<div class="cat-row"><span class="ico">' + catSvg(c, 22) + '</span><div><b>' + esc(t().cat[c]) + '</b><span>' + esc(t().catDesc[c]) + '</span></div><em>' + n + '</em></div>';
+    }).join('');
+  }
+
+  function renderFilters() {
+    var el = $('filters');
+    el.setAttribute('aria-label', t().filterLabel);
+    el.innerHTML = '';
+    ['all'].concat(CAT_ORDER).forEach(function (k) {
+      var n = k === 'all' ? works.length : works.filter(function (w) { return w.category === k; }).length;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.innerHTML = esc(k === 'all' ? t().all : t().cat[k]) + '<span>' + n + '</span>';
+      b.setAttribute('aria-pressed', String(k === state.cat));
+      b.addEventListener('click', function () { state.cat = k; renderFilters(); renderGrid(); });
+      el.appendChild(b);
     });
-    const tb = el("div"); tb.append(el("h4", null, t.tools));
-    const all = el("div", "tags"); w.tools.forEach((x) => all.append(el("span", "tag", x))); tb.append(all); dl.append(tb);
-    d.append(dl); a.append(d);
-    return a;
-  }));
-}
+  }
 
-function renderAll() { renderStatic(); renderSkills(); renderFilters(); renderWorks(); }
+  function renderGrid() {
+    var g = $('grid'); g.innerHTML = '';
+    var list = works.filter(function (w) { return state.cat === 'all' || w.category === state.cat; });
+    $('count').textContent = t().count(works.length, list.length);
+    list.forEach(function (w) {
+      var el = document.createElement('article');
+      el.className = 'card';
+      el.id = 'work-' + w.id;
+      var thumb;
+      if (w.snap && w.snap.type === 'img') thumb = '<img src="' + w.snap.src + '" alt="' + esc(f(w, 'name')) + '" loading="lazy">';
+      else if (w.snap && w.snap.type === 'video') thumb = '<img src="https://i.ytimg.com/vi/' + w.snap.id + '/hqdefault.jpg" alt="' + esc(f(w, 'name')) + '" loading="lazy"><div class="playbadge"><span>' + icon.play + '</span></div>';
+      else if (w.snap) thumb = '<div class="mini"></div>';
+      else thumb = '<div class="num">' + String(w.order).padStart(2, '0') + '</div><span class="cat-ico">' + catSvg(w.category, 44) + '</span>';
+      el.innerHTML =
+        '<div class="thumb">' + thumb + '<span class="status ' + tone(w.status) + '">' + esc(statusText(w)) + '</span></div>' +
+        '<div class="body">' +
+          '<div class="tags"><span class="tag cat">' + esc(t().cat[w.category]) + '</span></div>' +
+          '<h3>' + esc(f(w, 'name')) + '</h3><p class="desc">' + esc(f(w, 'summary')) + '</p>' +
+          (f(w, 'highlight') ? '<p class="hl">' + esc(f(w, 'highlight')) + '</p>' : '') +
+          '<div class="actions">' + w.links.map(linkHtml).join('') +
+            '<button type="button" class="peek" aria-haspopup="dialog" aria-expanded="false" aria-controls="qv">' + icon.eye + esc(t().peek) + '</button>' +
+          '</div>' +
+        '</div>';
+      if (w.snap && w.snap.type === 'mock') el.querySelector('.mini').appendChild(buildMock(w.snap.tpl));
+      var peek = el.querySelector('.peek');
+      peek.addEventListener('mouseenter', function () { hoverOpen(w, peek); });
+      peek.addEventListener('mouseleave', scheduleClose);
+      peek.addEventListener('focus', function () { if (!qv.classList.contains('expanded')) openQV(w, peek, false); });
+      peek.addEventListener('blur', scheduleClose);
+      peek.addEventListener('click', function () { openQV(w, peek, true); });
+      g.appendChild(el);
+    });
+  }
 
-document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => {
-  if (b.dataset.lang === lang) return;
-  lang = b.dataset.lang; store.set(lang);
-  const open = [...document.querySelectorAll("details[open]")].map((d) => d.parentElement.id);
+  /* ---------- quick view ---------- */
+  var qv = $('qv'), scrim = $('scrim');
+  var current = null, anchor = null, openTimer = null, closeTimer = null, quietUntil = 0;
+
+  // Put the preview above or below its button, shrinking it to fit, and never over the button itself.
+  function place(btn) {
+    var GAP = 12, M = 16;
+    var r = btn.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight;
+    qv.style.maxHeight = '';
+    var w = qv.offsetWidth, h = qv.offsetHeight;
+    var above = r.top - GAP - M, below = vh - r.bottom - GAP - M;
+    var left = Math.min(Math.max(M, r.left), vw - w - M), top;
+    if (h <= above) top = r.top - GAP - h;
+    else if (h <= below) top = r.bottom + GAP;
+    else if (Math.max(above, below) >= 280) {
+      var up = above >= below;
+      qv.style.maxHeight = (up ? above : below) + 'px';
+      h = qv.offsetHeight;
+      top = up ? r.top - GAP - h : r.bottom + GAP;
+    } else {
+      // Too little room above and below: sit beside the button.
+      left = r.right + GAP + w <= vw - M ? r.right + GAP : Math.max(M, r.left - GAP - w);
+      top = Math.min(Math.max(M, r.top + r.height / 2 - h / 2), vh - h - M);
+    }
+    qv.style.left = left + 'px'; qv.style.top = top + 'px';
+  }
+  function section(title, text) { return text ? '<div><h4>' + esc(title) + '</h4><p>' + esc(text) + '</p></div>' : ''; }
+  function renderStage(w) {
+    var stage = $('qvStage'); stage.innerHTML = ''; stage.className = 'qv-stage';
+    stage.hidden = !w.snap;
+    if (!w.snap) return;
+    if (w.snap.type === 'img') { var img = new Image(); img.src = w.snap.src; img.alt = f(w, 'name'); stage.appendChild(img); }
+    else if (w.snap.type === 'mock') stage.appendChild(buildMock(w.snap.tpl));
+    else if (w.snap.type === 'video') {
+      stage.classList.add('video');
+      if (qv.classList.contains('expanded')) {
+        var fr = document.createElement('iframe');
+        fr.src = 'https://www.youtube-nocookie.com/embed/' + w.snap.id + '?rel=0';
+        fr.title = f(w, 'name');
+        fr.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+        fr.allowFullscreen = true;
+        stage.appendChild(fr);
+      } else {
+        stage.innerHTML = '<img src="https://i.ytimg.com/vi/' + w.snap.id + '/hqdefault.jpg" alt="' + esc(f(w, 'name')) + '"><span class="playbadge"><span>' + icon.play + '</span></span>';
+      }
+    }
+  }
+  function fillQV(w) {
+    $('qvTitle').textContent = f(w, 'name');
+    var kind = !w.snap ? 'info' : ({ img: 'shot', mock: 'mock', video: 'vid' })[w.snap.type];
+    $('qvBadge').textContent = t()[kind];
+    $('qvNote').textContent = kind === 'shot' ? t().noteShot : kind === 'mock' ? t().noteMock : kind === 'vid' ? t().noteVid : statusText(w);
+    renderStage(w);
+    var tools = (w.tools || []).map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('');
+    $('qvDetail').innerHTML =
+      section(t().hPain, f(w, 'pain_point')) + section(t().hSol, f(w, 'solution')) +
+      section(t().hAI, f(w, 'ai_role')) + section(t().hHi, f(w, 'highlight')) +
+      (tools ? '<div><h4>' + esc(t().hTools) + '</h4><div class="toolchips">' + tools + '</div></div>' : '') +
+      (f(w, 'my_note') ? '<div class="note"><h4>' + esc(t().hNote) + '</h4><p>' + esc(f(w, 'my_note')) + '</p></div>' : '');
+    $('qvLinks').innerHTML = w.links.map(linkHtml).join('');
+    $('qvClose').setAttribute('aria-label', t().close);
+    syncExpandBtn();
+  }
+  function syncExpandBtn() { $('qvExpand').setAttribute('aria-label', qv.classList.contains('expanded') ? t().shrink : t().expand); }
+  function setExpanded(on) {
+    if (on) qv.style.maxHeight = '';
+    var changed = qv.classList.contains('expanded') !== on;
+    qv.classList.toggle('expanded', on);
+    scrim.classList.toggle('show', on);
+    qv.setAttribute('aria-modal', String(on));
+    syncExpandBtn();
+    if (changed && current && current.snap && current.snap.type === 'video') renderStage(current);
+    if (!on && anchor && qv.classList.contains('show')) place(anchor);
+  }
+  function openQV(w, btn, expand) {
+    clearTimeout(closeTimer); clearTimeout(openTimer);
+    if (anchor && anchor !== btn) anchor.setAttribute('aria-expanded', 'false');
+    current = w; anchor = btn;
+    fillQV(w);
+    qv.querySelector('.qv-scroll').scrollTop = 0;
+    btn.setAttribute('aria-expanded', 'true');
+    if (expand) setExpanded(true);
+    else if (!qv.classList.contains('expanded')) place(btn);
+    qv.classList.add('show');
+    if (expand) $('qvClose').focus();
+  }
+  function hoverOpen(w, btn) {
+    if (qv.classList.contains('expanded') || Date.now() < quietUntil) return;
+    clearTimeout(closeTimer); clearTimeout(openTimer);
+    openTimer = setTimeout(function () { openQV(w, btn, false); }, 120);
+  }
+  function closeQV() {
+    clearTimeout(openTimer); clearTimeout(closeTimer);
+    qv.classList.remove('show');
+    if (anchor) anchor.setAttribute('aria-expanded', 'false');
+    var back = qv.classList.contains('expanded') ? anchor : null;
+    if (back) quietUntil = Date.now() + 600; // the pointer may still rest on the button: don't pop the preview straight back
+    setTimeout(function () {
+      if (!qv.classList.contains('show')) { setExpanded(false); $('qvStage').innerHTML = ''; }
+    }, 220);
+    scrim.classList.remove('show');
+    if (back) back.focus();
+    current = null;
+  }
+  function scheduleClose() {
+    clearTimeout(openTimer);
+    if (qv.classList.contains('expanded')) return;
+    closeTimer = setTimeout(function () {
+      if (!qv.matches(':hover') && !qv.contains(document.activeElement) && !(anchor && anchor.matches(':hover'))) closeQV();
+    }, 220);
+  }
+  qv.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+  qv.addEventListener('mouseleave', scheduleClose);
+  $('qvClose').addEventListener('click', closeQV);
+  $('qvExpand').addEventListener('click', function () { setExpanded(!qv.classList.contains('expanded')); });
+  scrim.addEventListener('click', closeQV);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && qv.classList.contains('show')) closeQV(); });
+  window.addEventListener('resize', function () { if (anchor && qv.classList.contains('show') && !qv.classList.contains('expanded')) place(anchor); });
+  window.addEventListener('scroll', function () { if (qv.classList.contains('show') && !qv.classList.contains('expanded')) closeQV(); }, { passive: true });
+
+  /* ---------- language ---------- */
+  function renderAll() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-Hant-TW' : 'en';
+    document.documentElement.setAttribute('data-lang', state.lang);
+    document.title = t().title;
+    $('langBtn').setAttribute('aria-label', t().toggleLabel);
+    fillI18n(document);
+    renderStats(); renderSkills(); renderFilters(); renderGrid();
+  }
+  $('langBtn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    try { localStorage.setItem('pf-lang', state.lang); } catch (e) {}
+    if (qv.classList.contains('show')) closeQV();
+    renderAll();
+    var btn = $('langBtn'), main = $('main');
+    btn.classList.remove('spin'); main.classList.remove('pop');
+    void btn.offsetWidth;
+    btn.classList.add('spin'); main.classList.add('pop');
+  });
+
   renderAll();
-  open.forEach((id) => { const d = document.querySelector("#" + id + " details"); if (d) d.open = true; });
-}));
-
-renderStats();
-renderAll();
+})();
 </script>
 </body>
 </html>
